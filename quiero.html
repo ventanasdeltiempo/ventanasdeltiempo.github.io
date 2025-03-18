@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Ventanas del Tiempo</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#15B8A6',secondary:'#7B92FF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.stats-count {
+transition: all 0.3s ease;
+display: inline-block;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="font-['Pacifico'] text-2xl text-primary">logo</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a href="#inicio" class="text-gray-700 hover:text-primary">Inicio</a>
+<a href="#mapa" class="text-gray-700 hover:text-primary">Mapa</a>
+<a href="#proyecto" class="text-gray-700 hover:text-primary">Proyecto</a>
+<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4" id="navRequestWindowBtn">
+<i class="ri-add-line"></i>
+<span>Quiero una Ventana</span>
+</button>
+</div>
+<div class="flex items-center md:hidden">
+<button class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2" id="mobileRequestWindowBtn">
+<i class="ri-add-line"></i>
+<span>Ventana</span>
+</button>
+<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+<i class="ri-menu-line text-2xl"></i>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40" id="mobileMenu">
+<div class="py-2">
+<a href="#inicio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+<a href="#mapa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+<a href="#proyecto" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+</div>
+</div>
+<main class="pt-16">
+<section class="py-16 bg-gray-50" id="proyecto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold text-center mb-12">Sobre el Proyecto</h2>
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<p class="text-gray-600 mb-6">Las Ventanas del Tiempo es una iniciativa innovadora que busca conectar a los ciudadanos con la rica historia de nuestra ciudad. A través de fotografías históricas instaladas en ubicaciones específicas, creamos puentes visuales entre el pasado y el presente.</p>
+<p class="text-gray-600 mb-6">En la sección Proyecto encontrarás información detallada sobre:</p>
+<ul class="list-disc list-inside text-gray-600 mb-6">
+<li>Cómo funciona nuestra iniciativa</li>
+<li>Aplicaciones y casos de uso</li>
+<li>Sobre nosotros y nuestro equipo</li>
+</ul>
+</div>
+<div class="h-[400px] rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/67801e4ccca6d3902b562d9f2b98e8ce.jpg" class="w-full h-full object-cover" alt="Proyecto Ventanas del Tiempo">
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white border-t">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid md:grid-cols-4 gap-8">
+<div>
+<div class="font-['Pacifico'] text-2xl text-primary mb-4">logo</div>
+<p class="text-gray-600 text-sm">Conectando el pasado y el presente a través de ventanas fotográficas en nuestra ciudad.</p>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Enlaces</h4>
+<ul class="space-y-2 text-gray-600">
+<li><a href="#mapa" class="hover:text-primary">Mapa</a></li>
+<li><a href="#proyecto" class="hover:text-primary">Proyecto</a></li>
+<li><a href="#" class="hover:text-primary" id="footerRequestBtn">Quiero una Ventana</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Síguenos</h4>
+<a href="https://instagram.com/ventanasdeltiempo" target="_blank" class="flex items-center text-gray-600 hover:text-primary">
+<i class="ri-instagram-line text-xl mr-2"></i>
+<span>@ventanasdeltiempo</span>
+</a>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Contacto</h4>
+<p class="text-gray-600">info@ventanasdeltiempo.es</p>
+</div>
+</div>
+<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+<p>&copy; 2025 Las Ventanas del Tiempo. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<div class="fixed inset-0 bg-black/50 hidden items-center justify-center" id="requestModal">
+<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+<h3 class="text-2xl font-bold mb-4">Solicitar una Ventana</h3>
+<p class="text-gray-600 mb-6">Déjanos tus datos y nos pondremos en contacto contigo para discutir la instalación de una Ventana del Tiempo en tu ubicación.</p>
+<form id="requestForm" class="space-y-4">
+<input type="text" placeholder="Nombre completo" class="w-full p-3 border rounded-lg" required>
+<input type="email" placeholder="Correo electrónico" class="w-full p-3 border rounded-lg" required>
+<input type="tel" placeholder="Teléfono" class="w-full p-3 border rounded-lg" required>
+<textarea placeholder="Ubicación propuesta y comentarios" class="w-full p-3 border rounded-lg" rows="4" required></textarea>
+<div class="flex justify-end space-x-4">
+<button type="button" class="px-6 py-2 rounded-button border border-gray-300 hover:bg-gray-50 cursor-pointer" id="closeModal">Cancelar</button>
+<button type="submit" class="px-6 py-2 rounded-button bg-primary text-white hover:bg-primary/90 cursor-pointer">Enviar</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+const menuButton = document.getElementById('menuButton');
+const mobileMenu = document.getElementById('mobileMenu');
+const readMoreBtn = document.getElementById('readMoreBtn');
+const moreText = document.getElementById('moreText');
+const requestWindowBtn = document.getElementById('requestWindowBtn');
+const requestModal = document.getElementById('requestModal');
+const closeModal = document.getElementById('closeModal');
+const requestForm = document.getElementById('requestForm');
+menuButton.addEventListener('click', () => {
+mobileMenu.classList.toggle('translate-x-full');
+});
+document.querySelector('#proyecto button').addEventListener('click', () => {
+window.location.href = '/proyecto';
+});
+const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
+const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
+const footerRequestBtn = document.getElementById('footerRequestBtn');
+[requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
+btn.addEventListener('click', () => {
+requestModal.classList.remove('hidden');
+requestModal.classList.add('flex');
+});
+});
+closeModal.addEventListener('click', () => {
+requestModal.classList.add('hidden');
+requestModal.classList.remove('flex');
+});
+requestForm.addEventListener('submit', (e) => {
+e.preventDefault();
+requestModal.classList.add('hidden');
+requestModal.classList.remove('flex');
+});
+function animateCount(element, target) {
+let current = 0;
+const duration = 2000;
+const step = target / (duration / 16);
+function update() {
+current = Math.min(current + step, target);
+element.textContent = Math.floor(current);
+if (current < target) {
+requestAnimationFrame(update);
+}
+}
+update();
+}
+const mockData = {
+windows: 156,
+photos: 3427
+};
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+animateCount(document.getElementById('windowsCount'), mockData.windows);
+animateCount(document.getElementById('photosCount'), mockData.photos);
+observer.disconnect();
+}
+});
+});
+observer.observe(document.getElementById('windowsCount'));
+</script>
+</body>
+</html>
