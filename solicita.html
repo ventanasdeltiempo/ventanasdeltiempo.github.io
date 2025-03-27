@@ -1,109 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <!-- Metadatos básicos -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Las Ventanas del Tiempo</title>
-
-  <!-- Importamos Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    /* Configuración de Tailwind para colores y radios de borde personalizados */
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#15B8A6',
-            secondary: '#7B92FF'
-          },
-          borderRadius: {
-            'none': '0px',
-            'sm': '4px',
-            DEFAULT: '8px',
-            'md': '12px',
-            'lg': '16px',
-            'xl': '20px',
-            '2xl': '24px',
-            '3xl': '32px',
-            'full': '9999px',
-            'button': '8px'
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Fuentes e iconos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-
-  <!-- Estilos adicionales -->
-  <style>
-    /* Ajuste del contenido para iconos que comienzan con "ri-" (Remixicon) */
-    :where([class^="ri-"])::before {
-      content: "\f3c2";
-    }
-
-    /* Estilo para transiciones de recuento (stats) */
-    .stats-count {
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-  </style>
-</head>
+	<head>
+		<!-- Configuración básica del documento -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ventanas del Tiempo</title>
+		
+		<!-- Carga de Tailwind CSS desde CDN -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {
+							primary: '#56aa45',
+							secondary: '#df4e19'
+						},
+						borderRadius: {
+							'none': '0px',
+							'sm': '4px',
+							'DEFAULT': '8px',
+							'md': '12px',
+							'lg': '16px',
+							'xl': '20px',
+							'2xl': '24px',
+							'3xl': '32px',
+							'full': '9999px',
+							'button': '8px'
+						}
+					}
+				}
+			}
+		</script>
+		
+		<!-- Fuentes y íconos -->
+		<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+		
+		<!-- Estilos personalizados -->
+		<style>
+			:where([class^="ri-"])::before {
+				content: "\f3c2";
+			}
+			.stats-count {
+				transition: all 0.3s ease;
+				display: inline-block;
+			}
+		</style>
+	</head>
 
 <body class="bg-gray-50">
-  <!-- Barra de navegación fija en la parte superior -->
-  <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16 items-center">
-        <!-- Logo del sitio -->
-        <div class="font-['Pacifico'] text-2xl text-primary">logo</div>
-
-        <!-- Enlaces del menú en pantallas medianas/grandes -->
-        <div class="hidden md:flex space-x-8 items-center">
-          <a href="#inicio" class="text-gray-700 hover:text-primary">Inicio</a>
-          <a href="#mapa" class="text-gray-700 hover:text-primary">Mapa</a>
-          <a href="#proyecto" class="text-gray-700 hover:text-primary">Proyecto</a>
-          <button
-            class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
-            id="navRequestWindowBtn"
-          >
-            <i class="ri-add-line"></i>
-            <span>Quiero una Ventana</span>
-          </button>
-        </div>
-
-        <!-- Botón menú móvil y acceso rápido en pantallas pequeñas -->
-        <div class="flex items-center md:hidden">
-          <button
-            class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2"
-            id="mobileRequestWindowBtn"
-          >
-            <i class="ri-add-line"></i>
-            <span>Ventana</span>
-          </button>
-          <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-            <i class="ri-menu-line text-2xl"></i>
+    <!-- NAVBAR: Barra de navegación fija en la parte superior -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between h-16 items-center">
+              <!-- Logotipo -->
+              <img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
+              
+              <!-- Menú de navegación en pantallas medianas y grandes -->
+              <div class="hidden md:flex space-x-8 items-center">
+                  <a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+                  <a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+                  <a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+                  <button
+                      onclick="window.location.href='solicita.html'"
+                      class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
+                  >
+                      <i class="ri-add-line"></i>
+                      <span>Solicita una Ventana</span>
+                  </button>
+              </div>
+              
+              <!-- Botón de menú en pantallas pequeñas (Mobile) -->
+              <div class="flex items-center md:hidden">
+                  <button
+                      class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2"
+                      id="mobileRequestWindowBtn"
+                  >
+                      <i class="ri-add-line"></i>
+                      <span>Solicita</span>
+                  </button>
+                  <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+                      <i class="ri-menu-line text-2xl"></i>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
   </nav>
-
-  <!-- Menú móvil oculto inicialmente -->
+  
+  <!-- Menú móvil (desplegable) -->
   <div
-    class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-    id="mobileMenu"
+      class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+      id="mobileMenu"
   >
-    <div class="py-2">
-      <a href="#inicio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-      <a href="#mapa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-      <a href="#proyecto" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-    </div>
+      <div class="py-2">
+          <a href="inicio.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+          <a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+          <a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+      </div>
   </div>
 
   <!-- Contenido principal con margen superior para no tapar la barra de navegación -->
@@ -219,54 +216,58 @@
     </section>
   </main>
 
-  <!-- Pie de página -->
-  <footer class="bg-white border-t">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Columna 1: Logo y descripción -->
-        <div>
-          <div class="font-['Pacifico'] text-2xl text-primary mb-4">logo</div>
-          <p class="text-gray-600 text-sm">
-            Conectando el pasado y el presente a través de ventanas fotográficas en nuestra ciudad.
-          </p>
-        </div>
-
-        <!-- Columna 2: Enlaces rápidos -->
-        <div>
-          <h4 class="font-semibold mb-4">Enlaces</h4>
-          <ul class="space-y-2 text-gray-600">
-            <li><a href="#mapa" class="hover:text-primary">Mapa</a></li>
-            <li><a href="#proyecto" class="hover:text-primary">Proyecto</a></li>
-            <li><a href="#" class="hover:text-primary" id="footerRequestBtn">Quiero una Ventana</a></li>
-          </ul>
-        </div>
-
-        <!-- Columna 3: Redes sociales -->
-        <div>
-          <h4 class="font-semibold mb-4">Síguenos</h4>
-          <a
-            href="https://instagram.com/ventanasdeltiempo"
-            target="_blank"
-            class="flex items-center text-gray-600 hover:text-primary"
-          >
-            <i class="ri-instagram-line text-xl mr-2"></i>
-            <span>@ventanasdeltiempo</span>
-          </a>
-        </div>
-
-        <!-- Columna 4: Información de contacto -->
-        <div>
-          <h4 class="font-semibold mb-4">Contacto</h4>
-          <p class="text-gray-600">info@ventanasdeltiempo.es</p>
-        </div>
-      </div>
-
-      <!-- Derechos reservados -->
-      <div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
-        <p>&copy; 2025 Las Ventanas del Tiempo. Todos los derechos reservados.</p>
-      </div>
-    </div>
-  </footer>
+		<!-- FOOTER: Sección de pie de página -->
+		<footer class="bg-white border-t">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+				<div class="grid md:grid-cols-4 gap-8">
+					<!-- Logo y breve descripción -->
+					<div>
+						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
+						<p class="text-gray-600 text-sm">
+							Conectando el pasado y el presente a través de ventanas fotográficas en nuestra ciudad.
+						</p>
+					</div>
+					<!-- Enlaces -->
+					<div>
+						<h4 class="font-semibold mb-4">Enlaces</h4>
+						<ul class="space-y-2 text-gray-600">
+							<li>
+								<a href="index.html" class="hover:text-primary">Inicio</a>
+							</li>
+							<li>
+								<a href="mapa.html" class="hover:text-primary">Mapa</a>
+							</li>
+							<li>
+								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
+							</li>
+							<li>
+								<a href="solicita.html" class="hover:text-primary">Solicita una Ventana</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Redes sociales -->
+					<div>
+						<h4 class="font-semibold mb-4">Síguenos</h4>
+						<a
+							href="https://instagram.com/ventanasdeltiempo"
+							target="_blank"
+							class="flex items-center text-gray-600 hover:text-primary"
+						>
+							<i class="ri-instagram-line text-xl mr-2"></i>
+							<span>@ventanasdeltiempo</span>
+						</a>
+					</div>
+					<!-- Contacto -->
+					<div>
+						<h4 class="font-semibold mb-4">Contacto</h4>
+						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
+					</div>
+				</div>
+				<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+					<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+				</div>
+			</div>
+		</footer>
 
   <!-- Modal de solicitud de Ventana -->
   <div

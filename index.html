@@ -58,7 +58,7 @@
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex justify-between h-16 items-center">
 					<!-- Logotipo -->
-					<img src="src/logo512.png"  alt="Logo"  class="h-14 w-auto"/>
+					<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
 					
 					<!-- Menú de navegación en pantallas medianas y grandes -->
 					<div class="hidden md:flex space-x-8 items-center">
@@ -66,11 +66,11 @@
 						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
 						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
 						<button
-							onclick="window.location.href='quiero.html'"
+							onclick="window.location.href='solicita.html'"
 							class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
 						>
 							<i class="ri-add-line"></i>
-							<span>Quiero una Ventana</span>
+							<span>Solicita una Ventana</span>
 						</button>
 					</div>
 					
@@ -81,7 +81,7 @@
 							id="mobileRequestWindowBtn"
 						>
 							<i class="ri-add-line"></i>
-							<span>Ventana</span>
+							<span>Solicita</span>
 						</button>
 						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
 							<i class="ri-menu-line text-2xl"></i>
@@ -97,9 +97,9 @@
 			id="mobileMenu"
 		>
 			<div class="py-2">
-				<a href="#inicio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-				<a href="#mapa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-				<a href="#proyecto" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+				<a href="inicio.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
 			</div>
 		</div>
 		
@@ -115,10 +115,10 @@
 					<div class="text-white max-w-2xl">
 						<h1 class="text-5xl font-bold mb-6">Ventanas del Tiempo</h1>
 						<p class="text-xl mb-8">
-							Un viaje visual a través de la historia de nuestra ciudad, conectando el pasado con el presente a través de fotografías históricas en ubicaciones exactas.
+							Gracias por asomarte a nuestras Ventanas del Tiempo. Un viaje visual a través de la historia de nuestra ciudad, conectando el pasado con el presente a través de fotografías históricas en ubicaciones exactas.
 						</p>
 						<button 
-							onclick="window.location.href='proyecto.html'"
+							onclick="window.location.href='mapa.html'"
 							class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
 						>
 							<i class="ri-map-2-line"></i>
@@ -242,11 +242,11 @@
 					<div class="text-center">
 						<h2 class="text-3xl font-bold mb-8">¿Quieres ser parte del proyecto?</h2>
 						<button
-							onclick="window.location.href='quiero.html'"
+							onclick="window.location.href='solicita.html'"
 							class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold inline-flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
 						>
 							<i class="ri-add-line"></i>
-							<span>Quiero una Ventana</span>
+							<span>Solicita una Ventana</span>
 						</button>
 					</div>
 				</div>
@@ -278,7 +278,7 @@
 								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
 							</li>
 							<li>
-								<a href="quiero.html" class="hover:text-primary">Quiero una Ventana</a>
+								<a href="solicita.html" class="hover:text-primary">Solicita una Ventana</a>
 							</li>
 						</ul>
 					</div>
@@ -381,7 +381,7 @@
 			//	window.location.href = '/proyecto';
 			//});
 			
-			// Mostrar modal al hacer clic en cualquiera de los botones "Quiero una Ventana"
+			// Mostrar modal al hacer clic en cualquiera de los botones "Solicita una Ventana"
 			const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
 			const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
 			const footerRequestBtn = document.getElementById('footerRequestBtn');
