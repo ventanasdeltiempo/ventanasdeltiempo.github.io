@@ -1,273 +1,522 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chronolog</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:'#15B8A6',secondary:'#7B92FF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-<style>
-:where([class^="ri-"])::before { content: "\f3c2"; }
-.stats-count {
-transition: all 0.3s ease;
-display: inline-block;
-}
-</style>
+  <!-- Definición de metadatos básicos -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chronolog</title>
+
+  <!-- Importar Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    /*
+      Configuración de Tailwind para
+      - Colores personalizados
+      - Radios de borde personalizados
+    */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#15B8A6',
+            secondary: '#7B92FF'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            DEFAULT: '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Fuentes e iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos personalizados -->
+  <style>
+    /*
+      Ajuste del contenido para iconos que comienzan con "ri-"
+      (correspondientes a la librería Remix Icon)
+    */
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    /* Transición para los contadores numéricos */
+    .stats-count {
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-50">
-<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between h-16 items-center">
-<div class="font-['Pacifico'] text-2xl text-primary">Chronolog</div>
-<div class="hidden md:flex space-x-8 items-center">
-<a href="#inicio" class="text-gray-700 hover:text-primary">Inicio</a>
-<a href="#mapa" class="text-gray-700 hover:text-primary">Ubicaciones</a>
-<a href="#proyecto" class="text-gray-700 hover:text-primary">Proyecto</a>
-<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4" id="navRequestWindowBtn">
-<i class="ri-add-line"></i>
-<span>Participar</span>
-</button>
-</div>
-<div class="flex items-center md:hidden">
-<button class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2" id="mobileRequestWindowBtn">
-<i class="ri-add-line"></i>
-<span>Ventana</span>
-</button>
-<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-<i class="ri-menu-line text-2xl"></i>
-</div>
-</div>
-</div>
-</div>
-</nav>
-<div class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40" id="mobileMenu">
-<div class="py-2">
-<a href="#inicio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-<a href="#mapa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-<a href="#proyecto" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-</div>
-</div>
-<main class="pt-16">
-<section class="py-16 bg-gray-50" id="proyecto">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<h2 class="text-3xl font-bold text-center mb-12">Nuestra Misión</h2>
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<div>
-<p class="text-gray-600 mb-6">Los cambios en nuestro entorno son difíciles de percibir porque ocurren gradualmente, y los proyectos de monitoreo a largo plazo suelen ser costosos y complejos. Las Ventanas del Tiempo soluciona este problema a través de estaciones fotográficas estratégicamente ubicadas, se invita a la comunidad a capturar momentos que, unidos en las Ventanas del Tiempo, narran la historia de las transformaciones ecológicas a lo largo del tiempo.</p>
-<p class="text-gray-600 mb-6">Nuestra misión es doble:</p>
-<ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
-<li>Involucrar a las personas con la naturaleza de una manera interactiva.</li>
-<li>Registrar los cambios ambientales para su uso científico.</li>
-</ul>
-<p class="text-gray-600 mb-6">Las Ventanas del Tiempo transforma a cada visitante en un colaborador científico, empoderando a las comunidades para documentar y proteger sus entornos naturales.</p>
-</div>
-<div class="h-[400px] rounded-lg overflow-hidden">
-<img src="https://public.readdy.ai/ai/img_res/619171478a8ff054edf893f39b310210.jpg" class="w-full h-full object-cover" alt="Ventanas del Tiempo">
-</div>
-</div>
-</div>
-</section>
-<section class="py-16 bg-white" id="ventana">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<h2 class="text-3xl font-bold text-center mb-12">Consigue una Ventana del Tiempo</h2>
-<div class="mb-12">
-<p class="text-gray-600 text-lg text-center max-w-3xl mx-auto">Todo comienza con una historia. ¿Qué hace único a tu entorno? ¿Qué elemento natural quieres destacar? ¿Qué le importa a tu comunidad? Las respuestas a estas preguntas pueden ayudarte a elegir la ubicación para tu primera ventana.</p>
-</div>
-<h3 class="text-2xl font-bold text-center mb-8">¿Qué incluye?</h3>
-<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-<div class="bg-gray-50 rounded-lg p-6">
-<div class="h-48 mb-4 rounded-lg overflow-hidden">
-<img src="https://public.readdy.ai/ai/img_res/6077532fe7da5826191142d0edc87418.jpg" class="w-full h-full object-cover" alt="Soporte para teléfono">
-</div>
-<h4 class="font-semibold mb-2">Soporte Alineador</h4>
-<p class="text-gray-600 text-sm">El soporte que ayuda a los colaboradores a alinear sus teléfonos para tomar fotos consistentes.</p>
-</div>
-<div class="bg-gray-50 rounded-lg p-6">
-<div class="h-48 mb-4 rounded-lg overflow-hidden">
-<img src="https://public.readdy.ai/ai/img_res/a79f2536970d27cccaf3f29b4373699a.jpg" class="w-full h-full object-cover" alt="Cartel informativo">
-</div>
-<h4 class="font-semibold mb-2">Cartel Personalizado</h4>
-<p class="text-gray-600 text-sm">El cartel con instrucciones personalizado para cada ventana, incluyendo información sobre el proyecto.</p>
-</div>
-<div class="bg-gray-50 rounded-lg p-6">
-<div class="h-48 mb-4 rounded-lg overflow-hidden">
-<img src="https://public.readdy.ai/ai/img_res/022c3aece9e14cd634e281c3ab69a027.jpg" class="w-full h-full object-cover" alt="Servicio de email">
-</div>
-<h4 class="font-semibold mb-2">Servicio Automatizado</h4>
-<p class="text-gray-600 text-sm">Servicio de correo electrónico que recibe las fotos, las alinea con IA y envía agradecimientos a los colaboradores.</p>
-</div>
-<div class="bg-gray-50 rounded-lg p-6">
-<div class="h-48 mb-4 rounded-lg overflow-hidden">
-<img src="https://public.readdy.ai/ai/img_res/7fbb8f074b62f89aa58a963373844b4e.jpg" class="w-full h-full object-cover" alt="Página web">
-</div>
-<h4 class="font-semibold mb-2">Página Web Dedicada</h4>
-<p class="text-gray-600 text-sm">Página web para cada ventana que muestra la secuencia de timelapse y detalles sobre la ventana y su historia.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="py-16 bg-gray-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<h2 class="text-3xl font-bold text-center mb-12">Casos de Uso</h2>
-<div class="grid md:grid-cols-3 gap-8">
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<div class="w-12 h-12 flex items-center justify-center mb-6">
-<i class="ri-community-line text-3xl text-primary"></i>
-</div>
-<h3 class="text-xl font-semibold mb-4">Educación y participación comunitaria</h3>
-<p class="text-gray-600">Involucra a estudiantes y residentes locales en el monitoreo ambiental, fomentando la conexión con la naturaleza y el aprendizaje práctico sobre cambios ecosistémicos.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<div class="w-12 h-12 flex items-center justify-center mb-6">
-<i class="ri-plant-line text-3xl text-primary"></i>
-</div>
-<h3 class="text-xl font-semibold mb-4">Proyectos de restauración o conservación</h3>
-<p class="text-gray-600">Documenta el progreso de iniciativas de restauración ecológica y esfuerzos de conservación, proporcionando evidencia visual del impacto de estas intervenciones.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<div class="w-12 h-12 flex items-center justify-center mb-6">
-<i class="ri-water-flash-line text-3xl text-primary"></i>
-</div>
-<h3 class="text-xl font-semibold mb-4">Niveles y calidad del agua</h3>
-<p class="text-gray-600">Monitorea cambios en niveles de agua, erosión costera y calidad de cuerpos de agua, ayudando a identificar patrones y tendencias a largo plazo.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<div class="w-12 h-12 flex items-center justify-center mb-6">
-<i class="ri-bug-line text-3xl text-primary"></i>
-</div>
-<h3 class="text-xl font-semibold mb-4">Especies invasoras y autóctonas</h3>
-<p class="text-gray-600">Rastrea la propagación de especies invasoras y documenta la presencia y distribución de especies nativas, contribuyendo a la gestión de la biodiversidad.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<div class="w-12 h-12 flex items-center justify-center mb-6">
-<i class="ri-fire-line text-3xl text-primary"></i>
-</div>
-<h3 class="text-xl font-semibold mb-4">Recuperación tras incendios y tormentas</h3>
-<p class="text-gray-600">Documenta la regeneración natural después de eventos perturbadores, proporcionando información valiosa sobre la resiliencia del ecosistema.</p>
-</div>
-<div class="bg-white p-8 rounded-lg shadow-sm">
-<div class="w-12 h-12 flex items-center justify-center mb-6">
-<i class="ri-add-circle-line text-3xl text-primary"></i>
-</div>
-<h3 class="text-xl font-semibold mb-4">¿Tienes otro caso de uso?</h3>
-<p class="text-gray-600">Contáctanos para discutir cómo las Ventanas del Tiempo pueden adaptarse a tus necesidades específicas de monitoreo ambiental.</p>
-</div>
-</div>
-</div>
-</section>
-</main>
-<footer class="bg-white border-t">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="grid md:grid-cols-4 gap-8">
-<div>
-<div class="font-['Pacifico'] text-2xl text-primary mb-4">Chronolog</div>
-<p class="text-gray-600 text-sm">Conectando comunidades para monitorear y preservar nuestros espacios naturales.</p>
-</div>
-<div>
-<h4 class="font-semibold mb-4">Enlaces</h4>
-<ul class="space-y-2 text-gray-600">
-<li><a href="#mapa" class="hover:text-primary">Mapa</a></li>
-<li><a href="#proyecto" class="hover:text-primary">Proyecto</a></li>
-<li><a href="#" class="hover:text-primary" id="footerRequestBtn">Quiero una Ventana</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-semibold mb-4">Síguenos</h4>
-<a href="https://instagram.com/chronolog" target="_blank" class="flex items-center text-gray-600 hover:text-primary">
-<i class="ri-instagram-line text-xl mr-2"></i>
-<span>@chronolog</span>
-</a>
-</div>
-<div>
-<h4 class="font-semibold mb-4">Contacto</h4>
-<p class="text-gray-600">info@chronolog.org</p>
-</div>
-</div>
-<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
-<p>&copy; 2025 Chronolog. Todos los derechos reservados.</p>
-</div>
-</div>
-</footer>
-<div class="fixed inset-0 bg-black/50 hidden items-center justify-center" id="requestModal">
-<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-<h3 class="text-2xl font-bold mb-4">Solicitar una Ventana</h3>
-<p class="text-gray-600 mb-6">Déjanos tus datos y nos pondremos en contacto contigo para discutir la instalación de una Ventana del Tiempo en tu ubicación.</p>
-<form id="requestForm" class="space-y-4">
-<input type="text" placeholder="Nombre completo" class="w-full p-3 border rounded-lg" required>
-<input type="email" placeholder="Correo electrónico" class="w-full p-3 border rounded-lg" required>
-<input type="tel" placeholder="Teléfono" class="w-full p-3 border rounded-lg" required>
-<textarea placeholder="Ubicación propuesta y comentarios" class="w-full p-3 border rounded-lg" rows="4" required></textarea>
-<div class="flex justify-end space-x-4">
-<button type="button" class="px-6 py-2 rounded-button border border-gray-300 hover:bg-gray-50 cursor-pointer" id="closeModal">Cancelar</button>
-<button type="submit" class="px-6 py-2 rounded-button bg-primary text-white hover:bg-primary/90 cursor-pointer">Enviar</button>
-</div>
-</form>
-</div>
-</div>
-<script>
-const menuButton = document.getElementById('menuButton');
-const mobileMenu = document.getElementById('mobileMenu');
-const readMoreBtn = document.getElementById('readMoreBtn');
-const moreText = document.getElementById('moreText');
-const requestWindowBtn = document.getElementById('requestWindowBtn');
-const requestModal = document.getElementById('requestModal');
-const closeModal = document.getElementById('closeModal');
-const requestForm = document.getElementById('requestForm');
-menuButton.addEventListener('click', () => {
-mobileMenu.classList.toggle('translate-x-full');
-});
-document.querySelector('#proyecto button').addEventListener('click', () => {
-window.location.href = '/proyecto';
-});
-const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
-const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
-const footerRequestBtn = document.getElementById('footerRequestBtn');
-[requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
-btn.addEventListener('click', () => {
-requestModal.classList.remove('hidden');
-requestModal.classList.add('flex');
-});
-});
-closeModal.addEventListener('click', () => {
-requestModal.classList.add('hidden');
-requestModal.classList.remove('flex');
-});
-requestForm.addEventListener('submit', (e) => {
-e.preventDefault();
-requestModal.classList.add('hidden');
-requestModal.classList.remove('flex');
-});
-function animateCount(element, target) {
-let current = 0;
-const duration = 2000;
-const step = target / (duration / 16);
-function update() {
-current = Math.min(current + step, target);
-element.textContent = Math.floor(current);
-if (current < target) {
-requestAnimationFrame(update);
-}
-}
-update();
-}
-const mockData = {
-windows: 156,
-photos: 3427
-};
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-animateCount(document.getElementById('windowsCount'), mockData.windows);
-animateCount(document.getElementById('photosCount'), mockData.photos);
-observer.disconnect();
-}
-});
-});
-observer.observe(document.getElementById('windowsCount'));
-</script>
+  <!-- Barra de navegación fija en la parte superior de la pantalla -->
+  <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo principal -->
+        <div class="font-['Pacifico'] text-2xl text-primary">Chronolog</div>
+
+        <!-- Menú de navegación para pantallas medianas y grandes -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="#inicio" class="text-gray-700 hover:text-primary">Inicio</a>
+          <a href="#mapa" class="text-gray-700 hover:text-primary">Ubicaciones</a>
+          <a href="#proyecto" class="text-gray-700 hover:text-primary">Proyecto</a>
+          <button
+            class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
+            id="navRequestWindowBtn"
+          >
+            <i class="ri-add-line"></i>
+            <span>Participar</span>
+          </button>
+        </div>
+
+        <!-- Menú y botón para pantallas móviles -->
+        <div class="flex items-center md:hidden">
+          <button
+            class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2"
+            id="mobileRequestWindowBtn"
+          >
+            <i class="ri-add-line"></i>
+            <span>Ventana</span>
+          </button>
+          <!-- Botón para abrir/cerrar el menú en móviles -->
+          <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+            <i class="ri-menu-line text-2xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú móvil (oculto inicialmente) -->
+  <div
+    class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+    id="mobileMenu"
+  >
+    <div class="py-2">
+      <a href="#inicio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+      <a href="#mapa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+      <a href="#proyecto" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <main class="pt-16">
+    <!-- Sección "Nuestra Misión" -->
+    <section class="py-16 bg-gray-50" id="proyecto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">Nuestra Misión</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <!-- Texto principal de la misión -->
+          <div>
+            <p class="text-gray-600 mb-6">
+              Los cambios en nuestro entorno son difíciles de percibir porque ocurren gradualmente, 
+              y los proyectos de monitoreo a largo plazo suelen ser costosos y complejos. 
+              Las Ventanas del Tiempo soluciona este problema a través de estaciones fotográficas 
+              estratégicamente ubicadas, se invita a la comunidad a capturar momentos que, 
+              unidos en las Ventanas del Tiempo, narran la historia de las transformaciones 
+              ecológicas a lo largo del tiempo.
+            </p>
+            <p class="text-gray-600 mb-6">Nuestra misión es doble:</p>
+            <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+              <li>Involucrar a las personas con la naturaleza de una manera interactiva.</li>
+              <li>Registrar los cambios ambientales para su uso científico.</li>
+            </ul>
+            <p class="text-gray-600 mb-6">
+              Las Ventanas del Tiempo transforma a cada visitante en un colaborador científico, 
+              empoderando a las comunidades para documentar y proteger sus entornos naturales.
+            </p>
+          </div>
+          <!-- Imagen representativa de la misión -->
+          <div class="h-[400px] rounded-lg overflow-hidden">
+            <img
+              src="https://public.readdy.ai/ai/img_res/619171478a8ff054edf893f39b310210.jpg"
+              class="w-full h-full object-cover"
+              alt="Ventanas del Tiempo"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección "Consigue una Ventana del Tiempo" -->
+    <section class="py-16 bg-white" id="ventana">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">Consigue una Ventana del Tiempo</h2>
+        <div class="mb-12">
+          <p class="text-gray-600 text-lg text-center max-w-3xl mx-auto">
+            Todo comienza con una historia. ¿Qué hace único a tu entorno? 
+            ¿Qué elemento natural quieres destacar? ¿Qué le importa a tu comunidad? 
+            Las respuestas a estas preguntas pueden ayudarte a elegir la ubicación 
+            para tu primera ventana.
+          </p>
+        </div>
+        <h3 class="text-2xl font-bold text-center mb-8">¿Qué incluye?</h3>
+        
+        <!-- Grid con las características o elementos incluidos -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Elemento 1: Soporte Alineador -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <div class="h-48 mb-4 rounded-lg overflow-hidden">
+              <img
+                src="https://public.readdy.ai/ai/img_res/6077532fe7da5826191142d0edc87418.jpg"
+                class="w-full h-full object-cover"
+                alt="Soporte para teléfono"
+              />
+            </div>
+            <h4 class="font-semibold mb-2">Soporte Alineador</h4>
+            <p class="text-gray-600 text-sm">
+              El soporte que ayuda a los colaboradores a alinear sus teléfonos 
+              para tomar fotos consistentes.
+            </p>
+          </div>
+
+          <!-- Elemento 2: Cartel Personalizado -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <div class="h-48 mb-4 rounded-lg overflow-hidden">
+              <img
+                src="https://public.readdy.ai/ai/img_res/a79f2536970d27cccaf3f29b4373699a.jpg"
+                class="w-full h-full object-cover"
+                alt="Cartel informativo"
+              />
+            </div>
+            <h4 class="font-semibold mb-2">Cartel Personalizado</h4>
+            <p class="text-gray-600 text-sm">
+              El cartel con instrucciones personalizado para cada ventana, 
+              incluyendo información sobre el proyecto.
+            </p>
+          </div>
+
+          <!-- Elemento 3: Servicio Automatizado -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <div class="h-48 mb-4 rounded-lg overflow-hidden">
+              <img
+                src="https://public.readdy.ai/ai/img_res/022c3aece9e14cd634e281c3ab69a027.jpg"
+                class="w-full h-full object-cover"
+                alt="Servicio de email"
+              />
+            </div>
+            <h4 class="font-semibold mb-2">Servicio Automatizado</h4>
+            <p class="text-gray-600 text-sm">
+              Servicio de correo electrónico que recibe las fotos, 
+              las alinea con IA y envía agradecimientos a los colaboradores.
+            </p>
+          </div>
+
+          <!-- Elemento 4: Página Web Dedicada -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <div class="h-48 mb-4 rounded-lg overflow-hidden">
+              <img
+                src="https://public.readdy.ai/ai/img_res/7fbb8f074b62f89aa58a963373844b4e.jpg"
+                class="w-full h-full object-cover"
+                alt="Página web"
+              />
+            </div>
+            <h4 class="font-semibold mb-2">Página Web Dedicada</h4>
+            <p class="text-gray-600 text-sm">
+              Página web para cada ventana que muestra la secuencia 
+              de timelapse y detalles sobre la ventana y su historia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección "Casos de Uso" -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12">Casos de Uso</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Caso de uso 1 -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 flex items-center justify-center mb-6">
+              <i class="ri-community-line text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Educación y participación comunitaria</h3>
+            <p class="text-gray-600">
+              Involucra a estudiantes y residentes locales en el monitoreo ambiental, 
+              fomentando la conexión con la naturaleza y el aprendizaje práctico 
+              sobre cambios ecosistémicos.
+            </p>
+          </div>
+
+          <!-- Caso de uso 2 -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 flex items-center justify-center mb-6">
+              <i class="ri-plant-line text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Proyectos de restauración o conservación</h3>
+            <p class="text-gray-600">
+              Documenta el progreso de iniciativas de restauración ecológica 
+              y esfuerzos de conservación, proporcionando evidencia visual 
+              del impacto de estas intervenciones.
+            </p>
+          </div>
+
+          <!-- Caso de uso 3 -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 flex items-center justify-center mb-6">
+              <i class="ri-water-flash-line text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Niveles y calidad del agua</h3>
+            <p class="text-gray-600">
+              Monitorea cambios en niveles de agua, erosión costera 
+              y calidad de cuerpos de agua, ayudando a identificar 
+              patrones y tendencias a largo plazo.
+            </p>
+          </div>
+
+          <!-- Caso de uso 4 -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 flex items-center justify-center mb-6">
+              <i class="ri-bug-line text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Especies invasoras y autóctonas</h3>
+            <p class="text-gray-600">
+              Rastrea la propagación de especies invasoras y documenta 
+              la presencia y distribución de especies nativas, contribuyendo 
+              a la gestión de la biodiversidad.
+            </p>
+          </div>
+
+          <!-- Caso de uso 5 -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 flex items-center justify-center mb-6">
+              <i class="ri-fire-line text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Recuperación tras incendios y tormentas</h3>
+            <p class="text-gray-600">
+              Documenta la regeneración natural después de eventos perturbadores, 
+              proporcionando información valiosa sobre la resiliencia del ecosistema.
+            </p>
+          </div>
+
+          <!-- Caso de uso 6 -->
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="w-12 h-12 flex items-center justify-center mb-6">
+              <i class="ri-add-circle-line text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">¿Tienes otro caso de uso?</h3>
+            <p class="text-gray-600">
+              Contáctanos para discutir cómo las Ventanas del Tiempo 
+              pueden adaptarse a tus necesidades específicas de monitoreo ambiental.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="bg-white border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Columna 1: Logo y descripción -->
+        <div>
+          <div class="font-['Pacifico'] text-2xl text-primary mb-4">Chronolog</div>
+          <p class="text-gray-600 text-sm">
+            Conectando comunidades para monitorear y preservar nuestros espacios naturales.
+          </p>
+        </div>
+
+        <!-- Columna 2: Enlaces rápidos -->
+        <div>
+          <h4 class="font-semibold mb-4">Enlaces</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li><a href="#mapa" class="hover:text-primary">Mapa</a></li>
+            <li><a href="#proyecto" class="hover:text-primary">Proyecto</a></li>
+            <li><a href="#" class="hover:text-primary" id="footerRequestBtn">Quiero una Ventana</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Redes sociales -->
+        <div>
+          <h4 class="font-semibold mb-4">Síguenos</h4>
+          <a
+            href="https://instagram.com/chronolog"
+            target="_blank"
+            class="flex items-center text-gray-600 hover:text-primary"
+          >
+            <i class="ri-instagram-line text-xl mr-2"></i>
+            <span>@chronolog</span>
+          </a>
+        </div>
+
+        <!-- Columna 4: Información de contacto -->
+        <div>
+          <h4 class="font-semibold mb-4">Contacto</h4>
+          <p class="text-gray-600">info@chronolog.org</p>
+        </div>
+      </div>
+      <!-- Sección de derechos reservados -->
+      <div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+        <p>&copy; 2025 Chronolog. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de solicitud de Ventana -->
+  <div
+    class="fixed inset-0 bg-black/50 hidden items-center justify-center"
+    id="requestModal"
+  >
+    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+      <h3 class="text-2xl font-bold mb-4">Solicitar una Ventana</h3>
+      <p class="text-gray-600 mb-6">
+        Déjanos tus datos y nos pondremos en contacto contigo para discutir 
+        la instalación de una Ventana del Tiempo en tu ubicación.
+      </p>
+      <!-- Formulario para la solicitud -->
+      <form id="requestForm" class="space-y-4">
+        <input
+          type="text"
+          placeholder="Nombre completo"
+          class="w-full p-3 border rounded-lg"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          class="w-full p-3 border rounded-lg"
+          required
+        />
+        <input
+          type="tel"
+          placeholder="Teléfono"
+          class="w-full p-3 border rounded-lg"
+          required
+        />
+        <textarea
+          placeholder="Ubicación propuesta y comentarios"
+          class="w-full p-3 border rounded-lg"
+          rows="4"
+          required
+        ></textarea>
+        <div class="flex justify-end space-x-4">
+          <!-- Botón para cerrar sin enviar -->
+          <button
+            type="button"
+            class="px-6 py-2 rounded-button border border-gray-300 hover:bg-gray-50 cursor-pointer"
+            id="closeModal"
+          >
+            Cancelar
+          </button>
+          <!-- Botón para enviar el formulario -->
+          <button
+            type="submit"
+            class="px-6 py-2 rounded-button bg-primary text-white hover:bg-primary/90 cursor-pointer"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts de funcionalidad -->
+  <script>
+    // Elementos del DOM
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const moreText = document.getElementById('moreText');
+    const requestWindowBtn = document.getElementById('requestWindowBtn');
+    const requestModal = document.getElementById('requestModal');
+    const closeModal = document.getElementById('closeModal');
+    const requestForm = document.getElementById('requestForm');
+
+    // Mostrar/ocultar menú móvil al hacer clic
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('translate-x-full');
+    });
+
+    // Redirección simple al hacer clic en un botón dentro de la sección #proyecto
+    document.querySelector('#proyecto button').addEventListener('click', () => {
+      window.location.href = '/proyecto';
+    });
+
+    // Botones que abren el modal de solicitud
+    const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
+    const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
+    const footerRequestBtn = document.getElementById('footerRequestBtn');
+
+    // Asignar a cada botón la función de mostrar el modal
+    [requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
+      btn.addEventListener('click', () => {
+        requestModal.classList.remove('hidden');
+        requestModal.classList.add('flex');
+      });
+    });
+
+    // Cerrar el modal al hacer clic en "Cancelar"
+    closeModal.addEventListener('click', () => {
+      requestModal.classList.add('hidden');
+      requestModal.classList.remove('flex');
+    });
+
+    // Manejo del evento 'submit' del formulario
+    requestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Simulamos el envío y cerramos el modal
+      requestModal.classList.add('hidden');
+      requestModal.classList.remove('flex');
+    });
+
+    // Función para animar un contador numérico
+    function animateCount(element, target) {
+      let current = 0;
+      const duration = 2000; // Duración en milisegundos
+      const step = target / (duration / 16);
+
+      function update() {
+        current = Math.min(current + step, target);
+        element.textContent = Math.floor(current);
+        if (current < target) {
+          requestAnimationFrame(update);
+        }
+      }
+      update();
+    }
+
+    // Datos de prueba para la animación de contadores
+    const mockData = {
+      windows: 156,
+      photos: 3427
+    };
+
+    // Observador para iniciar la animación cuando el elemento se vea en pantalla
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(document.getElementById('windowsCount'), mockData.windows);
+          animateCount(document.getElementById('photosCount'), mockData.photos);
+          observer.disconnect(); // Detener la observación tras la animación
+        }
+      });
+    });
+
+    // Iniciar la observación en el elemento con id="windowsCount"
+    observer.observe(document.getElementById('windowsCount'));
+  </script>
 </body>
 </html>
