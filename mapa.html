@@ -53,86 +53,51 @@
 	</head>
 
 <body class="bg-gray-50">
-    <!-- NAVBAR: Barra de navegación fija en la parte superior -->
-    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <!-- Logotipo -->
-                <img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
-                
-                <!-- Menú de navegación en pantallas medianas y grandes -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
-                    <a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
-                    <a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-                    <button
-                        onclick="window.location.href='solicita.html'"
-                        class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
-                    >
-                        <i class="ri-add-line"></i>
-                        <span>Solicita una Ventana</span>
-                    </button>
-                </div>
-                
-                <!-- Botón de menú en pantallas pequeñas (Mobile) -->
-                <div class="flex items-center md:hidden">
-                    <button
-                        class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2"
-                        id="mobileRequestWindowBtn"
-                    >
-                        <i class="ri-add-line"></i>
-                        <span>Solicita</span>
-                    </button>
-                    <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-                        <i class="ri-menu-line text-2xl"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Menú móvil (desplegable) -->
-    <div
-        class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-        id="mobileMenu"
-    >
-        <div class="py-2">
-            <a href="inicio.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-            <a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-            <a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-        </div>
-    </div>
+		<!-- NAVBAR: Barra de navegación fija en la parte superior -->
+		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16 items-center">
+					<!-- Logotipo -->
+					<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
+					
+					<!-- Menú de navegación en pantallas medianas y grandes -->
+					<div class="hidden md:flex space-x-8 items-center">
+						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
+					</div>
+					
+					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
+					<div class="flex items-center md:hidden">
+						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+							<i class="ri-menu-line text-2xl"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</nav>
+		
+		<!-- Menú móvil (desplegable) -->
+		<div
+			class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+			id="mobileMenu"
+		>
+			<div class="py-2">
+				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+			</div>
+		</div>
 
   <!-- Contenido principal con un margen superior para no tapar el nav -->
   <main class="pt-16">
     <!-- Sección "Sobre el Proyecto" -->
     <section class="py-16 bg-gray-50" id="proyecto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center mb-12">Sobre el Proyecto</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p class="text-gray-600 mb-6">
-              Las Ventanas del Tiempo es una iniciativa innovadora que busca conectar a los ciudadanos 
-              con la rica historia de nuestra ciudad. A través de fotografías históricas instaladas 
-              en ubicaciones específicas, creamos puentes visuales entre el pasado y el presente.
-            </p>
-            <p class="text-gray-600 mb-6">
-              En la sección Proyecto encontrarás información detallada sobre:
-            </p>
-            <ul class="list-disc list-inside text-gray-600 mb-6">
-              <li>Cómo funciona nuestra iniciativa</li>
-              <li>Aplicaciones y casos de uso</li>
-              <li>Sobre nosotros y nuestro equipo</li>
-            </ul>
-          </div>
-          <div class="h-[400px] rounded-lg overflow-hidden">
-            <img
-              src="https://public.readdy.ai/ai/img_res/67801e4ccca6d3902b562d9f2b98e8ce.jpg"
-              class="w-full h-full object-cover"
-              alt="Proyecto Ventanas del Tiempo"
-            />
-          </div>
-        </div>
+        
       </div>
     </section>
   </main>
@@ -145,7 +110,7 @@
 					<div>
 						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
 						<p class="text-gray-600 text-sm">
-							Conectando el pasado y el presente a través de ventanas fotográficas en nuestra ciudad.
+							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
 						</p>
 					</div>
 					<!-- Enlaces -->
@@ -162,13 +127,13 @@
 								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
 							</li>
 							<li>
-								<a href="solicita.html" class="hover:text-primary">Solicita una Ventana</a>
+								<a href="contacto.html" class="hover:text-primary">Contacto</a>
 							</li>
 						</ul>
 					</div>
 					<!-- Redes sociales -->
 					<div>
-						<h4 class="font-semibold mb-4">Síguenos</h4>
+						<h4 class="font-semibold mb-4">Redes Sociales</h4>
 						<a
 							href="https://instagram.com/ventanasdeltiempo"
 							target="_blank"
@@ -180,7 +145,7 @@
 					</div>
 					<!-- Contacto -->
 					<div>
-						<h4 class="font-semibold mb-4">Contacto</h4>
+						<h4 class="font-semibold mb-4">Correo Electrónico</h4>
 						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
 					</div>
 				</div>
@@ -190,63 +155,6 @@
 			</div>
 		</footer>
 
-  <!-- Modal para solicitar una Ventana del Tiempo -->
-  <div
-    class="fixed inset-0 bg-black/50 hidden items-center justify-center"
-    id="requestModal"
-  >
-    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-      <h3 class="text-2xl font-bold mb-4">Solicitar una Ventana</h3>
-      <p class="text-gray-600 mb-6">
-        Déjanos tus datos y nos pondremos en contacto contigo para discutir la 
-        instalación de una Ventana del Tiempo en tu ubicación.
-      </p>
-      <!-- Formulario de solicitud -->
-      <form id="requestForm" class="space-y-4">
-        <input
-          type="text"
-          placeholder="Nombre completo"
-          class="w-full p-3 border rounded-lg"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          class="w-full p-3 border rounded-lg"
-          required
-        />
-        <input
-          type="tel"
-          placeholder="Teléfono"
-          class="w-full p-3 border rounded-lg"
-          required
-        />
-        <textarea
-          placeholder="Ubicación propuesta y comentarios"
-          class="w-full p-3 border rounded-lg"
-          rows="4"
-          required
-        ></textarea>
-        <div class="flex justify-end space-x-4">
-          <!-- Botón para cerrar el modal sin enviar -->
-          <button
-            type="button"
-            class="px-6 py-2 rounded-button border border-gray-300 hover:bg-gray-50 cursor-pointer"
-            id="closeModal"
-          >
-            Cancelar
-          </button>
-          <!-- Botón de envío del formulario -->
-          <button
-            type="submit"
-            class="px-6 py-2 rounded-button bg-primary text-white hover:bg-primary/90 cursor-pointer"
-          >
-            Enviar
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- Scripts de funcionalidad -->
   <script>

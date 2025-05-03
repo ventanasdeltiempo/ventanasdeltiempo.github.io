@@ -65,28 +65,16 @@
 						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
 						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
 						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-						<button
-							onclick="window.location.href='solicita.html'"
-							class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
-						>
-							<i class="ri-add-line"></i>
-							<span>Solicita una Ventana</span>
-						</button>
+						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
 					</div>
 					
 					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
 					<div class="flex items-center md:hidden">
-						<button
-							class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2"
-							id="mobileRequestWindowBtn"
-						>
-							<i class="ri-add-line"></i>
-							<span>Solicita</span>
-						</button>
 						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
 							<i class="ri-menu-line text-2xl"></i>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</nav>
@@ -97,9 +85,10 @@
 			id="mobileMenu"
 		>
 			<div class="py-2">
-				<a href="inicio.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
 				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
 				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
 			</div>
 		</div>
 		
@@ -115,14 +104,14 @@
 					<div class="text-white max-w-2xl">
 						<h1 class="text-5xl font-bold mb-6">Ventanas del Tiempo</h1>
 						<p class="text-xl mb-8">
-							Gracias por asomarte a nuestras Ventanas del Tiempo. Un viaje visual a través de la historia de nuestra ciudad, conectando el pasado con el presente a través de fotografías históricas en ubicaciones exactas.
+							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
 						</p>
 						<button 
 							onclick="window.location.href='mapa.html'"
 							class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
 						>
 							<i class="ri-map-2-line"></i>
-							<span>Ver Mapa Interactivo</span>
+							<span>Explorar Mapa</span>
 						</button>
 					</div>
 				</div>
@@ -156,41 +145,87 @@
 				</div>
 			</section>
 			
-			<!-- Sección sobre el Proyecto -->
-			<section class="py-16 bg-gray-50" id="proyecto">
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<h2 class="text-3xl font-bold text-center mb-12">Sobre el Proyecto</h2>
-					<div class="grid md:grid-cols-2 gap-12 items-center">
-						<div>
-							<p class="text-gray-600 mb-6">
-								Ventanas del Tiempo es una iniciativa innovadora que busca conectar a los ciudadanos con la rica historia de nuestra ciudad. A través de fotografías históricas instaladas en ubicaciones específicas, creamos puentes visuales entre el pasado y el presente.
-							</p>
-							<p class="text-gray-600 mb-6">
-								En la sección Proyecto encontrarás información detallada sobre:
-							</p>
-							<ul class="list-disc list-inside text-gray-600 mb-6">
-								<li>Cómo funciona nuestra iniciativa</li>
-								<li>Aplicaciones y casos de uso</li>
-								<li>Sobre nosotros y nuestro equipo</li>
-							</ul>
-							<button
-								onclick="window.location.href='proyecto.html'"
-								class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
-							>
-								<i class="ri-information-line"></i>
-								<span>Proyecto</span>
-							</button>
+			<!-- Sección Proyecto -->
+			<section class="py-16 bg-white">
+				<div class="container mx-auto px-4">
+				<div class="grid md:grid-cols-2 gap-12 items-center">
+					<div>
+					<h2 class="text-3xl font-bold text-gray-900 mb-6">Proyecto</h2>
+					<p class="text-gray-600 mb-6">
+						Ventanas del Tiempo es una iniciativa que invita a la comunidad a capturar los cambios de nuestro entorno natural a través del tiempo.
+ 						Mediante estaciones fotográficas, los visitantes pueden realizar una fotografía siempre desde el mismo encuadre, 
+						enviarla de manera sencilla, y contribuir a una memoria colectiva de la evolución ecológica de un lugar.
+						Cada imagen enviada se suma a un visualizador web interactivo, donde se puede observar el paso del tiempo y los cambios ambientales de 
+						manera continua, natural y accesible.
+
+					</p>
+					<div class="space-y-4">
+						<div class="flex items-start">
+						<div
+							class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4"
+						>
+							<i class="ri-focus-3-line text-primary"></i>
 						</div>
-						<div class="h-[400px] rounded-lg overflow-hidden">
-							<img
-								src="src/hw.jpg"
-								class="w-full h-full object-cover"
-								alt="Proyecto Ventanas del Tiempo"
-							>
+						<div>
+							<h3 class="font-semibold text-gray-900 mb-2">
+							Estaciones Fotográficas
+							</h3>
+							<p class="text-gray-600">
+							Fáciles de usar y Resistentes a la intemperie.
+							</p>
+						</div>
+						</div>
+						<div class="flex items-start">
+						<div
+							class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4"
+						>
+							<i class="ri-landscape-line text-primary"></i>
+						</div>
+						<div>
+							<h3 class="font-semibold text-gray-900 mb-2">
+							Casos de uso
+							</h3>
+							<p class="text-gray-600">
+							Reforestación, Niveles de agua, Proyectos urbanos...
+							</p>
+						</div>
+						</div>
+						<div class="flex items-start">
+						<div
+							class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4"
+						>
+							<i class="ri-group-line text-primary"></i>
+						</div>
+						<div>
+							<h3 class="font-semibold text-gray-900 mb-2">
+							Servicios ofrecidos
+							</h3>
+							<p class="text-gray-600">
+							Kit de Estación Fotográfica y Servicio Digital.
+							</p>
+						</div>
 						</div>
 					</div>
+					</div>
+					<div class="relative">
+					<img
+						src="https://readdy.ai/api/search-image?query=A%20modern%20and%20minimalist%20photo%20station%20setup%20in%20a%20scenic%20natural%20environment%2C%20featuring%20a%20sleek%20metal%20frame%20with%20a%20phone%20mount%20and%20clear%20positioning%20guides.%20The%20station%20is%20perfectly%20integrated%20into%20the%20landscape%2C%20with%20a%20stunning%20mountain%20vista%20or%20coastal%20view%20in%20the%20background.%20The%20design%20emphasizes%20user-friendly%20interaction%20and%20professional-grade%20stability%2C%20showcasing%20how%20citizen%20science%20meets%20technological%20innovation%20in%20environmental%20monitoring.%20High-quality%20professional%20photography%20with%20soft%20natural%20lighting.&width=600&height=800&seq=123463&orientation=portrait"
+						alt="Estación fotográfica"
+						class="w-full h-[600px] object-cover rounded-lg shadow-lg"
+					/>
+					</div>
+				</div>
+				</div>
+				<div class="text-center mt-8">
+				<button
+					class="px-6 py-3 bg-primary text-white text-lg font-medium hover:bg-primary/90 transition-colors duration-300 !rounded-button whitespace-nowrap"
+				>
+					<i class="ri-arrow-right-line mr-2"></i>
+					Saber más sobre el proyecto
+				</button>
 				</div>
 			</section>
+  
 			
 			<!-- Sección de Ventanas Destacadas -->
 			<section class="py-16 bg-white">
@@ -209,11 +244,16 @@
 							<div class="p-6">
 								<h3 class="text-xl font-bold mb-2">Monasterio de Alveinte</h3>
 								<p class="text-gray-600 mb-4">
-									Un antiguo monasterio abandonado en el medio del bosque, los monjes siguen deambulando por sus ruinas.
+									Un antiguo monasterio abandonado en mitad del bosque, los monjes siguen deambulando por sus ruinas.
 								</p>
-								<div class="flex items-center text-sm text-gray-500">
-									<i class="ri-map-pin-line mr-2"></i>
-									<span>Monasterio de la Sierra</span>
+								<div class="flex items-center justify-between">
+									<div class="flex items-center text-sm text-gray-500">
+										<i class="ri-map-pin-line mr-2"></i>
+										<span>Monasterio de la Sierra</span>
+									</div>
+									<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer">
+										<span>Ver imágenes</span>
+									</button>
 								</div>
 							</div>
 						</div>
@@ -231,26 +271,39 @@
 								<p class="text-gray-600 mb-4">
 									Puente de losas de piedra sobre el arroyo del Hortigal, una foto obligatoria de camino a la Ciudad Encantada.
 								</p>
-								<div class="flex items-center text-sm text-gray-500">
-									<i class="ri-map-pin-line mr-2"></i>
-									<span>Monasterio de la Sierra</span>
+								<div class="flex items-center justify-between">
+									<div class="flex items-center text-sm text-gray-500">
+										<i class="ri-map-pin-line mr-2"></i>
+										<span>Monasterio de la Sierra</span>
+									</div>
+									<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer">
+										<span>Ver imágenes</span>
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- Botón para solicitar una Ventana -->
-					<div class="text-center">
-						<h2 class="text-3xl font-bold mb-8">¿Quieres ser parte del proyecto?</h2>
-						<button
-							onclick="window.location.href='solicita.html'"
-							class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold inline-flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
-						>
-							<i class="ri-add-line"></i>
-							<span>Solicita una Ventana</span>
-						</button>
-					</div>
 				</div>
 			</section>
+			<!-- Únete -->
+			<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+				<div class="container mx-auto px-6">
+					<div class="max-w-4xl mx-auto text-center">
+			
+					<h2 class="text-3xl font-bold mb-8">¿Quieres una ventana?</h2>
+					<p class="text-xl mb-8">
+						Si gestionas un espacio natural, trabajas en educación ambiental o simplemente quieres que tu comunidad observe el mundo con otros ojos, contáctanos. 
+						Juntos abriremos nuevas Ventanas del Tiempo.
+					</p>
+			
+					<button
+						class="bg-primary text-white px-10 py-4 text-lg font-semibold !rounded-button hover:bg-primary/90 transition-all duration-300 whitespace-nowrap"
+					>
+						Contacto
+					</button>
+					</div>
+				</div>
+				</section>
 		</main>
 		
 		<!-- FOOTER: Sección de pie de página -->
@@ -261,7 +314,7 @@
 					<div>
 						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
 						<p class="text-gray-600 text-sm">
-							Conectando el pasado y el presente a través de ventanas fotográficas en nuestra ciudad.
+							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
 						</p>
 					</div>
 					<!-- Enlaces -->
@@ -278,13 +331,13 @@
 								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
 							</li>
 							<li>
-								<a href="solicita.html" class="hover:text-primary">Solicita una Ventana</a>
+								<a href="contacto.html" class="hover:text-primary">Contacto</a>
 							</li>
 						</ul>
 					</div>
 					<!-- Redes sociales -->
 					<div>
-						<h4 class="font-semibold mb-4">Síguenos</h4>
+						<h4 class="font-semibold mb-4">Redes Sociales</h4>
 						<a
 							href="https://instagram.com/ventanasdeltiempo"
 							target="_blank"
@@ -296,7 +349,7 @@
 					</div>
 					<!-- Contacto -->
 					<div>
-						<h4 class="font-semibold mb-4">Contacto</h4>
+						<h4 class="font-semibold mb-4">Correo Electrónico</h4>
 						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
 					</div>
 				</div>
@@ -306,60 +359,7 @@
 			</div>
 		</footer>
 		
-		<!-- MODAL para solicitar una Ventana del Tiempo -->
-		<div
-			class="fixed inset-0 bg-black/50 hidden items-center justify-center"
-			id="requestModal"
-		>
-			<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-				<h3 class="text-2xl font-bold mb-4">Solicitar una Ventana</h3>
-				<p class="text-gray-600 mb-6">
-					Déjanos tus datos y nos pondremos en contacto contigo para discutir la instalación de una Ventana del Tiempo en tu ubicación.
-				</p>
-				<!-- Formulario de solicitud -->
-				<form id="requestForm" class="space-y-4">
-					<input
-						type="text"
-						placeholder="Nombre completo"
-						class="w-full p-3 border rounded-lg"
-						required
-					>
-					<input
-						type="email"
-						placeholder="Correo electrónico"
-						class="w-full p-3 border rounded-lg"
-						required
-					>
-					<input
-						type="tel"
-						placeholder="Teléfono"
-						class="w-full p-3 border rounded-lg"
-						required
-					>
-					<textarea
-						placeholder="Ubicación propuesta y comentarios"
-						class="w-full p-3 border rounded-lg"
-						rows="4"
-						required
-					></textarea>
-					<div class="flex justify-end space-x-4">
-						<button
-							type="button"
-							class="px-6 py-2 rounded-button border border-gray-300 hover:bg-gray-50 cursor-pointer"
-							id="closeModal"
-						>
-							Cancelar
-						</button>
-						<button
-							type="submit"
-							class="px-6 py-2 rounded-button bg-primary text-white hover:bg-primary/90 cursor-pointer"
-						>
-							Enviar
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
+
 		
 		<!-- SCRIPTS: Funcionalidad de menú y animaciones -->
 		<script>
@@ -382,9 +382,9 @@
 			//});
 			
 			// Mostrar modal al hacer clic en cualquiera de los botones "Solicita una Ventana"
-			const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
-			const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
-			const footerRequestBtn = document.getElementById('footerRequestBtn');
+			//const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
+			//const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
+			//const footerRequestBtn = document.getElementById('footerRequestBtn');
 			
 			[requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
 				btn.addEventListener('click', () => {

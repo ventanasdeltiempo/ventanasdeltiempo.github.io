@@ -53,261 +53,533 @@
 	</head>
 
 <body class="bg-gray-50">
-    <!-- NAVBAR: Barra de navegación fija en la parte superior -->
-    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <!-- Logotipo -->
-                <img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
-                
-                <!-- Menú de navegación en pantallas medianas y grandes -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
-                    <a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
-                    <a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-                    <button
-                        onclick="window.location.href='solicita.html'"
-                        class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer ml-4"
-                    >
-                        <i class="ri-add-line"></i>
-                        <span>Solicita una Ventana</span>
-                    </button>
-                </div>
-                
-                <!-- Botón de menú en pantallas pequeñas (Mobile) -->
-                <div class="flex items-center md:hidden">
-                    <button
-                        class="bg-primary text-white px-3 py-1.5 rounded-button text-xs font-semibold flex items-center space-x-1 hover:bg-primary/90 transition-colors cursor-pointer mr-2"
-                        id="mobileRequestWindowBtn"
-                    >
-                        <i class="ri-add-line"></i>
-                        <span>Solicita</span>
-                    </button>
-                    <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-                        <i class="ri-menu-line text-2xl"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Menú móvil (desplegable) -->
-    <div
-        class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-        id="mobileMenu"
-    >
-        <div class="py-2">
-            <a href="inicio.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-            <a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-            <a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-        </div>
-    </div>
+		<!-- NAVBAR: Barra de navegación fija en la parte superior -->
+		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16 items-center">
+					<!-- Logotipo -->
+					<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
+					
+					<!-- Menú de navegación en pantallas medianas y grandes -->
+					<div class="hidden md:flex space-x-8 items-center">
+						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
+					</div>
+					
+					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
+					<div class="flex items-center md:hidden">
+						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+							<i class="ri-menu-line text-2xl"></i>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</nav>
+		
+		<!-- Menú móvil (desplegable) -->
+		<div
+			class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+			id="mobileMenu"
+		>
+			<div class="py-2">
+				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+			</div>
+		</div>
 
   <!-- Contenido principal -->
   <main class="pt-16">
-    <!-- Sección "Nuestra Misión" -->
-    <section class="py-16 bg-gray-50" id="proyecto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center mb-12">Nuestra Misión</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <!-- Texto principal de la misión -->
-          <div>
-            <p class="text-gray-600 mb-6">
-              Los cambios en nuestro entorno son difíciles de percibir porque ocurren gradualmente, 
-              y los proyectos de monitoreo a largo plazo suelen ser costosos y complejos. 
-              Las Ventanas del Tiempo soluciona este problema a través de estaciones fotográficas 
-              estratégicamente ubicadas, se invita a la comunidad a capturar momentos que, 
-              unidos en las Ventanas del Tiempo, narran la historia de las transformaciones 
-              ecológicas a lo largo del tiempo.
-            </p>
-            <p class="text-gray-600 mb-6">Nuestra misión es doble:</p>
-            <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
-              <li>Involucrar a las personas con la naturaleza de una manera interactiva.</li>
-              <li>Registrar los cambios ambientales para su uso científico.</li>
-            </ul>
-            <p class="text-gray-600 mb-6">
-              Las Ventanas del Tiempo transforma a cada visitante en un colaborador científico, 
-              empoderando a las comunidades para documentar y proteger sus entornos naturales.
-            </p>
-          </div>
-          <!-- Imagen representativa de la misión -->
-          <div class="h-[400px] rounded-lg overflow-hidden">
-            <img
-              src="https://public.readdy.ai/ai/img_res/619171478a8ff054edf893f39b310210.jpg"
-              class="w-full h-full object-cover"
-              alt="Ventanas del Tiempo"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Sección "Consigue una Ventana del Tiempo" -->
-    <section class="py-16 bg-white" id="ventana">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center mb-12">Consigue una Ventana del Tiempo</h2>
-        <div class="mb-12">
-          <p class="text-gray-600 text-lg text-center max-w-3xl mx-auto">
-            Todo comienza con una historia. ¿Qué hace único a tu entorno? 
-            ¿Qué elemento natural quieres destacar? ¿Qué le importa a tu comunidad? 
-            Las respuestas a estas preguntas pueden ayudarte a elegir la ubicación 
-            para tu primera ventana.
+
+    <!-- Qué es Ventanas del Tiempo -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          ¿Qué es?
+        </h2>
+        <div class="max-w-4xl mx-auto">
+          <p class="text-xl leading-relaxed text-center">
+						Ventanas del Tiempo es una iniciativa que invita a la comunidad a capturar los cambios de nuestro entorno natural a través del tiempo.
+ 						Mediante estaciones fotográficas estratégicamente ubicadas, los visitantes pueden realizar una fotografía siempre desde el mismo encuadre, 
+						enviarla de manera sencilla, y contribuir a una memoria colectiva de la evolución ecológica de un lugar.
+						Cada imagen enviada se suma a un visualizador web interactivo, donde se puede observar el paso del tiempo y los cambios ambientales de 
+						manera continua, natural y accesible.
           </p>
         </div>
-        <h3 class="text-2xl font-bold text-center mb-8">¿Qué incluye?</h3>
-        
-        <!-- Grid con las características o elementos incluidos -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Elemento 1: Soporte Alineador -->
-          <div class="bg-gray-50 rounded-lg p-6">
-            <div class="h-48 mb-4 rounded-lg overflow-hidden">
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-16 text-center">¿Cómo funciona?</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Paso 1 -->
+          <div class="flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-6"
+            >
+              1
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Encuadra</h3>
+            <div class="w-full h-64 rounded-lg overflow-hidden mb-4">
               <img
-                src="https://public.readdy.ai/ai/img_res/6077532fe7da5826191142d0edc87418.jpg"
-                class="w-full h-full object-cover"
-                alt="Soporte para teléfono"
+                src="https://readdy.ai/api/search-image?query=a%20person%20placing%20a%20smartphone%20on%20a%203D%20support%20mount%2C%20clean%20background%2C%20detailed%20view%20of%20the%20mounting%20system%2C%20professional%20photography%20setup%2C%20hands%20adjusting%20the%20phone%20position%2C%20modern%20technology%2C%20high%20quality%20image&width=400&height=500&seq=2&orientation=portrait"
+                alt="Encuadra"
+                class="w-full h-full object-cover object-top"
               />
             </div>
-            <h4 class="font-semibold mb-2">Soporte Alineador</h4>
-            <p class="text-gray-600 text-sm">
-              El soporte que ayuda a los colaboradores a alinear sus teléfonos 
-              para tomar fotos consistentes.
+            <p class="text-center">Coloca tu móvil en el soporte 3D fijado al árbol</p>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-6"
+            >
+              2
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Captura</h3>
+            <div class="w-full h-64 rounded-lg overflow-hidden mb-4">
+              <img
+                src="https://readdy.ai/api/search-image?query=a%20close-up%20of%20a%20finger%20tapping%20on%20a%20smartphone%20screen%20to%20take%20a%20photo%2C%20clean%20modern%20interface%2C%20photography%20app%20visible%2C%20natural%20light%2C%20high%20quality%20detailed%20image&width=400&height=500&seq=3&orientation=portrait"
+                alt="Captura"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <p class="text-center">Haz una foto con tu móvil</p>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-6"
+            >
+              3
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Envía</h3>
+            <div class="w-full h-64 rounded-lg overflow-hidden mb-4">
+              <img
+                src="https://readdy.ai/api/search-image?query=a%20person%20scanning%20a%20QR%20code%20with%20their%20smartphone%2C%20modern%20setting%2C%20clear%20view%20of%20both%20the%20QR%20code%20and%20phone%20screen%2C%20professional%20lighting%2C%20high%20quality%20detailed%20image&width=400&height=500&seq=4&orientation=portrait"
+                alt="Envía"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <p class="text-center">Escanea el QR para enviar tu imagen</p>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-6"
+            >
+              4
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Observa</h3>
+            <div class="w-full h-64 rounded-lg overflow-hidden mb-4">
+              <img
+                src="https://readdy.ai/api/search-image?query=a%20person%20looking%20at%20a%20web%20interface%20showing%20multiple%20aligned%20photos%20of%20the%20same%20landscape%20taken%20at%20different%20times%2C%20time-lapse%20visualization%2C%20clean%20modern%20web%20design%2C%20high%20quality%20detailed%20image&width=400&height=500&seq=5&orientation=portrait"
+                alt="Observa"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <p class="text-center">Tu imagen aparece alineada con las anteriores, mostrando una transición fluida del paisaje</p>
+          </div>
+        </div>
+
+        <!-- Franja IA de precisión -->
+        <div class="mt-16 bg-primary/10 p-8 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-primary">
+            IA de alineamiento de imágenes
+          </h3>
+          <p class="text-lg">
+            Nuestra inteligencia artificial corrige desviaciones de encuadre, asegurando que todas las imágenes de una estación 
+            encajen a la perfección y el cambio sea tan suave como pasar las páginas de un libro animado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-16 text-center">Servicios</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- Kit Estación -->
+          <div
+            class="glass-card rounded-lg p-8 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="h-64 rounded overflow-hidden mb-6">
+              <img
+                src="https://readdy.ai/api/search-image?query=a%20professional%203D%20camera%20mount%20kit%20with%20stainless%20steel%20clamp%20and%20QR%20code%20sign%2C%20outdoor%20photography%20equipment%2C%20high-quality%20materials%2C%20clean%20background%2C%20product%20photography%20style%2C%20detailed%20view%20of%20components&width=600&height=400&seq=6&orientation=landscape"
+                alt="Kit Estación"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">Kit de Estación Fotográfica</h3>
+            <ul class="mb-6 space-y-2">
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Soporte impresión 3D material ASA</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Cartel aluminio dibond personalizado</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Abrazadera acero inoxidable y cierres</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Envío incluido a toda España</span>
+              </li>
+            </ul>
+            <div class="flex justify-between items-center">
+              <span class="text-3xl font-bold text-primary">50 €</span>
+              <button
+                class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 transition-all duration-300 whitespace-nowrap"
+              >
+                Contacto
+              </button>
+            </div>
+          </div>
+
+          <!-- Plataforma Web y Email -->
+          <div
+            class="glass-card rounded-lg p-8 hover:shadow-lg transition-all duration-300"
+          >
+            <div class="h-64 rounded overflow-hidden mb-6">
+              <img
+                src="https://readdy.ai/api/search-image?query=a%20modern%20web%20interface%20showing%20time-lapse%20photography%20visualization%2C%20clean%20UI%20design%20with%20image%20alignment%20technology%2C%20professional%20digital%20platform%2C%20AI%20image%20processing%20visualization%2C%20high-quality%20detailed%20screen&width=600&height=400&seq=7&orientation=landscape"
+                alt="Plataforma Web"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">Plataforma Web y Email</h3>
+            <ul class="mb-6 space-y-2">
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Recepción automática de imágenes</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Confirmación instantánea por email</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Alineación automática con IA</span>
+              </li>
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+                  <i class="ri-check-line text-primary"></i>
+                </div>
+                <span>Visualizador web interactivo</span>
+              </li>
+            </ul>
+            <div class="flex justify-between items-center">
+              <span class="text-3xl font-bold text-primary"
+                >50 €<span class="text-base font-normal text-gray-600"
+                  >/año</span
+                ></span
+              >
+              <button
+                class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 transition-all duration-300 whitespace-nowrap"
+              >
+              Contacto
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiencia de usuario -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          Experiencia de usuario
+        </h2>
+
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div
+              class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 mx-auto"
+            >
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-user-smile-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-center">Sin descargas ni app</h3>
+            <p class="text-center">
+              Todo ocurre con la cámara y el correo nativos del teléfono.
             </p>
           </div>
 
-          <!-- Elemento 2: Cartel Personalizado -->
-          <div class="bg-gray-50 rounded-lg p-6">
-            <div class="h-48 mb-4 rounded-lg overflow-hidden">
-              <img
-                src="https://public.readdy.ai/ai/img_res/a79f2536970d27cccaf3f29b4373699a.jpg"
-                class="w-full h-full object-cover"
-                alt="Cartel informativo"
-              />
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div
+              class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 mx-auto"
+            >
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-time-line ri-2x"></i>
+              </div>
             </div>
-            <h4 class="font-semibold mb-2">Cartel Personalizado</h4>
-            <p class="text-gray-600 text-sm">
-              El cartel con instrucciones personalizado para cada ventana, 
-              incluyendo información sobre el proyecto.
+            <h3 class="text-xl font-semibold mb-4 text-center">Reconocimiento inmediato</h3>
+            <p class="text-center">
+              El usuario recibe un email cuando su foto ya está publicada.
             </p>
           </div>
 
-          <!-- Elemento 3: Servicio Automatizado -->
-          <div class="bg-gray-50 rounded-lg p-6">
-            <div class="h-48 mb-4 rounded-lg overflow-hidden">
-              <img
-                src="https://public.readdy.ai/ai/img_res/022c3aece9e14cd634e281c3ab69a027.jpg"
-                class="w-full h-full object-cover"
-                alt="Servicio de email"
-              />
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div
+              class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 mx-auto"
+            >
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-eye-line ri-2x"></i>
+              </div>
             </div>
-            <h4 class="font-semibold mb-2">Servicio Automatizado</h4>
-            <p class="text-gray-600 text-sm">
-              Servicio de correo electrónico que recibe las fotos, 
-              las alinea con IA y envía agradecimientos a los colaboradores.
-            </p>
-          </div>
-
-          <!-- Elemento 4: Página Web Dedicada -->
-          <div class="bg-gray-50 rounded-lg p-6">
-            <div class="h-48 mb-4 rounded-lg overflow-hidden">
-              <img
-                src="https://public.readdy.ai/ai/img_res/7fbb8f074b62f89aa58a963373844b4e.jpg"
-                class="w-full h-full object-cover"
-                alt="Página web"
-              />
-            </div>
-            <h4 class="font-semibold mb-2">Página Web Dedicada</h4>
-            <p class="text-gray-600 text-sm">
-              Página web para cada ventana que muestra la secuencia 
-              de timelapse y detalles sobre la ventana y su historia.
+            <h3 class="text-xl font-semibold mb-4 text-center">Impacto visible</h3>
+            <p class="text-center">
+              Al deslizar la línea de tiempo se aprecia la evolución del paisaje de forma continua.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sección "Casos de Uso" -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center mb-12">Casos de Uso</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Caso de uso 1 -->
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="w-12 h-12 flex items-center justify-center mb-6">
-              <i class="ri-community-line text-3xl text-primary"></i>
+
+    <!-- Casos de uso destacados -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          Casos de uso destacados
+        </h2>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div class="flex items-start mb-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4"
+                >
+                  <i class="ri-landscape-line"></i>
+                </div>
+                <h3 class="text-lg font-semibold">
+                  Monitorización de glaciares
+                </h3>
+              </div>
+              <p>
+                Seguimiento visual del retroceso glaciar en parques naturales,
+                permitiendo visualizar el impacto del cambio climático.
+              </p>
             </div>
-            <h3 class="text-xl font-semibold mb-4">Educación y participación comunitaria</h3>
-            <p class="text-gray-600">
-              Involucra a estudiantes y residentes locales en el monitoreo ambiental, 
-              fomentando la conexión con la naturaleza y el aprendizaje práctico 
-              sobre cambios ecosistémicos.
+
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div class="flex items-start mb-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4"
+                >
+                  <i class="ri-building-line"></i>
+                </div>
+                <h3 class="text-lg font-semibold">Regeneración urbana</h3>
+              </div>
+              <p>
+                Documentación de proyectos de revitalización de barrios,
+                mostrando el antes, durante y después de las intervenciones.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div class="flex items-start mb-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4"
+                >
+                  <i class="ri-seedling-line"></i>
+                </div>
+                <h3 class="text-lg font-semibold">Reforestación</h3>
+              </div>
+              <p>
+                Seguimiento del crecimiento de bosques replantados, creando un
+                registro visual del éxito de proyectos de reforestación.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div class="flex items-start mb-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4"
+                >
+                  <i class="ri-flood-line"></i>
+                </div>
+                <h3 class="text-lg font-semibold">Cambios costeros</h3>
+              </div>
+              <p>
+                Monitorización de la erosión costera y cambios en playas,
+                proporcionando datos visuales para la gestión del litoral.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 "
+            >
+              <div class="flex items-start mb-4">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4"
+                >
+                  <i class="ri-water-percent-line"></i>
+                </div>
+                <h3 class="text-lg font-semibold">Niveles hídricos</h3>
+              </div>
+              <p>
+                Seguimiento del nivel de embalses, ríos y humedales, 
+                permitiendo detectar variaciones a lo largo del tiempo y apoyar 
+                la gestión sostenible del agua.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 "
+            >
+            <div class="flex items-start mb-4">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4"
+              >
+                <i class="ri-calendar-event-line"></i>
+              </div>
+              <h3 class="text-lg font-semibold">Eventos estacionales</h3>
+            </div>
+            <p>
+              Captura de cambios estacionales en parques, jardines y espacios
+              naturales, creando secuencias visuales de los ciclos naturales a
+              lo largo del año.
+            </p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lo que nos hace diferentes -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          Lo que nos hace diferentes
+        </h2>
+
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="flex flex-col items-center">
+            <div
+              class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6"
+            >
+              <div class="w-12 h-12 flex items-center justify-center">
+                <i class="ri-user-heart-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-center">
+              Participación ciudadana
+            </h3>
+            <p class="text-center">
+              Convertimos a cada visitante en un científico ciudadano,
+              democratizando la recopilación de datos visuales.
             </p>
           </div>
 
-          <!-- Caso de uso 2 -->
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="w-12 h-12 flex items-center justify-center mb-6">
-              <i class="ri-plant-line text-3xl text-primary"></i>
+          <div class="flex flex-col items-center">
+            <div
+              class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6"
+            >
+              <div class="w-12 h-12 flex items-center justify-center">
+                <i class="ri-brain-line ri-2x"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold mb-4">Proyectos de restauración o conservación</h3>
-            <p class="text-gray-600">
-              Documenta el progreso de iniciativas de restauración ecológica 
-              y esfuerzos de conservación, proporcionando evidencia visual 
-              del impacto de estas intervenciones.
+            <h3 class="text-xl font-semibold mb-4 text-center">
+              Tecnología IA avanzada
+            </h3>
+            <p class="text-center">
+              Nuestra IA garantiza alineación perfecta de imágenes, incluso con
+              pequeñas variaciones en el encuadre.
             </p>
           </div>
 
-          <!-- Caso de uso 3 -->
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="w-12 h-12 flex items-center justify-center mb-6">
-              <i class="ri-water-flash-line text-3xl text-primary"></i>
+          <div class="flex flex-col items-center">
+            <div
+              class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6"
+            >
+              <div class="w-12 h-12 flex items-center justify-center">
+                <i class="ri-tools-fill ri-2x"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold mb-4">Niveles y calidad del agua</h3>
-            <p class="text-gray-600">
-              Monitorea cambios en niveles de agua, erosión costera 
-              y calidad de cuerpos de agua, ayudando a identificar 
-              patrones y tendencias a largo plazo.
-            </p>
-          </div>
-
-          <!-- Caso de uso 4 -->
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="w-12 h-12 flex items-center justify-center mb-6">
-              <i class="ri-bug-line text-3xl text-primary"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Especies invasoras y autóctonas</h3>
-            <p class="text-gray-600">
-              Rastrea la propagación de especies invasoras y documenta 
-              la presencia y distribución de especies nativas, contribuyendo 
-              a la gestión de la biodiversidad.
-            </p>
-          </div>
-
-          <!-- Caso de uso 5 -->
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="w-12 h-12 flex items-center justify-center mb-6">
-              <i class="ri-fire-line text-3xl text-primary"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Recuperación tras incendios y tormentas</h3>
-            <p class="text-gray-600">
-              Documenta la regeneración natural después de eventos perturbadores, 
-              proporcionando información valiosa sobre la resiliencia del ecosistema.
-            </p>
-          </div>
-
-          <!-- Caso de uso 6 -->
-          <div class="bg-white p-8 rounded-lg shadow-sm">
-            <div class="w-12 h-12 flex items-center justify-center mb-6">
-              <i class="ri-add-circle-line text-3xl text-primary"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">¿Tienes otro caso de uso?</h3>
-            <p class="text-gray-600">
-              Contáctanos para discutir cómo las Ventanas del Tiempo 
-              pueden adaptarse a tus necesidades específicas de monitoreo ambiental.
+            <h3 class="text-xl font-semibold mb-4 text-center">
+              Instalación sencilla
+            </h3>
+            <p class="text-center">
+              Sistema modular de fácil instalación que no requiere mantenimiento
+              ni conocimientos técnicos especiales.
             </p>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Estado actual y Únete -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-8">Estado actual</h2>
+          <p class="text-xl mb-16">
+            Las 9 primeras Ventanas del Tiempo ya funcionan en Monasterio de la Sierra (Burgos), demostrando la eficacia y la magia del proyecto piloto.
+          </p>
+
+          <h2 class="text-3xl font-bold mb-8">¿Quieres una ventana?</h2>
+          <p class="text-xl mb-8">
+            Si gestionas un espacio natural, trabajas en educación ambiental o simplemente quieres que tu comunidad observe el mundo con otros ojos, contáctanos. 
+            Juntos abriremos nuevas Ventanas del Tiempo.
+          </p>
+
+          <button
+            class="bg-primary text-white px-10 py-4 text-lg font-semibold !rounded-button hover:bg-primary/90 transition-all duration-300 whitespace-nowrap"
+          >
+            Contacto
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
 		<!-- FOOTER: Sección de pie de página -->
@@ -318,7 +590,7 @@
 					<div>
 						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
 						<p class="text-gray-600 text-sm">
-							Conectando el pasado y el presente a través de ventanas fotográficas en nuestra ciudad.
+							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
 						</p>
 					</div>
 					<!-- Enlaces -->
@@ -335,13 +607,13 @@
 								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
 							</li>
 							<li>
-								<a href="solicita.html" class="hover:text-primary">Solicita una Ventana</a>
+								<a href="contacto.html" class="hover:text-primary">Contacto</a>
 							</li>
 						</ul>
 					</div>
 					<!-- Redes sociales -->
 					<div>
-						<h4 class="font-semibold mb-4">Síguenos</h4>
+						<h4 class="font-semibold mb-4">Redes Sociales</h4>
 						<a
 							href="https://instagram.com/ventanasdeltiempo"
 							target="_blank"
@@ -353,7 +625,7 @@
 					</div>
 					<!-- Contacto -->
 					<div>
-						<h4 class="font-semibold mb-4">Contacto</h4>
+						<h4 class="font-semibold mb-4">Correo Electrónico</h4>
 						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
 					</div>
 				</div>
@@ -362,64 +634,6 @@
 				</div>
 			</div>
 		</footer>
-
-  <!-- Modal de solicitud de Ventana -->
-  <div
-    class="fixed inset-0 bg-black/50 hidden items-center justify-center"
-    id="requestModal"
-  >
-    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-      <h3 class="text-2xl font-bold mb-4">Solicitar una Ventana</h3>
-      <p class="text-gray-600 mb-6">
-        Déjanos tus datos y nos pondremos en contacto contigo para discutir 
-        la instalación de una Ventana del Tiempo en tu ubicación.
-      </p>
-      <!-- Formulario para la solicitud -->
-      <form id="requestForm" class="space-y-4">
-        <input
-          type="text"
-          placeholder="Nombre completo"
-          class="w-full p-3 border rounded-lg"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          class="w-full p-3 border rounded-lg"
-          required
-        />
-        <input
-          type="tel"
-          placeholder="Teléfono"
-          class="w-full p-3 border rounded-lg"
-          required
-        />
-        <textarea
-          placeholder="Ubicación propuesta y comentarios"
-          class="w-full p-3 border rounded-lg"
-          rows="4"
-          required
-        ></textarea>
-        <div class="flex justify-end space-x-4">
-          <!-- Botón para cerrar sin enviar -->
-          <button
-            type="button"
-            class="px-6 py-2 rounded-button border border-gray-300 hover:bg-gray-50 cursor-pointer"
-            id="closeModal"
-          >
-            Cancelar
-          </button>
-          <!-- Botón para enviar el formulario -->
-          <button
-            type="submit"
-            class="px-6 py-2 rounded-button bg-primary text-white hover:bg-primary/90 cursor-pointer"
-          >
-            Enviar
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- Scripts de funcionalidad -->
   <script>
