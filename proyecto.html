@@ -643,8 +643,6 @@
     const readMoreBtn = document.getElementById('readMoreBtn');
     const moreText = document.getElementById('moreText');
     const requestWindowBtn = document.getElementById('requestWindowBtn');
-    const requestModal = document.getElementById('requestModal');
-    const closeModal = document.getElementById('closeModal');
     const requestForm = document.getElementById('requestForm');
 
     // Mostrar/ocultar menú móvil al hacer clic
@@ -652,37 +650,7 @@
       mobileMenu.classList.toggle('translate-x-full');
     });
 
-    // Redirección simple al hacer clic en un botón dentro de la sección #proyecto
-    document.querySelector('#proyecto button').addEventListener('click', () => {
-      window.location.href = '/proyecto';
-    });
 
-    // Botones que abren el modal de solicitud
-    const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
-    const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
-    const footerRequestBtn = document.getElementById('footerRequestBtn');
-
-    // Asignar a cada botón la función de mostrar el modal
-    [requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
-      btn.addEventListener('click', () => {
-        requestModal.classList.remove('hidden');
-        requestModal.classList.add('flex');
-      });
-    });
-
-    // Cerrar el modal al hacer clic en "Cancelar"
-    closeModal.addEventListener('click', () => {
-      requestModal.classList.add('hidden');
-      requestModal.classList.remove('flex');
-    });
-
-    // Manejo del evento 'submit' del formulario
-    requestForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Simulamos el envío y cerramos el modal
-      requestModal.classList.add('hidden');
-      requestModal.classList.remove('flex');
-    });
 
     // Función para animar un contador numérico
     function animateCount(element, target) {

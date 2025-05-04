@@ -164,8 +164,6 @@
     const readMoreBtn = document.getElementById('readMoreBtn');
     const moreText = document.getElementById('moreText');
     const requestWindowBtn = document.getElementById('requestWindowBtn');
-    const requestModal = document.getElementById('requestModal');
-    const closeModal = document.getElementById('closeModal');
     const requestForm = document.getElementById('requestForm');
 
     // Mostrar/ocultar menú móvil al hacer clic en el botón
@@ -173,38 +171,7 @@
       mobileMenu.classList.toggle('translate-x-full');
     });
 
-    // Redirección de ejemplo al hacer clic en el botón dentro de la sección #proyecto
-    document.querySelector('#proyecto button').addEventListener('click', () => {
-      window.location.href = '/proyecto';
-    });
 
-    // Manejo de botones para abrir el modal de solicitud
-    const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
-    const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
-    const footerRequestBtn = document.getElementById('footerRequestBtn');
-
-    // Agrupamos los botones en un array para asignarles la misma acción
-    [requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Mostrar el modal
-        requestModal.classList.remove('hidden');
-        requestModal.classList.add('flex');
-      });
-    });
-
-    // Cerrar el modal al hacer clic en el botón "Cancelar"
-    closeModal.addEventListener('click', () => {
-      requestModal.classList.add('hidden');
-      requestModal.classList.remove('flex');
-    });
-
-    // Manejo del envío del formulario
-    requestForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Al enviar, simplemente ocultamos el modal (no se realiza envío real)
-      requestModal.classList.add('hidden');
-      requestModal.classList.remove('flex');
-    });
 
     // Función para animar un contador numérico
     function animateCount(element, target) {

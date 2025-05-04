@@ -367,43 +367,11 @@
 			const menuButton = document.getElementById('menuButton');
 			const mobileMenu = document.getElementById('mobileMenu');
 			const requestWindowBtn = document.getElementById('requestWindowBtn');
-			const requestModal = document.getElementById('requestModal');
-			const closeModal = document.getElementById('closeModal');
 			const requestForm = document.getElementById('requestForm');
 			
 			// Botón de menú móvil: mostrar/ocultar menú
 			menuButton.addEventListener('click', () => {
 				mobileMenu.classList.toggle('translate-x-full');
-			});
-			
-			// Redirección al proyecto desde el botón de la sección #proyecto
-			//document.querySelector('#proyecto button').addEventListener('click', () => {
-			//	window.location.href = '/proyecto';
-			//});
-			
-			// Mostrar modal al hacer clic en cualquiera de los botones "Solicita una Ventana"
-			//const navRequestWindowBtn = document.getElementById('navRequestWindowBtn');
-			//const mobileRequestWindowBtn = document.getElementById('mobileRequestWindowBtn');
-			//const footerRequestBtn = document.getElementById('footerRequestBtn');
-			
-			[requestWindowBtn, navRequestWindowBtn, mobileRequestWindowBtn, footerRequestBtn].forEach(btn => {
-				btn.addEventListener('click', () => {
-					requestModal.classList.remove('hidden');
-					requestModal.classList.add('flex');
-				});
-			});
-			
-			// Cerrar modal
-			closeModal.addEventListener('click', () => {
-				requestModal.classList.add('hidden');
-				requestModal.classList.remove('flex');
-			});
-			
-			// Manejar envío del formulario (por simplicidad, se cierra el modal sin enviar datos)
-			requestForm.addEventListener('submit', (e) => {
-				e.preventDefault();
-				requestModal.classList.add('hidden');
-				requestModal.classList.remove('flex');
 			});
 			
 			// Animar contadores de Ventanas Instaladas y Fotos Compartidas
