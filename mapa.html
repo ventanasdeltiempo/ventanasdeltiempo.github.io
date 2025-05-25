@@ -50,6 +50,11 @@
 				display: inline-block;
 			}
 		</style>
+
+		<!-- Mapbox GL JS -->
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+
 	</head>
 
 <body class="bg-gray-50">
@@ -96,12 +101,56 @@
 
   <!-- Contenido principal con un margen superior para no tapar el nav -->
   <main class="pt-16">
-    <!-- Sección "Sobre el Proyecto" -->
-    <section class="py-16 bg-gray-50" id="proyecto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <!-- Sección "Mapa" -->
+<section id="proyecto" class="bg-gray-50">
+  <div class="md:grid md:grid-cols-3 h-[80vh]">
+
+    <!-- Panel izquierdo: búsqueda y lista -->
+    <div class="hidden md:flex flex-col border-r bg-white">
+      <div class="p-4 border-b">
+        <input
+          type="text"
+          id="busqueda"
+          placeholder="Buscar estación..."
+          class="w-full p-3 border rounded-lg shadow"
+        />
       </div>
-    </section>
+      <ul id="lista-estaciones" class="overflow-y-auto p-4 space-y-2 flex-1"></ul>
+    </div>
+
+    <!-- Mapa principal -->
+	<div id="map-container" class="col-span-2 relative h-[80vh] md:h-auto">
+		<div id="map" class="w-full h-full rounded-lg shadow"></div>
+	</div>
+
+      <!-- Móvil: barra y lista flotantes -->
+      <div class="md:hidden relative w-full z-10 transition-all duration-300" id="mobileSearch">
+
+        <div class="bg-white p-4 border-t">
+          <input
+            type="text"
+            id="busqueda-movil"
+            placeholder="Buscar estación..."
+            class="w-full p-3 border rounded-lg shadow"
+          />
+        </div>
+		<!-- Botón circular de volver al mapa -->
+		<button
+		id="volver-mapa"
+		class="hidden absolute -top-6 right-4 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg z-30"
+		aria-label="Volver al mapa"
+		>
+		<i class="ri-arrow-down-line text-2xl"></i>
+		</button>
+        <ul id="lista-estaciones-movil" class="h-60 overflow-y-auto p-4 space-y-2 bg-white hidden"></ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="md:hidden h-12"></div>
+
   </main>
 
 		<!-- FOOTER: Sección de pie de página -->
@@ -212,5 +261,111 @@
     // Observamos un elemento para iniciar la animación de contadores
     observer.observe(document.getElementById('windowsCount'));
   </script>
+
+	<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ2lvZ2U5OSIsImEiOiJjbWE5dTVhYnUxbW56MmlxemYwOHBneDU3In0.QRGRcyssC99PqHH2YXJ4hg';
+	const map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/outdoors-v11',
+		center: [ -3.1947, 42.0458], // Madrid
+		zoom: 13
+	});
+
+	// Ejemplo de marcador
+	//new mapboxgl.Marker()
+	//	.setLngLat([-3.7038, 40.4168])
+	//	.setPopup(new mapboxgl.Popup().setHTML("<strong>Madrid</strong>"))
+	//	.addTo(map);
+	
+  const lugares = [
+    { nombre: "Peñamarilla", coordenadas: [-3.193083, 42.050611] },
+    { nombre: "El Castillejo", coordenadas: [-3.195500, 42.048900] },
+    { nombre: "Ermita de los Mártires", coordenadas: [-3.191200, 42.052000] }
+  ];
+
+  const marcadores = [];
+  const listaDesktop = document.getElementById('lista-estaciones');
+  const listaMovil = document.getElementById('lista-estaciones-movil');
+
+  function crearItemLista(lugar, index) {
+    const li = document.createElement('li');
+    li.textContent = lugar.nombre;
+    li.className = "cursor-pointer p-3 bg-white rounded shadow hover:bg-primary/10";
+    li.dataset.index = index;
+    return li;
+  }
+
+  lugares.forEach((lugar, index) => {
+    const marker = new mapboxgl.Marker()
+      .setLngLat(lugar.coordenadas)
+      .setPopup(new mapboxgl.Popup().setText(lugar.nombre))
+      .addTo(map);
+    marker.nombre = lugar.nombre.toLowerCase();
+    marker.coordenadas = lugar.coordenadas;
+    marcadores.push(marker);
+
+    const itemDesktop = crearItemLista(lugar, index);
+    const itemMovil = crearItemLista(lugar, index);
+    listaDesktop.appendChild(itemDesktop);
+    listaMovil.appendChild(itemMovil);
+
+    const flyToLugar = () => {
+      map.flyTo({ center: lugar.coordenadas, zoom: 15 });
+      marker.togglePopup();
+    };
+
+    itemDesktop.addEventListener('click', flyToLugar);
+    itemMovil.addEventListener('click', flyToLugar);
+
+    marker.listItemDesktop = itemDesktop;
+    marker.listItemMovil = itemMovil;
+  });
+
+  // Función común para filtrar lista y marcadores
+  function filtrarBusqueda(valor, esMovil) {
+    marcadores.forEach(marker => {
+      const coincide = marker.nombre.includes(valor);
+      marker.getElement().style.display = coincide ? 'block' : 'none';
+      if (esMovil) {
+        marker.listItemMovil.style.display = coincide ? 'block' : 'none';
+      } else {
+        marker.listItemDesktop.style.display = coincide ? 'block' : 'none';
+      }
+    });
+  }
+
+  // Desktop input
+  document.getElementById('busqueda').addEventListener('input', function () {
+    filtrarBusqueda(this.value.toLowerCase(), false);
+  });
+
+  // Móvil input
+  const inputMovil = document.getElementById('busqueda-movil');
+  const contenedorMovil = document.getElementById('mobileSearch');
+
+  inputMovil.addEventListener('input', function () {
+    filtrarBusqueda(this.value.toLowerCase(), true);
+  });
+
+const volverBtn = document.getElementById('volver-mapa');
+const mapContainer = document.getElementById('map-container');
+
+inputMovil.addEventListener('focus', () => {
+  listaMovil.classList.remove('hidden');
+  contenedorMovil.style.bottom = '50%';
+  mapContainer.classList.add('opacity-30');
+  volverBtn.classList.remove('hidden');
+});
+
+volverBtn.addEventListener('click', () => {
+  listaMovil.classList.add('hidden');
+  contenedorMovil.style.bottom = '0';
+  mapContainer.classList.remove('opacity-30');
+  volverBtn.classList.add('hidden');
+  inputMovil.blur();
+});
+
+</script>
+
 </body>
 </html>
