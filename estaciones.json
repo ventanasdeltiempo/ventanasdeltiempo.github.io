@@ -1,11 +1,92 @@
 [
-  { "nombre": "Peñamarilla", "coordenadas": [-3.193083, 42.050611] },
-  { "nombre": "El Castillejo", "coordenadas": [-3.195500, 42.048900] },
-  { "nombre": "Ermita de los Mártires", "coordenadas": [-3.191200, 42.052000] },
-  { "nombre": "La Fuente de San Pedro", "coordenadas": [-3.190000, 42.049500] },
-  { "nombre": "Molino del Río", "coordenadas": [-3.192500, 42.047800] },
-  { "nombre": "Calderas de Matalhierro", "coordenadas": [-3.197800, 42.046700] },
-  { "nombre": "Peña Águila", "coordenadas": [-3.199000, 42.050000] },
-  { "nombre": "Cabeza San Vicente", "coordenadas": [-3.200200, 42.053000] },
-  { "nombre": "Cerro del Cucurucho", "coordenadas": [-3.198000, 42.054200] }
+  {
+    "nombre": "Presa del Molino",
+    "codigo": "MDLS-01",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.193013, 42.047127],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Robledal de la Camalla",
+    "codigo": "MDLS-02",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.187737, 42.056131],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Campo de Cubillo",
+    "codigo": "MDLS-03",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.213673, 42.041244],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Convento de Alveinte",
+    "codigo": "MDLS-04",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.209016, 42.032529],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Mirador de Peñalosa",
+    "codigo": "MDLS-05",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.183568, 42.039496],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Cabeza San Vicente",
+    "codigo": "MDLS-06",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.199627, 42.042267],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Robledal del Burrero",
+    "codigo": "MDLS-07",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.182496, 42.046870],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Puente del Hortigal",
+    "codigo": "MDLS-08",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.168603, 42.043642],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  },
+  {
+    "nombre": "Tenadas de Robledo",
+    "codigo": "MDLS-09",
+    "lugar": "Monasterio de la Sierra, Burgos",
+    "coordenadas": [-3.197204, 42.060410],
+    "imagen": "imagenes/penamarilla.jpg",
+    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "descripcion": "",
+    "fecha": "2024-06-10"
+  }
 ]

@@ -49,6 +49,17 @@
 				transition: all 0.3s ease;
 				display: inline-block;
 			}
+			  .mapboxgl-popup-close-button {
+				font-size: 24px !important;
+				top: 8px;
+				right: 8px;
+				padding: 4px 8px;
+				cursor: pointer;
+				font-weight: bold;
+				background-color: rgba(255, 255, 255, 0.8);
+				border-radius: 4px;
+				color: #333;
+			}
 		</style>
 
 		<!-- Mapbox GL JS -->
@@ -250,9 +261,24 @@ function crearItemLista(lugar, index) {
 
 function agregarMarcadores(lugares) {
   lugares.forEach((lugar, index) => {
-    const marker = new mapboxgl.Marker()
+    const marker = new mapboxgl.Marker({ color: '#df4e19' })
       .setLngLat(lugar.coordenadas)
-      .setPopup(new mapboxgl.Popup().setText(lugar.nombre))
+      .setPopup(new mapboxgl.Popup().setHTML(`
+		<div class="text-sm max-w-xs">
+			<strong>${lugar.nombre}</strong><br/>
+			<img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-full mt-2 rounded shadow"/>
+			<p class="mt-1 text-xs text-gray-500">
+			<strong>Código:</strong> ${lugar.codigo}<br/>
+			<strong>Lugar:</strong> ${lugar.lugar}<br/>
+			<strong>Instalada:</strong> ${lugar.fecha}
+			</p>
+			<a href="${lugar.enlace}" target="_blank"
+				class="mt-3 inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-button hover:bg-primary/90 transition-colors duration-200">
+				Ver más
+			</a>
+		</div>
+		`))
+
       .addTo(map);
     marker.nombre = lugar.nombre.toLowerCase();
     marker.coordenadas = lugar.coordenadas;
@@ -263,13 +289,26 @@ function agregarMarcadores(lugares) {
     listaDesktop.appendChild(itemDesktop);
     listaMovil.appendChild(itemMovil);
 
-    const flyToLugar = () => {
-      map.flyTo({ center: lugar.coordenadas, zoom: 15 });
-      marker.togglePopup();
-    };
+	function flyToLugar(marker, lugar) {
+		// Cierra todos los popups abiertos
+		marcadores.forEach(m => m.getPopup().remove());
 
-    itemDesktop.addEventListener('click', flyToLugar);
-    itemMovil.addEventListener('click', flyToLugar);
+		// Vuela al lugar y abre el popup del marcador
+		map.flyTo({ center: lugar.coordenadas, zoom: 15 });
+		marker.togglePopup();
+	}
+
+    itemDesktop.addEventListener('click', () => {
+		flyToLugar(marker, lugar);
+	});
+	itemMovil.addEventListener('click', () => {
+		flyToLugar(marker, lugar);
+		listaMovil.classList.add('hidden');
+		contenedorMovil.style.bottom = '0';
+		mapContainer.classList.remove('opacity-30');
+		volverBtn.classList.add('hidden');
+		inputMovil.blur();
+	});
 
     marker.listItemDesktop = itemDesktop;
     marker.listItemMovil = itemMovil;
