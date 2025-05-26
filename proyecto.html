@@ -603,41 +603,6 @@
 
 
 
-    // Función para animar un contador numérico
-    function animateCount(element, target) {
-      let current = 0;
-      const duration = 2000; // Duración en milisegundos
-      const step = target / (duration / 16);
-
-      function update() {
-        current = Math.min(current + step, target);
-        element.textContent = Math.floor(current);
-        if (current < target) {
-          requestAnimationFrame(update);
-        }
-      }
-      update();
-    }
-
-    // Datos de prueba para la animación de contadores
-    const mockData = {
-      windows: 156,
-      photos: 3427
-    };
-
-    // Observador para iniciar la animación cuando el elemento se vea en pantalla
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCount(document.getElementById('windowsCount'), mockData.windows);
-          animateCount(document.getElementById('photosCount'), mockData.photos);
-          observer.disconnect(); // Detener la observación tras la animación
-        }
-      });
-    });
-
-    // Iniciar la observación en el elemento con id="windowsCount"
-    observer.observe(document.getElementById('windowsCount'));
   </script>
 </body>
 </html>

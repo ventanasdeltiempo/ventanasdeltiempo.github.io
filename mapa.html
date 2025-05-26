@@ -103,7 +103,7 @@
   <main class="pt-16">
     <!-- Sección "Mapa" -->
 <section id="proyecto" class="bg-gray-50">
-  <div class="md:grid md:grid-cols-3 h-[80vh]">
+  <div class="md:grid md:grid-cols-3 h-[70vh]">
 
     <!-- Panel izquierdo: búsqueda y lista -->
     <div class="hidden md:flex flex-col border-r bg-white">
@@ -119,7 +119,7 @@
     </div>
 
     <!-- Mapa principal -->
-	<div id="map-container" class="col-span-2 relative h-[80vh] md:h-auto">
+	<div id="map-container" class="col-span-2 relative h-[70vh] md:h-auto">
 		<div id="map" class="w-full h-full rounded-lg shadow"></div>
 	</div>
 
@@ -208,7 +208,7 @@
 
 
   <!-- Scripts de funcionalidad -->
-  <script>
+   <script>
     // Elementos del DOM
     const menuButton = document.getElementById('menuButton');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -224,77 +224,31 @@
 
 
 
-    // Función para animar un contador numérico
-    function animateCount(element, target) {
-      let current = 0;
-      const duration = 2000;   // Duración de la animación en milisegundos
-      const step = target / (duration / 16);
 
-      function update() {
-        current = Math.min(current + step, target);
-        element.textContent = Math.floor(current);
-        if (current < target) {
-          requestAnimationFrame(update);
-        }
-      }
-      update();
-    }
-
-    // Datos simulados de ejemplo
-    const mockData = {
-      windows: 156,
-      photos: 3427
-    };
-
-    // IntersectionObserver para disparar la animación cuando el elemento entra en la pantalla
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Llamamos a la función de animación para dos contadores distintos
-          animateCount(document.getElementById('windowsCount'), mockData.windows);
-          animateCount(document.getElementById('photosCount'), mockData.photos);
-          observer.disconnect(); // Detiene la observación para no repetir la animación
-        }
-      });
-    });
-
-    // Observamos un elemento para iniciar la animación de contadores
-    observer.observe(document.getElementById('windowsCount'));
   </script>
 
-	<script>
-	mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ2lvZ2U5OSIsImEiOiJjbWE5dTVhYnUxbW56MmlxemYwOHBneDU3In0.QRGRcyssC99PqHH2YXJ4hg';
-	const map = new mapboxgl.Map({
-		container: 'map',
-		style: 'mapbox://styles/mapbox/outdoors-v11',
-		center: [ -3.1947, 42.0458], // Madrid
-		zoom: 13
-	});
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ2lvZ2U5OSIsImEiOiJjbWE5dTVhYnUxbW56MmlxemYwOHBneDU3In0.QRGRcyssC99PqHH2YXJ4hg';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/outdoors-v11',
+  center: [-3.1947, 42.0458],
+  zoom: 13
+});
 
-	// Ejemplo de marcador
-	//new mapboxgl.Marker()
-	//	.setLngLat([-3.7038, 40.4168])
-	//	.setPopup(new mapboxgl.Popup().setHTML("<strong>Madrid</strong>"))
-	//	.addTo(map);
-	
-  const lugares = [
-    { nombre: "Peñamarilla", coordenadas: [-3.193083, 42.050611] },
-    { nombre: "El Castillejo", coordenadas: [-3.195500, 42.048900] },
-    { nombre: "Ermita de los Mártires", coordenadas: [-3.191200, 42.052000] }
-  ];
+const marcadores = [];
+const listaDesktop = document.getElementById('lista-estaciones');
+const listaMovil = document.getElementById('lista-estaciones-movil');
 
-  const marcadores = [];
-  const listaDesktop = document.getElementById('lista-estaciones');
-  const listaMovil = document.getElementById('lista-estaciones-movil');
+function crearItemLista(lugar, index) {
+  const li = document.createElement('li');
+  li.textContent = lugar.nombre;
+  li.className = "cursor-pointer p-3 bg-white rounded shadow hover:bg-primary/10";
+  li.dataset.index = index;
+  return li;
+}
 
-  function crearItemLista(lugar, index) {
-    const li = document.createElement('li');
-    li.textContent = lugar.nombre;
-    li.className = "cursor-pointer p-3 bg-white rounded shadow hover:bg-primary/10";
-    li.dataset.index = index;
-    return li;
-  }
-
+function agregarMarcadores(lugares) {
   lugares.forEach((lugar, index) => {
     const marker = new mapboxgl.Marker()
       .setLngLat(lugar.coordenadas)
@@ -320,32 +274,36 @@
     marker.listItemDesktop = itemDesktop;
     marker.listItemMovil = itemMovil;
   });
+}
 
-  // Función común para filtrar lista y marcadores
-  function filtrarBusqueda(valor, esMovil) {
-    marcadores.forEach(marker => {
-      const coincide = marker.nombre.includes(valor);
-      marker.getElement().style.display = coincide ? 'block' : 'none';
-      if (esMovil) {
-        marker.listItemMovil.style.display = coincide ? 'block' : 'none';
-      } else {
-        marker.listItemDesktop.style.display = coincide ? 'block' : 'none';
-      }
-    });
-  }
+fetch('estaciones.json')
+  .then(res => res.json())
+  .then(data => agregarMarcadores(data))
+  .catch(err => console.error('Error cargando estaciones:', err));
 
-  // Desktop input
-  document.getElementById('busqueda').addEventListener('input', function () {
-    filtrarBusqueda(this.value.toLowerCase(), false);
+// Función común para filtrar lista y marcadores
+function filtrarBusqueda(valor, esMovil) {
+  marcadores.forEach(marker => {
+    const coincide = marker.nombre.includes(valor);
+    marker.getElement().style.display = coincide ? 'block' : 'none';
+    if (esMovil) {
+      marker.listItemMovil.style.display = coincide ? 'block' : 'none';
+    } else {
+      marker.listItemDesktop.style.display = coincide ? 'block' : 'none';
+    }
   });
+}
 
-  // Móvil input
-  const inputMovil = document.getElementById('busqueda-movil');
-  const contenedorMovil = document.getElementById('mobileSearch');
+// Eventos de búsqueda
+document.getElementById('busqueda').addEventListener('input', function () {
+  filtrarBusqueda(this.value.toLowerCase(), false);
+});
+const inputMovil = document.getElementById('busqueda-movil');
+const contenedorMovil = document.getElementById('mobileSearch');
 
-  inputMovil.addEventListener('input', function () {
-    filtrarBusqueda(this.value.toLowerCase(), true);
-  });
+inputMovil.addEventListener('input', function () {
+  filtrarBusqueda(this.value.toLowerCase(), true);
+});
 
 const volverBtn = document.getElementById('volver-mapa');
 const mapContainer = document.getElementById('map-container');
@@ -364,8 +322,8 @@ volverBtn.addEventListener('click', () => {
   volverBtn.classList.add('hidden');
   inputMovil.blur();
 });
-
 </script>
+
 
 </body>
 </html>

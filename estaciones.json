@@ -1,0 +1,11 @@
+[
+  { "nombre": "Peñamarilla", "coordenadas": [-3.193083, 42.050611] },
+  { "nombre": "El Castillejo", "coordenadas": [-3.195500, 42.048900] },
+  { "nombre": "Ermita de los Mártires", "coordenadas": [-3.191200, 42.052000] },
+  { "nombre": "La Fuente de San Pedro", "coordenadas": [-3.190000, 42.049500] },
+  { "nombre": "Molino del Río", "coordenadas": [-3.192500, 42.047800] },
+  { "nombre": "Calderas de Matalhierro", "coordenadas": [-3.197800, 42.046700] },
+  { "nombre": "Peña Águila", "coordenadas": [-3.199000, 42.050000] },
+  { "nombre": "Cabeza San Vicente", "coordenadas": [-3.200200, 42.053000] },
+  { "nombre": "Cerro del Cucurucho", "coordenadas": [-3.198000, 42.054200] }
+]

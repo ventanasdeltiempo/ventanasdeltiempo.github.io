@@ -176,42 +176,6 @@
 
 
 
-    // Función para animar un contador numérico
-    function animateCount(element, target) {
-      let current = 0;
-      const duration = 2000;   // Duración de la animación en milisegundos
-      const step = target / (duration / 16);
-
-      function update() {
-        current = Math.min(current + step, target);
-        element.textContent = Math.floor(current);
-        if (current < target) {
-          requestAnimationFrame(update);
-        }
-      }
-      update();
-    }
-
-    // Datos simulados de ejemplo
-    const mockData = {
-      windows: 156,
-      photos: 3427
-    };
-
-    // IntersectionObserver para disparar la animación cuando el elemento entra en la pantalla
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Llamamos a la función de animación para dos contadores distintos
-          animateCount(document.getElementById('windowsCount'), mockData.windows);
-          animateCount(document.getElementById('photosCount'), mockData.photos);
-          observer.disconnect(); // Detiene la observación para no repetir la animación
-        }
-      });
-    });
-
-    // Observamos un elemento para iniciar la animación de contadores
-    observer.observe(document.getElementById('windowsCount'));
   </script>
 </body>
 </html>
