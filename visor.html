@@ -42,6 +42,10 @@
 		
 		<!-- Estilos personalizados -->
 		<style>
+			  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 			:where([class^="ri-"])::before {
 				content: "\f3c2";
 			}
@@ -49,6 +53,33 @@
 				transition: all 0.3s ease;
 				display: inline-block;
 			}
+
+			  /* Estilo del thumb para navegadores basados en WebKit (Chrome, Safari) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 9999px;
+    background: white;
+    border: 2px solid #56aa45;
+    cursor: pointer;
+    margin-top: 0px; /* Alineación vertical */
+    position: relative;
+    z-index: 20;
+  }
+
+  /* Para Firefox */
+  input[type="range"]::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 9999px;
+    background: white;
+    border: 2px solid #56aa45;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+  }
 		</style>
 	</head>
 
@@ -95,11 +126,61 @@
 		</div>
 
   <!-- Contenido principal con un margen superior para no tapar el nav -->
-  <main class="pt-16">
-    <!-- Sección "Sobre el Proyecto" -->
+  <main class="pt-8">
+
+    <!-- Sección "Visor" -->
     <section class="py-16 bg-gray-50" id="proyecto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
+<div class="relative w-full max-w-3xl mx-auto">
+  <!-- Imagen -->
+  <img id="visor-imagen" src="" alt="Visor" class="w-full object-contain rounded-xl shadow-lg">
+
+  <!-- Botón anterior -->
+  <button onclick="cambiarImagen(-1)"
+    class="absolute top-1/2 -translate-y-1/2 -left-5 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
+    &lt;
+  </button>
+
+  <!-- Botón siguiente -->
+  <button onclick="cambiarImagen(1)"
+    class="absolute top-1/2 -translate-y-1/2 -right-5 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
+    &gt;
+  </button>
+
+<!-- Pie de imagen -->
+<div id="pie-imagen" class="text-center mt-1 text-sm text-gray-600 italic"></div>
+
+<!-- Contenedor con botón y slider -->
+<div class="relative w-full max-w-3xl mx-auto mt-0 flex items-center gap-2">
+  <!-- Botón Play/Pause -->
+  <button id="playButton"
+    onclick="toggleReproduccion()"
+    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 transition z-10">
+    <i id="playIcon" class="ri-play-fill text-xl"></i>
+  </button>
+
+  <!-- Contenedor del slider con ticks -->
+  <div class="relative w-full">
+    <input
+      id="slider"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      oninput="sliderCambio(this.value)"
+      class="w-full h-2 rounded-full appearance-none bg-gray-300 focus:outline-none"
+      style="
+        background: linear-gradient(to right, #56aa45 0%, #56aa45 0%, #e5e7eb 0%, #e5e7eb 100%);
+      "
+    />
+    <div id="slider-ticks" class="absolute top-1 left-0 w-full h-full pointer-events-none z-0 overflow-hidden"></div>
+  </div>
+</div>
+
+
+  </div>
+</div>
       </div>
     </section>
   </main>
@@ -176,6 +257,134 @@
 
 
 
-  </script>
+  let imagenes = [];
+  let fechasMs = [];
+  let timestampMin = 0;
+  let timestampMax = 0;
+  let indiceActual = 0;
+
+  fetch("https://raw.githubusercontent.com/ventanasdeltiempo/ventanasdeltiempo-imagenes/main/img/MDLS-04/lista-imagenes.json")
+    .then(res => res.json())
+    .then(data => {
+      imagenes = data;
+
+      // Convertir fechas a timestamps
+      fechasMs = imagenes.map(img => new Date(img.fecha).getTime());
+
+      timestampMin = Math.min(...fechasMs);
+      timestampMax = Math.max(...fechasMs);
+
+      const slider = document.getElementById("slider");
+      slider.min = timestampMin;
+      slider.max = timestampMax;
+      slider.step = 1000 * 60 * 60 * 24; // pasos de un día
+
+	  generarTicks();
+      mostrarImagen();
+    });
+
+  function mostrarImagen() {
+    if (imagenes.length === 0) return;
+
+    const img = document.getElementById("visor-imagen");
+    const pie = document.getElementById("pie-imagen");
+    const slider = document.getElementById("slider");
+
+    img.src = imagenes[indiceActual].src;
+    pie.innerText = `${imagenes[indiceActual].fecha} – ${imagenes[indiceActual].autor}`;
+    slider.value = fechasMs[indiceActual];
+	actualizarFondoSlider(); 
+  }
+
+  function cambiarImagen(direccion) {
+    if (imagenes.length === 0) return;
+
+    indiceActual = (indiceActual + direccion + imagenes.length) % imagenes.length;
+    mostrarImagen();
+  }
+
+  function sliderCambio(valor) {
+    const ts = parseInt(valor);
+
+    // Buscar la imagen más cercana en el tiempo
+    let indiceMasCercano = 0;
+    let minDiferencia = Infinity;
+
+    for (let i = 0; i < fechasMs.length; i++) {
+      const diff = Math.abs(fechasMs[i] - ts);
+      if (diff < minDiferencia) {
+        minDiferencia = diff;
+        indiceMasCercano = i;
+      }
+    }
+
+    indiceActual = indiceMasCercano;
+    mostrarImagen();
+	actualizarFondoSlider();
+  }
+
+function generarTicks() {
+  const contenedor = document.getElementById("slider-ticks");
+  contenedor.innerHTML = "";
+
+  const rango = timestampMax - timestampMin;
+
+  imagenes.forEach((img, i) => {
+    const ts = fechasMs[i];
+    const offset = ((ts - timestampMin) / rango) * 100;
+
+    const linea = document.createElement("div");
+    linea.className = "absolute top-1.5 h-2 w-px bg-gray-400 opacity-70";
+    linea.style.left = `${offset}%`;
+
+    contenedor.appendChild(linea);
+  });
+}
+function actualizarFondoSlider() {
+  const slider = document.getElementById("slider");
+
+  const min = parseInt(slider.min);
+  const max = parseInt(slider.max);
+  const val = parseInt(slider.value);
+
+  const porcentaje = ((val - min) / (max - min)) * 100;
+
+  slider.style.background = `linear-gradient(to right, #56aa45 0%, #56aa45 ${porcentaje}%, #e5e7eb ${porcentaje}%, #e5e7eb 100%)`;
+}
+
+let reproduciendo = false;
+let intervaloPlay = null;
+
+function toggleReproduccion() {
+  const icono = document.getElementById("playIcon");
+
+  reproduciendo = !reproduciendo;
+
+  if (reproduciendo) {
+    icono.classList.remove("ri-play-fill");
+    icono.classList.add("ri-pause-fill");
+
+    intervaloPlay = setInterval(() => {
+      if (indiceActual < imagenes.length - 1) {
+        indiceActual++;
+        mostrarImagen();
+      } else {
+        clearInterval(intervaloPlay);
+        reproduciendo = false;
+        icono.classList.remove("ri-pause-fill");
+        icono.classList.add("ri-play-fill");
+      }
+    }, 2000); // cambia cada 2 segundos
+  } else {
+    clearInterval(intervaloPlay);
+    icono.classList.remove("ri-pause-fill");
+    icono.classList.add("ri-play-fill");
+  }
+}
+
+</script>
+
+
+
 </body>
 </html>
