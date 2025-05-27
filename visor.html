@@ -325,21 +325,30 @@
 
 function generarTicks() {
   const contenedor = document.getElementById("slider-ticks");
+  const slider = document.getElementById("slider");
+
   contenedor.innerHTML = "";
 
   const rango = timestampMax - timestampMin;
+  const thumbWidth = 16; // mismo tamaño que definiste para el thumb
+  const sliderWidth = slider.clientWidth;
+  const anchoUtil = sliderWidth - thumbWidth;
 
   imagenes.forEach((img, i) => {
     const ts = fechasMs[i];
-    const offset = ((ts - timestampMin) / rango) * 100;
+    const proporcion = (ts - timestampMin) / rango;
+
+    // Posición compensada por la mitad del thumb
+    const px = proporcion * anchoUtil + thumbWidth / 2;
 
     const linea = document.createElement("div");
-    linea.className = "absolute top-1.5 h-2 w-px bg-gray-400 opacity-70";
-    linea.style.left = `${offset}%`;
+    linea.className = "absolute top-1.5 h-2 w-[3px] bg-gray-700 opacity-80";
+    linea.style.left = `${px}px`;
 
     contenedor.appendChild(linea);
   });
 }
+window.addEventListener("resize", () => generarTicks());
 function actualizarFondoSlider() {
   const slider = document.getElementById("slider");
 
@@ -365,16 +374,9 @@ function toggleReproduccion() {
     icono.classList.add("ri-pause-fill");
 
     intervaloPlay = setInterval(() => {
-      if (indiceActual < imagenes.length - 1) {
-        indiceActual++;
-        mostrarImagen();
-      } else {
-        clearInterval(intervaloPlay);
-        reproduciendo = false;
-        icono.classList.remove("ri-pause-fill");
-        icono.classList.add("ri-play-fill");
-      }
-    }, 2000); // cambia cada 2 segundos
+		indiceActual = (indiceActual + 1) % imagenes.length;
+		mostrarImagen();
+    }, 1000); // cambia cada 1 segundos
   } else {
     clearInterval(intervaloPlay);
     icono.classList.remove("ri-pause-fill");
