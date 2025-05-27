@@ -159,6 +159,12 @@
     class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 transition z-10">
     <i id="playIcon" class="ri-play-fill text-xl"></i>
   </button>
+  <!-- Velocidad de reproducción -->
+<button id="velocidadBtn"
+  onclick="cambiarVelocidad()"
+  class="text-xs text-gray-700 mt-1 ml-1 px-2 py-0.5 border border-gray-300 rounded-full hover:bg-gray-100">
+  x1
+</button>
 
   <!-- Contenedor del slider con ticks -->
   <div class="relative w-full">
@@ -376,11 +382,28 @@ function toggleReproduccion() {
     intervaloPlay = setInterval(() => {
 		indiceActual = (indiceActual + 1) % imagenes.length;
 		mostrarImagen();
-    }, 1000); // cambia cada 1 segundos
+    }, tiempos[velocidad]);
   } else {
     clearInterval(intervaloPlay);
     icono.classList.remove("ri-pause-fill");
     icono.classList.add("ri-play-fill");
+  }
+}
+
+let velocidad = 1;
+let velocidades = [1, 2, 3];
+let tiempos = { 1: 1000, 2: 500, 3: 300 };
+
+function cambiarVelocidad() {
+  velocidad = velocidad % 3 + 1; // Cicla 1 → 2 → 3 → 1
+  document.getElementById("velocidadBtn").innerText = `x${velocidad}`;
+
+  if (reproduciendo) {
+    clearInterval(intervaloPlay);
+    intervaloPlay = setInterval(() => {
+      indiceActual = (indiceActual + 1) % imagenes.length;
+      mostrarImagen();
+    }, tiempos[velocidad]);
   }
 }
 
