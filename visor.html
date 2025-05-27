@@ -133,20 +133,23 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 <div class="relative w-full max-w-3xl mx-auto">
+<!-- Contenedor SOLO de la imagen y los botones -->
+<div class="relative">
   <!-- Imagen -->
   <img id="visor-imagen" src="" alt="Visor" class="w-full object-contain rounded-xl shadow-lg">
 
   <!-- Botón anterior -->
   <button onclick="cambiarImagen(-1)"
-    class="absolute top-1/2 -translate-y-1/2 -left-5 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
-    &lt;
+    class="absolute top-1/2 -translate-y-1/2 -left-3 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
+    <i class="ri-arrow-left-s-line text-xl"></i>
   </button>
 
   <!-- Botón siguiente -->
   <button onclick="cambiarImagen(1)"
-    class="absolute top-1/2 -translate-y-1/2 -right-5 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
-    &gt;
+    class="absolute top-1/2 -translate-y-1/2 -right-3 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
+    <i class="ri-arrow-right-s-line text-xl"></i>
   </button>
+</div>
 
 <!-- Pie de imagen -->
 <div id="pie-imagen" class="text-center mt-1 text-sm text-gray-600 italic"></div>
@@ -372,6 +375,7 @@ let intervaloPlay = null;
 
 function toggleReproduccion() {
   const icono = document.getElementById("playIcon");
+  const boton = document.getElementById("playButton");
 
   reproduciendo = !reproduciendo;
 
@@ -379,14 +383,20 @@ function toggleReproduccion() {
     icono.classList.remove("ri-play-fill");
     icono.classList.add("ri-pause-fill");
 
+    boton.classList.remove("bg-primary", "hover:bg-primary/90");
+    boton.classList.add("bg-secondary", "hover:bg-secondary/90");
+
     intervaloPlay = setInterval(() => {
-		indiceActual = (indiceActual + 1) % imagenes.length;
-		mostrarImagen();
+      indiceActual = (indiceActual + 1) % imagenes.length;
+      mostrarImagen();
     }, tiempos[velocidad]);
   } else {
     clearInterval(intervaloPlay);
     icono.classList.remove("ri-pause-fill");
     icono.classList.add("ri-play-fill");
+
+    boton.classList.remove("bg-secondary", "hover:bg-secondary/90");
+    boton.classList.add("bg-primary", "hover:bg-primary/90");
   }
 }
 
