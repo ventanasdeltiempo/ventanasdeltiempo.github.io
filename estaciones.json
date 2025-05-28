@@ -5,7 +5,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.193013, 42.047127],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-01",
+    "enlace": "/visor.html?ventana=MDLS-01",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -15,7 +15,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.187737, 42.056131],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-02",
+    "enlace": "/visor.html?ventana=MDLS-02",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -25,7 +25,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.213673, 42.041244],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-03",
+    "enlace": "/visor.html?ventana=MDLS-03",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -35,7 +35,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.209016, 42.032529],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-04",
+    "enlace": "/visor.html?ventana=MDLS-04",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -45,7 +45,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.183568, 42.039496],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-05",
+    "enlace": "/visor.html?ventana=MDLS-05",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -55,7 +55,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.199627, 42.042267],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-06",
+    "enlace": "/visor.html?ventana=MDLS-06",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -65,7 +65,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.182496, 42.046870],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-07",
+    "enlace": "/visor.html?ventana=MDLS-07",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -75,7 +75,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.168603, 42.043642],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-08",
+    "enlace": "/visor.html?ventana=MDLS-08",
     "descripcion": "",
     "fecha": "2024-06-10"
   },
@@ -85,7 +85,7 @@
     "lugar": "Monasterio de la Sierra, Burgos",
     "coordenadas": [-3.197204, 42.060410],
     "imagen": "imagenes/penamarilla.jpg",
-    "enlace": "https://ventanasdeltiempo.github.io/visor.html?ventana=MDLS-09",
+    "enlace": "/visor.html?ventana=MDLS-09",
     "descripcion": "",
     "fecha": "2024-06-10"
   }
