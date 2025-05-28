@@ -452,13 +452,27 @@ function cambiarVelocidad() {
 }
 
 
+// Función de redirección con mensaje
+function redirigirInicio() {
+  document.body.innerHTML = `
+    <div class="flex items-center justify-center h-screen text-center px-4">
+      <div>
+        <p class="text-lg text-gray-700">La Ventana del Tiempo selecionada no está disponible</p>
+        <p class="text-lg text-gray-700">Redirigiendo a la página principal...</p>
+      </div>
+    </div>`;
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 2500);
+}
+
 // Extraer código desde la URL
 const params = new URLSearchParams(window.location.search);
 const codigoEstacion = params.get("ventana");
 
 // Si no hay parámetro, redirigir
 if (!codigoEstacion) {
-  window.location.href = "index.html";
+  redirigirInicio();
 }
 
 // Cargar datos de estaciones
@@ -469,7 +483,7 @@ fetch("estaciones.json")
 
     // Si no se encuentra la estación, redirigir
     if (!estacion) {
-      window.location.href = "index.html";
+      redirigirInicio();
       return;
     }
 
@@ -482,8 +496,8 @@ fetch("estaciones.json")
     document.getElementById("fecha-estacion").innerText = estacion.fecha;
   })
   .catch(() => {
-    // Si ocurre un error (por ejemplo, no se puede cargar el JSON), redirigir
-    window.location.href = "index.html";
+    // Si ocurre un error al cargar el JSON, redirigir
+    redirigirInicio();
   });
 
 </script>
