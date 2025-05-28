@@ -456,19 +456,34 @@ function cambiarVelocidad() {
 const params = new URLSearchParams(window.location.search);
 const codigoEstacion = params.get("ventana");
 
+// Si no hay parámetro, redirigir
+if (!codigoEstacion) {
+  window.location.href = "index.html";
+}
+
 // Cargar datos de estaciones
 fetch("estaciones.json")
   .then(res => res.json())
   .then(estaciones => {
     const estacion = estaciones.find(e => e.codigo === codigoEstacion);
-    if (!estacion) return;
 
+    // Si no se encuentra la estación, redirigir
+    if (!estacion) {
+      window.location.href = "index.html";
+      return;
+    }
+
+    // Si existe, mostrar la información
     document.getElementById("nombre-estacion").innerText = estacion.nombre;
     document.getElementById("codigo-estacion").innerText = estacion.codigo;
     document.getElementById("lugar-estacion").innerText = estacion.lugar;
     document.getElementById("coordenadas-estacion").innerText = estacion.coordenadas.join(", ");
     document.getElementById("descripcion-estacion").innerText = estacion.descripcion || "—";
     document.getElementById("fecha-estacion").innerText = estacion.fecha;
+  })
+  .catch(() => {
+    // Si ocurre un error (por ejemplo, no se puede cargar el JSON), redirigir
+    window.location.href = "index.html";
   });
 
 </script>
