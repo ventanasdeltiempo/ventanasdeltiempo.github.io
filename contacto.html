@@ -1,226 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<!-- Configuración básica del documento -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Ventanas del Tiempo</title>
-		
-		<!-- Carga de Tailwind CSS desde CDN -->
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = {
-				theme: {
-					extend: {
-						colors: {
-							primary: '#56aa45',
-							secondary: '#df4e19'
-						},
-						borderRadius: {
-							'none': '0px',
-							'sm': '4px',
-							'DEFAULT': '8px',
-							'md': '12px',
-							'lg': '16px',
-							'xl': '20px',
-							'2xl': '24px',
-							'3xl': '32px',
-							'full': '9999px',
-							'button': '8px'
-						}
-					}
-				}
-			}
-		</script>
-		
-		<!-- Fuentes y íconos -->
-		<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-		<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-		
-		<!-- Estilos personalizados -->
-		<style>
-			:where([class^="ri-"])::before {
-				content: "\f3c2";
-			}
-			.stats-count {
-				transition: all 0.3s ease;
-				display: inline-block;
-			}
-		</style>
-	</head>
+  <head>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventanas del Tiempo</title>
 
-<body class="bg-gray-50">
-		<!-- NAVBAR: Barra de navegación fija en la parte superior -->
-		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between h-16 items-center">
-					<!-- Logotipo -->
-					<a href="index.html">
-						<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
-					</a>
-					
-					<!-- Menú de navegación en pantallas medianas y grandes -->
-					<div class="hidden md:flex space-x-8 items-center">
-						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
-						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
-						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
-					</div>
-					
-					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
-					<div class="flex items-center md:hidden">
-						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-							<i class="ri-menu-line text-2xl"></i>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</nav>
-		
-		<!-- Menú móvil (desplegable) -->
-		<div
-			class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-			id="mobileMenu"
-		>
-			<div class="py-2">
-				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
-			</div>
-		</div>
+    <!-- Carga de Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#56aa45',
+              secondary: '#df4e19'
+            },
+            borderRadius: {
+              'none': '0px',
+              'sm': '4px',
+              'DEFAULT': '8px',
+              'md': '12px',
+              'lg': '16px',
+              'xl': '20px',
+              '2xl': '24px',
+              '3xl': '32px',
+              'full': '9999px',
+              'button': '8px'
+            }
+          }
+        }
+      }
+    </script>
 
-	<!-- Contenido principal con un margen superior para no tapar el nav -->
-	<main class="pt-16">
+    <!-- Fuentes y íconos -->
+    <link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-		<!-- Sección "Formulario" -->
-		<section class="py-16 bg-gray-50" id="proyecto">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
-					<h2 class="text-2xl font-semibold text-center text-primary mb-6">Formulario de contacto</h2>
-					<form action="https://formsubmit.co/info@ventanasdeltiempo.com" method="POST" class="space-y-4">
-					
-					<!-- Protección anti-spam -->
-					<input type="hidden" name="_captcha" value="false">
-					<input type="hidden" name="_next" value="https://ventanasdeltiempo.github.io/gracias.html">
-					<input type="text" name="_honey" style="display:none">
-				
-					<!-- Campo: Nombre -->
-					<div>
-						<label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
-						<input type="text" id="nombre" name="nombre" required
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2" />
-					</div>
-				
-					<!-- Campo: Email -->
-					<div>
-						<label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-						<input type="email" id="email" name="email" required
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2" />
-					</div>
-				
-					<!-- Campo: Teléfono -->
-					<div>
-						<label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
-						<input type="tel" id="telefono" name="telefono"
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2" />
-					</div>
-				
-					<!-- Campo: Mensaje -->
-					<div>
-						<label for="mensaje" class="block text-sm font-medium text-gray-700">Mensaje</label>
-						<textarea id="mensaje" name="mensaje" rows="5" required
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2"></textarea>
-					</div>
-				
-					<!-- Botón de envío -->
-					<div class="text-center">
-						<button type="submit"
-						class="bg-primary text-white px-6 py-2 rounded-button text-lg hover:bg-primary/90 transition-colors">
-						Enviar
-						</button>
-					</div>
-					</form>
-				</div>
-			</div>
-		</section>
-	</main>
+    <!-- Estilos personalizados -->
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      .stats-count {
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+    </style>
+  </head>
 
-	<!-- FOOTER: Sección de pie de página -->
-	<footer class="bg-white border-t">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-			<div class="grid md:grid-cols-4 gap-8">
-				<!-- Logo y breve descripción -->
-				<div>
-					<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
-					<p class="text-gray-600 text-sm">
-						Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
-					</p>
-				</div>
-				<!-- Enlaces -->
-				<div>
-					<h4 class="font-semibold mb-4">Enlaces</h4>
-					<ul class="space-y-2 text-gray-600">
-						<li>
-							<a href="index.html" class="hover:text-primary">Inicio</a>
-						</li>
-						<li>
-							<a href="mapa.html" class="hover:text-primary">Mapa</a>
-						</li>
-						<li>
-							<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
-						</li>
-						<li>
-							<a href="contacto.html" class="hover:text-primary">Contacto</a>
-						</li>
-					</ul>
-				</div>
-				<!-- Redes sociales -->
-				<div>
-					<h4 class="font-semibold mb-4">Redes Sociales</h4>
-					<a
-						href="https://instagram.com/ventanasdeltiempo"
-						target="_blank"
-						class="flex items-center text-gray-600 hover:text-primary"
-					>
-						<i class="ri-instagram-line text-xl mr-2"></i>
-						<span>@ventanasdeltiempo</span>
-					</a>
-				</div>
-				<!-- Contacto -->
-				<div>
-					<h4 class="font-semibold mb-4">Correo Electrónico</h4>
-					<p class="text-gray-600">info@ventanasdeltiempo.es</p>
-				</div>
-			</div>
-			<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
-				<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
-			</div>
-		</div>
-	</footer>
+  <body class="bg-gray-50">
+    <!-- NAVBAR: Barra de navegación fija en la parte superior -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <!-- Logotipo -->
+          <a href="index.html">
+            <img src="src/logo512.png" alt="Logo" class="h-12 w-auto" />
+          </a>
 
-  
+          <!-- Menú de navegación (pantallas md y mayores) -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+            <a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+            <a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+            <a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
+          </div>
 
-  <!-- Scripts de funcionalidad -->
-  <script>
-    // Elementos del DOM
-    const menuButton = document.getElementById('menuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const readMoreBtn = document.getElementById('readMoreBtn');
-    const moreText = document.getElementById('moreText');
-    const requestWindowBtn = document.getElementById('requestWindowBtn');
-    const requestForm = document.getElementById('requestForm');
+          <!-- Botón del menú móvil -->
+          <div class="flex items-center md:hidden">
+            <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+              <i class="ri-menu-line text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-    // Mostrar/ocultar menú móvil al hacer clic en el botón
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('translate-x-full');
-    });
+    <!-- Menú móvil desplegable -->
+    <div class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40" id="mobileMenu">
+      <div class="py-2">
+        <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+        <a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+        <a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+        <a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+      </div>
+    </div>
 
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="pt-16">
+      <!-- Sección: Formulario de contacto -->
+      <section class="py-16 bg-gray-50" id="proyecto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-center text-primary mb-6">Formulario de contacto</h2>
 
-  </script>
-</body>
+            <form action="https://formsubmit.co/info@ventanasdeltiempo.com" method="POST" class="space-y-4">
+              <!-- Protección contra spam -->
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="https://ventanasdeltiempo.github.io/gracias.html" />
+              <input type="text" name="_honey" style="display:none" />
+
+              <!-- Campo: Nombre -->
+              <div>
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2" />
+              </div>
+
+              <!-- Campo: Email -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+                <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2" />
+              </div>
+
+              <!-- Campo: Teléfono -->
+              <div>
+                <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2" />
+              </div>
+
+              <!-- Campo: Mensaje -->
+              <div>
+                <label for="mensaje" class="block text-sm font-medium text-gray-700">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary p-2"></textarea>
+              </div>
+
+              <!-- Botón de envío -->
+              <div class="text-center">
+                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-button text-lg hover:bg-primary/90 transition-colors">
+                  Enviar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER: Pie de página -->
+    <footer class="bg-white border-t">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid md:grid-cols-4 gap-8">
+          <!-- Logo y eslogan -->
+          <div>
+            <img src="src/logo512.png" alt="Logo" class="h-32 w-auto mb-4" />
+            <p class="text-gray-600 text-sm">
+              Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
+            </p>
+          </div>
+
+          <!-- Enlaces -->
+          <div>
+            <h4 class="font-semibold mb-4">Enlaces</h4>
+            <ul class="space-y-2 text-gray-600">
+              <li><a href="index.html" class="hover:text-primary">Inicio</a></li>
+              <li><a href="mapa.html" class="hover:text-primary">Mapa</a></li>
+              <li><a href="proyecto.html" class="hover:text-primary">Proyecto</a></li>
+              <li><a href="contacto.html" class="hover:text-primary">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- Redes sociales -->
+          <div>
+            <h4 class="font-semibold mb-4">Redes Sociales</h4>
+            <a href="https://instagram.com/ventanasdeltiempo" target="_blank" class="flex items-center text-gray-600 hover:text-primary">
+              <i class="ri-instagram-line text-xl mr-2"></i>
+              <span>@ventanasdeltiempo</span>
+            </a>
+          </div>
+
+          <!-- Información de contacto -->
+          <div>
+            <h4 class="font-semibold mb-4">Correo Electrónico</h4>
+            <p class="text-gray-600">info@ventanasdeltiempo.es</p>
+          </div>
+        </div>
+
+        <!-- Derechos reservados -->
+        <div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+          <p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script para interacción del menú móvil -->
+    <script>
+      const menuButton = document.getElementById('menuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('translate-x-full');
+      });
+    </script>
+  </body>
 </html>

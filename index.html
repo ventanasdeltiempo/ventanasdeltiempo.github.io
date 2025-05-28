@@ -1,297 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<!-- Configuración básica del documento -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Ventanas del Tiempo</title>
-		
-		<!-- Carga de Tailwind CSS desde CDN -->
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = {
-				theme: {
-					extend: {
-						colors: {
-							primary: '#56aa45',
-							secondary: '#df4e19'
-						},
-						borderRadius: {
-							'none': '0px',
-							'sm': '4px',
-							'DEFAULT': '8px',
-							'md': '12px',
-							'lg': '16px',
-							'xl': '20px',
-							'2xl': '24px',
-							'3xl': '32px',
-							'full': '9999px',
-							'button': '8px'
-						}
+<head>
+	<!-- Configuración básica del documento -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ventanas del Tiempo</title>
+
+	<!-- Carga de Tailwind CSS desde CDN -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						primary: '#56aa45',
+						secondary: '#df4e19'
+					},
+					borderRadius: {
+						none: '0px',
+						sm: '4px',
+						DEFAULT: '8px',
+						md: '12px',
+						lg: '16px',
+						xl: '20px',
+						'2xl': '24px',
+						'3xl': '32px',
+						full: '9999px',
+						button: '8px'
 					}
 				}
 			}
-		</script>
-		
-		<!-- Fuentes y íconos -->
-		<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-		<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-		
-		<!-- Estilos personalizados -->
-		<style>
-			:where([class^="ri-"])::before {
-				content: "\f3c2";
-			}
-			.stats-count {
-				transition: all 0.3s ease;
-				display: inline-block;
-			}
-		</style>
-	</head>
-	
-	<body class="bg-gray-50">
-		<!-- NAVBAR: Barra de navegación fija en la parte superior -->
-		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between h-16 items-center">
-					<!-- Logotipo -->
-					<a href="index.html">
-						<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
-					</a>
-					
-					<!-- Menú de navegación en pantallas medianas y grandes -->
-					<div class="hidden md:flex space-x-8 items-center">
-						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
-						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
-						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
-					</div>
-					
-					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
-					<div class="flex items-center md:hidden">
-						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-							<i class="ri-menu-line text-2xl"></i>
-						</div>
-					</div>
+		}
+	</script>
 
+	<!-- Fuentes e íconos -->
+	<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+	<!-- Estilos personalizados -->
+	<style>
+		:where([class^="ri-"])::before {
+			content: "\f3c2";
+		}
+		.stats-count {
+			transition: all 0.3s ease;
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50">
+	<!-- NAVBAR: Barra de navegación fija superior -->
+	<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between h-16 items-center">
+				
+				<!-- Logotipo -->
+				<a href="index.html">
+					<img src="src/logo512.png" alt="Logo" class="h-12 w-auto"/>
+				</a>
+
+				<!-- Menú de navegación en pantallas medianas y grandes -->
+				<div class="hidden md:flex space-x-8 items-center">
+					<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+					<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+					<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+					<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
 				</div>
-			</div>
-		</nav>
-		
-		<!-- Menú móvil (desplegable) -->
-		<div
-			class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-			id="mobileMenu"
-		>
-			<div class="py-2">
-				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+
+				<!-- Botón de menú en pantallas pequeñas -->
+				<div class="flex items-center md:hidden">
+					<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+						<i class="ri-menu-line text-2xl"></i>
+					</div>
+				</div>
+
 			</div>
 		</div>
-		
-		<!-- CONTENIDO PRINCIPAL: Sección de encabezado y secciones informativas -->
-		<main class="pt-16">
-			<!-- Sección Hero con imagen de fondo -->
-			<section
-				class="relative h-[600px] bg-cover bg-center"
-				style="background-image: url('src/gif-cabeza.gif')"
-			>
-				<div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
-				<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-					<div class="text-white max-w-2xl">
-						<h1 class="text-5xl font-bold mb-6">Ventanas del Tiempo</h1>
-						<p class="text-xl mb-8">
-							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
-						</p>
-						<button 
-							onclick="window.location.href='mapa.html'"
-							class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
-						>
-							<i class="ri-map-2-line"></i>
-							<span>Explorar Mapa</span>
-						</button>
-					</div>
-				</div>
-			</section>
-			
-			<!-- Sección de estadísticas: Ventanas instaladas, Fotos compartidas -->
-			<section class="py-16 bg-white">
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div class="grid md:grid-cols-2 gap-8">
-						<!-- Tarjeta para Ventanas Instaladas -->
-						<div class="text-center p-8 bg-gray-50 rounded-lg">
-							<div
-								class="text-4xl font-bold text-secondary mb-2 stats-count"
-								id="windowsCount"
-							>
-								0
-							</div>
-							<p class="text-gray-600">Ventanas Instaladas</p>
-						</div>
-						<!-- Tarjeta para Fotos Compartidas -->
-						<div class="text-center p-8 bg-gray-50 rounded-lg">
-							<div
-								class="text-4xl font-bold text-secondary mb-2 stats-count"
-								id="photosCount"
-							>
-								0
-							</div>
-							<p class="text-gray-600">Fotos Compartidas</p>
-						</div>
-					</div>
-				</div>
-			</section>
-			
-			<!-- Sección Proyecto -->
-			<section class="py-16 bg-white">
-				<div class="container mx-auto px-4">
-				<div class="grid md:grid-cols-2 gap-12 items-center">
-					<div>
-					<h2 class="text-3xl font-bold text-gray-900 mb-6">Proyecto</h2>
-					<p class="text-gray-600 mb-6">
-						Ventanas del Tiempo documenta los cambios del entorno natural a lo largo del tiempo. 
-            			A través de estaciones fotográficas fijas, los visitantes capturan imágenes desde el mismo encuadre
-            			y las envían fácilmente, contribuyendo a un visualizador web interactivo que muestra de forma fluida
-            			la evolución del paisaje a lo largo del tiempo.
+	</nav>
 
+	<!-- Menú desplegable móvil -->
+	<div
+		class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+		id="mobileMenu"
+	>
+		<div class="py-2">
+			<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+			<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+			<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+			<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+		</div>
+	</div>
+
+	<!-- CONTENIDO PRINCIPAL -->
+	<main class="pt-16">
+		
+		<!-- Sección Hero: imagen de fondo + título y botón -->
+		<section
+			class="relative h-[600px] bg-cover bg-center"
+			style="background-image: url('src/gif-cabeza.gif')"
+		>
+			<div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+			<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+				<div class="text-white max-w-2xl">
+					<h1 class="text-5xl font-bold mb-6">Ventanas del Tiempo</h1>
+					<p class="text-xl mb-8">
+						Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
 					</p>
-					<div class="space-y-4">
-						<div class="flex items-start">
-						<div
-							class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4"
-						>
-							<i class="ri-focus-3-line text-primary"></i>
-						</div>
-						<div>
-							<h3 class="font-semibold text-gray-900 mb-2">
-							Estaciones Fotográficas
-							</h3>
-							<p class="text-gray-600">
-							Fáciles de usar y Resistentes a la intemperie
-							</p>
-						</div>
-						</div>
-						<div class="flex items-start">
-						<div
-							class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4"
-						>
-							<i class="ri-landscape-line text-primary"></i>
-						</div>
-						<div>
-							<h3 class="font-semibold text-gray-900 mb-2">
-							Casos de uso
-							</h3>
-							<p class="text-gray-600">
-							Reforestación, Niveles de agua, Proyectos urbanos...
-							</p>
-						</div>
-						</div>
-						<div class="flex items-start">
-						<div
-							class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4"
-						>
-							<i class="ri-group-line text-primary"></i>
-						</div>
-						<div>
-							<h3 class="font-semibold text-gray-900 mb-2">
-							Servicios ofrecidos
-							</h3>
-							<p class="text-gray-600">
-							Kit de instalación y Servicio digital
-							</p>
-						</div>
-						</div>
-					</div>
-					</div>
-					<div class="relative">
-					<img
-						src="src/puente.jpg"
-						alt="Estación fotográfica"
-						class="w-full h-[600px] object-cover rounded-lg shadow-lg"
-					/>
-					</div>
-				</div>
-				</div>
-				<div class="text-center mt-8">
-					<button
-					  onclick="window.location.href='proyecto.html'"
-					  class="px-6 py-3 bg-primary text-white text-lg font-medium hover:bg-primary/90 transition-colors duration-300 !rounded-button whitespace-nowrap"
+					<button 
+						onclick="window.location.href='mapa.html'"
+						class="bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer"
 					>
-					  <i class="ri-arrow-right-line mr-2"></i>
-					  Saber más sobre el proyecto
+						<i class="ri-map-2-line"></i>
+						<span>Explorar Mapa</span>
 					</button>
-				  </div>
-			</section>
-  
-			
-			<!-- Sección de Ventanas Destacadas -->
-			<section class="py-16 bg-white">
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<h2 class="text-3xl font-bold text-center mb-12">Ventanas Destacadas</h2>
-					<div class="grid md:grid-cols-2 gap-8 mb-16">
-						<!-- Ventana Destacada 1 -->
-						<div class="bg-gray-50 rounded-lg overflow-hidden">
-							<div class="h-[300px]">
-								<img
-									src="src/gif-convento.gif"
-									alt="Ventana histórica 1"
-									class="w-full h-full object-cover"
-								>
-							</div>
-							<div class="p-6">
-								<h3 class="text-xl font-bold mb-2">Monasterio de Alveinte</h3>
-								<p class="text-gray-600 mb-4">
-									Antiguo monasterio oculto entre los árboles, hoy en ruinas, conserva el silencio y la presencia de siglos de historia. 
-								</p>
-								<div class="flex items-center justify-between">
-									<div class="flex items-center text-sm text-gray-500">
-										<i class="ri-map-pin-line mr-2"></i>
-										<span>Monasterio de la Sierra</span>
-									</div>
-									<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer">
-										<span>Ver imágenes</span>
-									</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Sección de estadísticas -->
+		<section class="py-16 bg-white">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid md:grid-cols-2 gap-8">
+
+					<!-- Ventanas Instaladas -->
+					<div class="text-center p-8 bg-gray-50 rounded-lg">
+						<div class="text-4xl font-bold text-secondary mb-2 stats-count" id="windowsCount">0</div>
+						<p class="text-gray-600">Ventanas Instaladas</p>
+					</div>
+
+					<!-- Fotos Compartidas -->
+					<div class="text-center p-8 bg-gray-50 rounded-lg">
+						<div class="text-4xl font-bold text-secondary mb-2 stats-count" id="photosCount">0</div>
+						<p class="text-gray-600">Fotos Compartidas</p>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- Sección Proyecto -->
+		<section class="py-16 bg-white">
+			<div class="container mx-auto px-4">
+				<div class="grid md:grid-cols-2 gap-12 items-center">
+					
+					<!-- Columna de texto -->
+					<div>
+						<h2 class="text-3xl font-bold text-gray-900 mb-6">Proyecto</h2>
+						<p class="text-gray-600 mb-6">
+							Ventanas del Tiempo documenta los cambios del entorno natural a lo largo del tiempo. 
+							A través de estaciones fotográficas fijas, los visitantes capturan imágenes desde el mismo encuadre
+							y las envían fácilmente, contribuyendo a un visualizador web interactivo que muestra de forma fluida
+							la evolución del paisaje a lo largo del tiempo.
+						</p>
+
+						<!-- Lista de características -->
+						<div class="space-y-4">
+							
+							<!-- Estaciones Fotográficas -->
+							<div class="flex items-start">
+								<div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4">
+									<i class="ri-focus-3-line text-primary"></i>
+								</div>
+								<div>
+									<h3 class="font-semibold text-gray-900 mb-2">Estaciones Fotográficas</h3>
+									<p class="text-gray-600">Fáciles de usar y Resistentes a la intemperie</p>
 								</div>
 							</div>
+
+							<!-- Casos de uso -->
+							<div class="flex items-start">
+								<div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4">
+									<i class="ri-landscape-line text-primary"></i>
+								</div>
+								<div>
+									<h3 class="font-semibold text-gray-900 mb-2">Casos de uso</h3>
+									<p class="text-gray-600">Reforestación, Niveles de agua, Proyectos urbanos...</p>
+								</div>
+							</div>
+
+							<!-- Servicios ofrecidos -->
+							<div class="flex items-start">
+								<div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mt-1 mr-4">
+									<i class="ri-group-line text-primary"></i>
+								</div>
+								<div>
+									<h3 class="font-semibold text-gray-900 mb-2">Servicios ofrecidos</h3>
+									<p class="text-gray-600">Kit de instalación y Servicio digital</p>
+								</div>
+							</div>
+
 						</div>
-						<!-- Ventana Destacada 2 -->
-						<div class="bg-gray-50 rounded-lg overflow-hidden">
-							<div class="h-[300px]">
-								<img
-									src="src/gif-hortigal.gif"
-									alt="Ventana histórica 2"
-									class="w-full h-full object-cover"
-								>
-							</div>
-							<div class="p-6">
-								<h3 class="text-xl font-bold mb-2">Puente del Hortigal</h3>
-								<p class="text-gray-600 mb-4">
-									Antiguo paso de piedra, su integración en el paisaje lo convierten en un lugar ideal para detenerse y contemplar el entorno.
-								</p>
-								<div class="flex items-center justify-between">
-									<div class="flex items-center text-sm text-gray-500">
-										<i class="ri-map-pin-line mr-2"></i>
-										<span>Monasterio de la Sierra</span>
-									</div>
-									<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer">
-										<span>Ver imágenes</span>
-									</button>
+					</div>
+
+					<!-- Imagen del proyecto -->
+					<div class="relative">
+						<img
+							src="src/puente.jpg"
+							alt="Estación fotográfica"
+							class="w-full h-[600px] object-cover rounded-lg shadow-lg"
+						/>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Botón Saber más -->
+			<div class="text-center mt-8">
+				<button
+					onclick="window.location.href='proyecto.html'"
+					class="px-6 py-3 bg-primary text-white text-lg font-medium hover:bg-primary/90 transition-colors duration-300 !rounded-button whitespace-nowrap"
+				>
+					<i class="ri-arrow-right-line mr-2"></i>
+					Saber más sobre el proyecto
+				</button>
+			</div>
+		</section>
+
+		<!-- Sección de Ventanas Destacadas -->
+		<section class="py-16 bg-white">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="text-3xl font-bold text-center mb-12">Ventanas Destacadas</h2>
+				
+				<div class="grid md:grid-cols-2 gap-8 mb-16">
+					
+					<!-- Ventana Destacada 1 -->
+					<div class="bg-gray-50 rounded-lg overflow-hidden">
+						<div class="h-[300px]">
+							<img
+								src="src/gif-convento.gif"
+								alt="Ventana histórica 1"
+								class="w-full h-full object-cover"
+							/>
+						</div>
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-2">Monasterio de Alveinte</h3>
+							<p class="text-gray-600 mb-4">
+								Antiguo monasterio oculto entre los árboles, hoy en ruinas, conserva el silencio y la presencia de siglos de historia.
+							</p>
+							<div class="flex items-center justify-between">
+								<div class="flex items-center text-sm text-gray-500">
+									<i class="ri-map-pin-line mr-2"></i>
+									<span>Monasterio de la Sierra</span>
 								</div>
+								<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer">
+									<span>Ver imágenes</span>
+								</button>
 							</div>
 						</div>
 					</div>
+
+					<!-- Ventana Destacada 2 -->
+					<div class="bg-gray-50 rounded-lg overflow-hidden">
+						<div class="h-[300px]">
+							<img
+								src="src/gif-hortigal.gif"
+								alt="Ventana histórica 2"
+								class="w-full h-full object-cover"
+							/>
+						</div>
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-2">Puente del Hortigal</h3>
+							<p class="text-gray-600 mb-4">
+								Antiguo paso de piedra, su integración en el paisaje lo convierten en un lugar ideal para detenerse y contemplar el entorno.
+							</p>
+							<div class="flex items-center justify-between">
+								<div class="flex items-center text-sm text-gray-500">
+									<i class="ri-map-pin-line mr-2"></i>
+									<span>Monasterio de la Sierra</span>
+								</div>
+								<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-semibold flex items-center space-x-2 hover:bg-primary/90 transition-colors cursor-pointer">
+									<span>Ver imágenes</span>
+								</button>
+							</div>
+						</div>
+					</div>
+
 				</div>
-			</section>
-			<!-- Únete -->
-			<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
-				<div class="container mx-auto px-6">
-					<div class="max-w-4xl mx-auto text-center">
-			
+			</div>
+		</section>
+
+		<!-- Sección Únete -->
+		<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+			<div class="container mx-auto px-6">
+				<div class="max-w-4xl mx-auto text-center">
+					
 					<h2 class="text-3xl font-bold mb-8">¿Quieres abrir una Ventana del Tiempo?</h2>
 					<p class="text-xl mb-8">
 						Si tienes un rincón especial en mente,
@@ -299,121 +295,119 @@
 						cualquiera puede tener una Ventana del Tiempo.
 						Escríbenos y hagámoslo realidad.
 					</p>
-			
+
 					<button
 						onclick="window.location.href='contacto.html'"
 						class="bg-primary text-white px-10 py-4 text-lg font-semibold !rounded-button hover:bg-primary/90 transition-all duration-300 whitespace-nowrap"
 					>
 						Contacto
 					</button>
-					</div>
-				</div>
-				</section>
-		</main>
-		
-		<!-- FOOTER: Sección de pie de página -->
-		<footer class="bg-white border-t">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<div class="grid md:grid-cols-4 gap-8">
-					<!-- Logo y breve descripción -->
-					<div>
-						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
-						<p class="text-gray-600 text-sm">
-							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
-						</p>
-					</div>
-					<!-- Enlaces -->
-					<div>
-						<h4 class="font-semibold mb-4">Enlaces</h4>
-						<ul class="space-y-2 text-gray-600">
-							<li>
-								<a href="index.html" class="hover:text-primary">Inicio</a>
-							</li>
-							<li>
-								<a href="mapa.html" class="hover:text-primary">Mapa</a>
-							</li>
-							<li>
-								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
-							</li>
-							<li>
-								<a href="contacto.html" class="hover:text-primary">Contacto</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Redes sociales -->
-					<div>
-						<h4 class="font-semibold mb-4">Redes Sociales</h4>
-						<a
-							href="https://instagram.com/ventanasdeltiempo"
-							target="_blank"
-							class="flex items-center text-gray-600 hover:text-primary"
-						>
-							<i class="ri-instagram-line text-xl mr-2"></i>
-							<span>@ventanasdeltiempo</span>
-						</a>
-					</div>
-					<!-- Contacto -->
-					<div>
-						<h4 class="font-semibold mb-4">Correo Electrónico</h4>
-						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
-					</div>
-				</div>
-				<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
-					<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+
 				</div>
 			</div>
-		</footer>
-		
+		</section>
 
-		
-		<!-- SCRIPTS: Funcionalidad de menú y animaciones -->
-		<script>
-			// Referencias a elementos del DOM
-			const menuButton = document.getElementById('menuButton');
-			const mobileMenu = document.getElementById('mobileMenu');
-			const requestWindowBtn = document.getElementById('requestWindowBtn');
-			const requestForm = document.getElementById('requestForm');
-			
-			// Botón de menú móvil: mostrar/ocultar menú
-			menuButton.addEventListener('click', () => {
-				mobileMenu.classList.toggle('translate-x-full');
-			});
-			
-			// Animar contadores de Ventanas Instaladas y Fotos Compartidas
-			function animateCount(element, target) {
-				let current = 0;
-				const duration = 2000;
-				const step = target / (duration / 16);
+	</main>
+	<!-- FOOTER: Sección de pie de página -->
+	<footer class="bg-white border-t">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+			<div class="grid md:grid-cols-4 gap-8">
 				
-				function update() {
-					current = Math.min(current + step, target);
-					element.textContent = Math.floor(current);
-					
-					if (current < target) {
-						requestAnimationFrame(update);
-					}
+				<!-- Logo y breve descripción -->
+				<div>
+					<img src="src/logo512.png" alt="Logo" class="h-32 w-auto mb-4" />
+					<p class="text-gray-600 text-sm">
+						Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
+					</p>
+				</div>
+
+				<!-- Enlaces del sitio -->
+				<div>
+					<h4 class="font-semibold mb-4">Enlaces</h4>
+					<ul class="space-y-2 text-gray-600">
+						<li><a href="index.html" class="hover:text-primary">Inicio</a></li>
+						<li><a href="mapa.html" class="hover:text-primary">Mapa</a></li>
+						<li><a href="proyecto.html" class="hover:text-primary">Proyecto</a></li>
+						<li><a href="contacto.html" class="hover:text-primary">Contacto</a></li>
+					</ul>
+				</div>
+
+				<!-- Redes sociales -->
+				<div>
+					<h4 class="font-semibold mb-4">Redes Sociales</h4>
+					<a
+						href="https://instagram.com/ventanasdeltiempo"
+						target="_blank"
+						class="flex items-center text-gray-600 hover:text-primary"
+					>
+						<i class="ri-instagram-line text-xl mr-2"></i>
+						<span>@ventanasdeltiempo</span>
+					</a>
+				</div>
+
+				<!-- Contacto -->
+				<div>
+					<h4 class="font-semibold mb-4">Correo Electrónico</h4>
+					<p class="text-gray-600">info@ventanasdeltiempo.es</p>
+				</div>
+
+			</div>
+
+			<!-- Derechos de autor -->
+			<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+				<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- SCRIPTS: Funcionalidad de menú y animaciones -->
+	<script>
+		// Referencias a elementos del DOM
+		const menuButton = document.getElementById('menuButton');
+		const mobileMenu = document.getElementById('mobileMenu');
+		const requestWindowBtn = document.getElementById('requestWindowBtn');
+		const requestForm = document.getElementById('requestForm');
+
+		// Mostrar/ocultar menú móvil
+		menuButton.addEventListener('click', () => {
+			mobileMenu.classList.toggle('translate-x-full');
+		});
+
+		// Función para animar contadores
+		function animateCount(element, target) {
+			let current = 0;
+			const duration = 2000;
+			const step = target / (duration / 16);
+
+			function update() {
+				current = Math.min(current + step, target);
+				element.textContent = Math.floor(current);
+
+				if (current < target) {
+					requestAnimationFrame(update);
 				}
-				update();
 			}
-			
-			// Datos "falsos" para la animación
-			const mockData = {
-				windows: 9,
-				photos: 72
-			};
-			
-			// Observador para iniciar la animación al entrar en pantalla
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						animateCount(document.getElementById('windowsCount'), mockData.windows);
-						animateCount(document.getElementById('photosCount'), mockData.photos);
-						observer.disconnect();
-					}
-				});
+			update();
+		}
+
+		// Datos simulados
+		const mockData = {
+			windows: 9,
+			photos: 72
+		};
+
+		// Observador para lanzar animación al hacer scroll
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					animateCount(document.getElementById('windowsCount'), mockData.windows);
+					animateCount(document.getElementById('photosCount'), mockData.photos);
+					observer.disconnect();
+				}
 			});
-			
-			observer.observe(document.getElementById('windowsCount'));
-		</script>
-	</body>
+		});
+
+		observer.observe(document.getElementById('windowsCount'));
+	</script>
+</body>
 </html>

@@ -1,368 +1,367 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<!-- Configuración básica del documento -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Ventanas del Tiempo</title>
-		
-		<!-- Carga de Tailwind CSS desde CDN -->
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = {
-				theme: {
-					extend: {
-						colors: {
-							primary: '#56aa45',
-							secondary: '#df4e19'
-						},
-						borderRadius: {
-							'none': '0px',
-							'sm': '4px',
-							'DEFAULT': '8px',
-							'md': '12px',
-							'lg': '16px',
-							'xl': '20px',
-							'2xl': '24px',
-							'3xl': '32px',
-							'full': '9999px',
-							'button': '8px'
-						}
+<head>
+	<!-- Configuración básica del documento -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ventanas del Tiempo</title>
+
+	<!-- Carga de Tailwind CSS desde CDN -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						primary: '#56aa45',
+						secondary: '#df4e19'
+					},
+					borderRadius: {
+						none: '0px',
+						sm: '4px',
+						DEFAULT: '8px',
+						md: '12px',
+						lg: '16px',
+						xl: '20px',
+						'2xl': '24px',
+						'3xl': '32px',
+						full: '9999px',
+						button: '8px'
 					}
 				}
 			}
-		</script>
-		
-		<!-- Fuentes y íconos -->
-		<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-		<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-		
-		<!-- Estilos personalizados -->
-		<style>
-			:where([class^="ri-"])::before {
-				content: "\f3c2";
-			}
-			.stats-count {
-				transition: all 0.3s ease;
-				display: inline-block;
-			}
-			  .mapboxgl-popup-close-button {
-				font-size: 24px !important;
-				top: 8px;
-				right: 8px;
-				padding: 4px 8px;
-				cursor: pointer;
-				font-weight: bold;
-				background-color: rgba(255, 255, 255, 0.8);
-				border-radius: 4px;
-				color: #333;
-			}
-		</style>
+		}
+	</script>
 
-		<!-- Mapbox GL JS -->
-		<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-		<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+	<!-- Fuentes e íconos -->
+	<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 
-	</head>
+	<!-- Estilos personalizados -->
+	<style>
+		:where([class^="ri-"])::before {
+			content: "\f3c2";
+		}
+		.stats-count {
+			transition: all 0.3s ease;
+			display: inline-block;
+		}
+		.mapboxgl-popup-close-button {
+			font-size: 24px !important;
+			top: 8px;
+			right: 8px;
+			padding: 4px 8px;
+			cursor: pointer;
+			font-weight: bold;
+			background-color: rgba(255, 255, 255, 0.8);
+			border-radius: 4px;
+			color: #333;
+		}
+	</style>
+
+	<!-- Mapbox GL JS -->
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+</head>
 
 <body class="bg-gray-50">
-		<!-- NAVBAR: Barra de navegación fija en la parte superior -->
-		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between h-16 items-center">
-					<!-- Logotipo -->
-					<a href="index.html">
-						<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
-					</a>
-					
-					<!-- Menú de navegación en pantallas medianas y grandes -->
-					<div class="hidden md:flex space-x-8 items-center">
-						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
-						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
-						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
-					</div>
-					
-					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
-					<div class="flex items-center md:hidden">
-						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-							<i class="ri-menu-line text-2xl"></i>
-						</div>
-					</div>
-					
+
+	<!-- NAVBAR: Barra de navegación fija en la parte superior -->
+	<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between h-16 items-center">
+
+				<!-- Logotipo -->
+				<a href="index.html">
+					<img src="src/logo512.png" alt="Logo" class="h-12 w-auto"/>
+				</a>
+
+				<!-- Menú de navegación en pantallas medianas y grandes -->
+				<div class="hidden md:flex space-x-8 items-center">
+					<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+					<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+					<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+					<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
 				</div>
-			</div>
-		</nav>
-		
-		<!-- Menú móvil (desplegable) -->
-		<div
-			class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-			id="mobileMenu"
-		>
-			<div class="py-2">
-				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+
+				<!-- Botón de menú en pantallas pequeñas (Mobile) -->
+				<div class="flex items-center md:hidden">
+					<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+						<i class="ri-menu-line text-2xl"></i>
+					</div>
+				</div>
+
 			</div>
 		</div>
+	</nav>
 
-  <!-- Contenido principal con un margen superior para no tapar el nav -->
-  <main class="pt-16">
-    <!-- Sección "Mapa" -->
-<section id="proyecto" class="bg-gray-50">
-  <div class="md:grid md:grid-cols-3 h-[70vh]">
-
-    <!-- Panel izquierdo: búsqueda y lista -->
-    <div class="hidden md:flex flex-col border-r bg-white">
-      <div class="p-4 border-b">
-        <input
-          type="text"
-          id="busqueda"
-          placeholder="Buscar estación..."
-          class="w-full p-3 border rounded-lg shadow"
-        />
-      </div>
-      <ul id="lista-estaciones" class="overflow-y-auto p-4 space-y-2 flex-1"></ul>
-    </div>
-
-    <!-- Mapa principal -->
-	<div id="map-container" class="col-span-2 relative h-[70vh] md:h-auto">
-		<div id="map" class="w-full h-full rounded-lg shadow"></div>
+	<!-- Menú móvil (desplegable) -->
+	<div
+		class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+		id="mobileMenu"
+	>
+		<div class="py-2">
+			<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+			<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+			<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+			<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+		</div>
 	</div>
 
-      <!-- Móvil: barra y lista flotantes -->
-      <div class="md:hidden relative w-full z-10 transition-all duration-300" id="mobileSearch">
+	<!-- CONTENIDO PRINCIPAL -->
+	<main class="pt-16">
+		<!-- Sección Mapa y listado -->
+		<section id="proyecto" class="bg-gray-50">
+			<div class="md:grid md:grid-cols-3 h-[70vh]">
 
-        <div class="bg-white p-4 border-t">
-          <input
-            type="text"
-            id="busqueda-movil"
-            placeholder="Buscar estación..."
-            class="w-full p-3 border rounded-lg shadow"
-          />
-        </div>
-		<!-- Botón circular de volver al mapa -->
-		<button
-		id="volver-mapa"
-		class="hidden absolute -top-6 right-4 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg z-30"
-		aria-label="Volver al mapa"
-		>
-		<i class="ri-arrow-down-line text-2xl"></i>
-		</button>
-        <ul id="lista-estaciones-movil" class="h-60 overflow-y-auto p-4 space-y-2 bg-white hidden"></ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="md:hidden h-12"></div>
-
-  </main>
-
-		<!-- FOOTER: Sección de pie de página -->
-		<footer class="bg-white border-t">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<div class="grid md:grid-cols-4 gap-8">
-					<!-- Logo y breve descripción -->
-					<div>
-						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
-						<p class="text-gray-600 text-sm">
-							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
-						</p>
+				<!-- Panel izquierdo: búsqueda y lista (solo escritorio) -->
+				<div class="hidden md:flex flex-col border-r bg-white">
+					<div class="p-4 border-b">
+						<input
+							type="text"
+							id="busqueda"
+							placeholder="Buscar estación..."
+							class="w-full p-3 border rounded-lg shadow"
+						/>
 					</div>
-					<!-- Enlaces -->
-					<div>
-						<h4 class="font-semibold mb-4">Enlaces</h4>
-						<ul class="space-y-2 text-gray-600">
-							<li>
-								<a href="index.html" class="hover:text-primary">Inicio</a>
-							</li>
-							<li>
-								<a href="mapa.html" class="hover:text-primary">Mapa</a>
-							</li>
-							<li>
-								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
-							</li>
-							<li>
-								<a href="contacto.html" class="hover:text-primary">Contacto</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Redes sociales -->
-					<div>
-						<h4 class="font-semibold mb-4">Redes Sociales</h4>
-						<a
-							href="https://instagram.com/ventanasdeltiempo"
-							target="_blank"
-							class="flex items-center text-gray-600 hover:text-primary"
-						>
-							<i class="ri-instagram-line text-xl mr-2"></i>
-							<span>@ventanasdeltiempo</span>
-						</a>
-					</div>
-					<!-- Contacto -->
-					<div>
-						<h4 class="font-semibold mb-4">Correo Electrónico</h4>
-						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
-					</div>
+					<ul id="lista-estaciones" class="overflow-y-auto p-4 space-y-2 flex-1"></ul>
 				</div>
-				<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
-					<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+
+				<!-- Mapa principal -->
+				<div id="map-container" class="col-span-2 relative h-[70vh] md:h-auto">
+					<div id="map" class="w-full h-full rounded-lg shadow"></div>
 				</div>
+
+				<!-- Vista móvil: búsqueda y lista -->
+				<div class="md:hidden relative w-full z-10 transition-all duration-300" id="mobileSearch">
+
+					<!-- Barra de búsqueda móvil -->
+					<div class="bg-white p-4 border-t">
+						<input
+							type="text"
+							id="busqueda-movil"
+							placeholder="Buscar estación..."
+							class="w-full p-3 border rounded-lg shadow"
+						/>
+					</div>
+
+					<!-- Botón de volver al mapa -->
+					<button
+						id="volver-mapa"
+						class="hidden absolute -top-6 right-4 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg z-30"
+						aria-label="Volver al mapa"
+					>
+						<i class="ri-arrow-down-line text-2xl"></i>
+					</button>
+
+					<!-- Lista de estaciones móvil -->
+					<ul id="lista-estaciones-movil" class="h-60 overflow-y-auto p-4 space-y-2 bg-white hidden"></ul>
+				</div>
+
 			</div>
-		</footer>
+		</section>
 
+		<!-- Espacio para evitar solape en móvil -->
+		<div class="md:hidden h-12"></div>
+	</main>
 
-  <!-- Scripts de funcionalidad -->
-   <script>
-    // Elementos del DOM
-    const menuButton = document.getElementById('menuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const readMoreBtn = document.getElementById('readMoreBtn');
-    const moreText = document.getElementById('moreText');
-    const requestWindowBtn = document.getElementById('requestWindowBtn');
-    const requestForm = document.getElementById('requestForm');
+	<!-- FOOTER: Sección de pie de página -->
+	<footer class="bg-white border-t">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+			<div class="grid md:grid-cols-4 gap-8">
+				
+				<!-- Logo y descripción -->
+				<div>
+					<img src="src/logo512.png" alt="Logo" class="h-32 w-auto mb-4" />
+					<p class="text-gray-600 text-sm">
+						Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
+					</p>
+				</div>
 
-    // Mostrar/ocultar menú móvil al hacer clic en el botón
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('translate-x-full');
-    });
+				<!-- Enlaces útiles -->
+				<div>
+					<h4 class="font-semibold mb-4">Enlaces</h4>
+					<ul class="space-y-2 text-gray-600">
+						<li><a href="index.html" class="hover:text-primary">Inicio</a></li>
+						<li><a href="mapa.html" class="hover:text-primary">Mapa</a></li>
+						<li><a href="proyecto.html" class="hover:text-primary">Proyecto</a></li>
+						<li><a href="contacto.html" class="hover:text-primary">Contacto</a></li>
+					</ul>
+				</div>
 
+				<!-- Redes sociales -->
+				<div>
+					<h4 class="font-semibold mb-4">Redes Sociales</h4>
+					<a
+						href="https://instagram.com/ventanasdeltiempo"
+						target="_blank"
+						class="flex items-center text-gray-600 hover:text-primary"
+					>
+						<i class="ri-instagram-line text-xl mr-2"></i>
+						<span>@ventanasdeltiempo</span>
+					</a>
+				</div>
 
+				<!-- Información de contacto -->
+				<div>
+					<h4 class="font-semibold mb-4">Correo Electrónico</h4>
+					<p class="text-gray-600">info@ventanasdeltiempo.es</p>
+				</div>
 
+			</div>
 
-  </script>
-
-<script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ2lvZ2U5OSIsImEiOiJjbWE5dTVhYnUxbW56MmlxemYwOHBneDU3In0.QRGRcyssC99PqHH2YXJ4hg';
-const map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/outdoors-v11',
-  center: [-3.1947, 42.0458],
-  zoom: 13
-});
-
-const marcadores = [];
-const listaDesktop = document.getElementById('lista-estaciones');
-const listaMovil = document.getElementById('lista-estaciones-movil');
-
-function crearItemLista(lugar, index) {
-  const li = document.createElement('li');
-  li.textContent = lugar.nombre;
-  li.className = "cursor-pointer p-3 bg-white rounded shadow hover:bg-primary/10";
-  li.dataset.index = index;
-  return li;
-}
-
-function agregarMarcadores(lugares) {
-  lugares.forEach((lugar, index) => {
-    const marker = new mapboxgl.Marker({ color: '#df4e19' })
-      .setLngLat(lugar.coordenadas)
-      .setPopup(new mapboxgl.Popup().setHTML(`
-		<div class="text-sm max-w-xs">
-			<strong>${lugar.nombre}</strong><br/>
-			<img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-full mt-2 rounded shadow"/>
-			<p class="mt-1 text-xs text-gray-500">
-			<strong>Código:</strong> ${lugar.codigo}<br/>
-			<strong>Lugar:</strong> ${lugar.lugar}<br/>
-			<strong>Instalada:</strong> ${lugar.fecha}
-			</p>
-			<a href="${lugar.enlace}"
-				class="mt-3 inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-button hover:bg-primary/90 transition-colors duration-200">
-				Ver más
-			</a>
+			<!-- Derechos -->
+			<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+				<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+			</div>
 		</div>
-		`))
+	</footer>
 
-      .addTo(map);
-    marker.nombre = lugar.nombre.toLowerCase();
-    marker.coordenadas = lugar.coordenadas;
-    marcadores.push(marker);
+	<!-- Scripts de funcionalidad -->
+	<script>
+		// Elementos del DOM
+		const menuButton = document.getElementById('menuButton');
+		const mobileMenu = document.getElementById('mobileMenu');
+		const readMoreBtn = document.getElementById('readMoreBtn');
+		const moreText = document.getElementById('moreText');
+		const requestWindowBtn = document.getElementById('requestWindowBtn');
+		const requestForm = document.getElementById('requestForm');
 
-    const itemDesktop = crearItemLista(lugar, index);
-    const itemMovil = crearItemLista(lugar, index);
-    listaDesktop.appendChild(itemDesktop);
-    listaMovil.appendChild(itemMovil);
+		// Mostrar/ocultar menú móvil
+		menuButton.addEventListener('click', () => {
+			mobileMenu.classList.toggle('translate-x-full');
+		});
+	</script>
 
-	function flyToLugar(marker, lugar) {
-		// Cierra todos los popups abiertos
-		marcadores.forEach(m => m.getPopup().remove());
+	<!-- Script de mapa e interacción -->
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1Ijoic2VyZ2lvZ2U5OSIsImEiOiJjbWE5dTVhYnUxbW56MmlxemYwOHBneDU3In0.QRGRcyssC99PqHH2YXJ4hg';
+		const map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/outdoors-v11',
+			center: [-3.1947, 42.0458],
+			zoom: 13
+		});
 
-		// Vuela al lugar y abre el popup del marcador
-		map.flyTo({ center: lugar.coordenadas, zoom: 15 });
-		marker.togglePopup();
-	}
+		const marcadores = [];
+		const listaDesktop = document.getElementById('lista-estaciones');
+		const listaMovil = document.getElementById('lista-estaciones-movil');
 
-    itemDesktop.addEventListener('click', () => {
-		flyToLugar(marker, lugar);
-	});
-	itemMovil.addEventListener('click', () => {
-		flyToLugar(marker, lugar);
-		listaMovil.classList.add('hidden');
-		contenedorMovil.style.bottom = '0';
-		mapContainer.classList.remove('opacity-30');
-		volverBtn.classList.add('hidden');
-		inputMovil.blur();
-	});
+		// Crea un elemento <li> para la lista de estaciones
+		function crearItemLista(lugar, index) {
+			const li = document.createElement('li');
+			li.textContent = lugar.nombre;
+			li.className = "cursor-pointer p-3 bg-white rounded shadow hover:bg-primary/10";
+			li.dataset.index = index;
+			return li;
+		}
 
-    marker.listItemDesktop = itemDesktop;
-    marker.listItemMovil = itemMovil;
-  });
-}
+		// Agrega marcadores y entradas de lista al mapa y a la UI
+		function agregarMarcadores(lugares) {
+			lugares.forEach((lugar, index) => {
+				const marker = new mapboxgl.Marker({ color: '#df4e19' })
+					.setLngLat(lugar.coordenadas)
+					.setPopup(new mapboxgl.Popup().setHTML(`
+						<div class="text-sm max-w-xs">
+							<strong>${lugar.nombre}</strong><br/>
+							<img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-full mt-2 rounded shadow"/>
+							<p class="mt-1 text-xs text-gray-500">
+								<strong>Código:</strong> ${lugar.codigo}<br/>
+								<strong>Lugar:</strong> ${lugar.lugar}<br/>
+								<strong>Instalada:</strong> ${lugar.fecha}
+							</p>
+							<a href="${lugar.enlace}"
+								class="mt-3 inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-button hover:bg-primary/90 transition-colors duration-200">
+								Ver más
+							</a>
+						</div>
+					`))
+					.addTo(map);
 
-fetch('estaciones.json')
-  .then(res => res.json())
-  .then(data => agregarMarcadores(data))
-  .catch(err => console.error('Error cargando estaciones:', err));
+				marker.nombre = lugar.nombre.toLowerCase();
+				marcadores.push(marker);
 
-// Función común para filtrar lista y marcadores
-function filtrarBusqueda(valor, esMovil) {
-  marcadores.forEach(marker => {
-    const coincide = marker.nombre.includes(valor);
-    marker.getElement().style.display = coincide ? 'block' : 'none';
-    if (esMovil) {
-      marker.listItemMovil.style.display = coincide ? 'block' : 'none';
-    } else {
-      marker.listItemDesktop.style.display = coincide ? 'block' : 'none';
-    }
-  });
-}
+				const itemDesktop = crearItemLista(lugar, index);
+				const itemMovil = crearItemLista(lugar, index);
+				listaDesktop.appendChild(itemDesktop);
+				listaMovil.appendChild(itemMovil);
 
-// Eventos de búsqueda
-document.getElementById('busqueda').addEventListener('input', function () {
-  filtrarBusqueda(this.value.toLowerCase(), false);
-});
-const inputMovil = document.getElementById('busqueda-movil');
-const contenedorMovil = document.getElementById('mobileSearch');
+				// Función para centrar y abrir popup
+				function flyToLugar(marker, lugar) {
+					marcadores.forEach(m => m.getPopup().remove());
+					map.flyTo({ center: lugar.coordenadas, zoom: 15 });
+					marker.togglePopup();
+				}
 
-inputMovil.addEventListener('input', function () {
-  filtrarBusqueda(this.value.toLowerCase(), true);
-});
+				itemDesktop.addEventListener('click', () => {
+					flyToLugar(marker, lugar);
+				});
 
-const volverBtn = document.getElementById('volver-mapa');
-const mapContainer = document.getElementById('map-container');
+				itemMovil.addEventListener('click', () => {
+					flyToLugar(marker, lugar);
+					listaMovil.classList.add('hidden');
+					contenedorMovil.style.bottom = '0';
+					mapContainer.classList.remove('opacity-30');
+					volverBtn.classList.add('hidden');
+					inputMovil.blur();
+				});
 
-inputMovil.addEventListener('focus', () => {
-  listaMovil.classList.remove('hidden');
-  contenedorMovil.style.bottom = '50%';
-  mapContainer.classList.add('opacity-30');
-  volverBtn.classList.remove('hidden');
-});
+				marker.listItemDesktop = itemDesktop;
+				marker.listItemMovil = itemMovil;
+			});
+		}
 
-volverBtn.addEventListener('click', () => {
-  listaMovil.classList.add('hidden');
-  contenedorMovil.style.bottom = '0';
-  mapContainer.classList.remove('opacity-30');
-  volverBtn.classList.add('hidden');
-  inputMovil.blur();
-});
-</script>
+		// Carga los datos desde el JSON
+		fetch('estaciones.json')
+			.then(res => res.json())
+			.then(data => agregarMarcadores(data))
+			.catch(err => console.error('Error cargando estaciones:', err));
 
+		// Filtrar búsqueda para escritorio y móvil
+		function filtrarBusqueda(valor, esMovil) {
+			marcadores.forEach(marker => {
+				const coincide = marker.nombre.includes(valor);
+				marker.getElement().style.display = coincide ? 'block' : 'none';
+				if (esMovil) {
+					marker.listItemMovil.style.display = coincide ? 'block' : 'none';
+				} else {
+					marker.listItemDesktop.style.display = coincide ? 'block' : 'none';
+				}
+			});
+		}
+
+		// Eventos para inputs de búsqueda
+		document.getElementById('busqueda').addEventListener('input', function () {
+			filtrarBusqueda(this.value.toLowerCase(), false);
+		});
+
+		const inputMovil = document.getElementById('busqueda-movil');
+		const contenedorMovil = document.getElementById('mobileSearch');
+		const volverBtn = document.getElementById('volver-mapa');
+		const mapContainer = document.getElementById('map-container');
+
+		inputMovil.addEventListener('input', function () {
+			filtrarBusqueda(this.value.toLowerCase(), true);
+		});
+
+		inputMovil.addEventListener('focus', () => {
+			listaMovil.classList.remove('hidden');
+			contenedorMovil.style.bottom = '50%';
+			mapContainer.classList.add('opacity-30');
+			volverBtn.classList.remove('hidden');
+		});
+
+		volverBtn.addEventListener('click', () => {
+			listaMovil.classList.add('hidden');
+			contenedorMovil.style.bottom = '0';
+			mapContainer.classList.remove('opacity-30');
+			volverBtn.classList.add('hidden');
+			inputMovil.blur();
+		});
+	</script>
 
 </body>
 </html>

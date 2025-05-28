@@ -1,286 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<!-- Configuración básica del documento -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Ventanas del Tiempo</title>
-		
-		<!-- Carga de Tailwind CSS desde CDN -->
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = {
-				theme: {
-					extend: {
-						colors: {
-							primary: '#56aa45',
-							secondary: '#df4e19'
-						},
-						borderRadius: {
-							'none': '0px',
-							'sm': '4px',
-							'DEFAULT': '8px',
-							'md': '12px',
-							'lg': '16px',
-							'xl': '20px',
-							'2xl': '24px',
-							'3xl': '32px',
-							'full': '9999px',
-							'button': '8px'
-						}
-					}
-				}
-			}
-		</script>
-		
-		<!-- Fuentes y íconos -->
-		<link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-		<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
-		
-		<!-- Estilos personalizados -->
-		<style>
-			  html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-			:where([class^="ri-"])::before {
-				content: "\f3c2";
-			}
-			.stats-count {
-				transition: all 0.3s ease;
-				display: inline-block;
-			}
+<head>
+  <!-- Configuración básica del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventanas del Tiempo</title>
 
-			  /* Estilo del thumb para navegadores basados en WebKit (Chrome, Safari) */
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 9999px;
-    background: white;
-    border: 2px solid #56aa45;
-    cursor: pointer;
-    margin-top: 0px; /* Alineación vertical */
-    position: relative;
-    z-index: 20;
-  }
+  <!-- Carga de Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#56aa45',
+            secondary: '#df4e19'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            'DEFAULT': '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          }
+        }
+      }
+    }
+  </script>
 
-  /* Para Firefox */
-  input[type="range"]::-moz-range-thumb {
-    height: 16px;
-    width: 16px;
-    border-radius: 9999px;
-    background: white;
-    border: 2px solid #56aa45;
-    cursor: pointer;
-    position: relative;
-    z-index: 20;
-  }
-		</style>
-	</head>
+  <!-- Fuentes y íconos -->
+  <link rel="icon" type="image/png" href="src/favicon32.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    .stats-count {
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    /* Estilo del thumb para navegadores basados en WebKit (Chrome, Safari) */
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 9999px;
+      background: white;
+      border: 2px solid #56aa45;
+      cursor: pointer;
+      margin-top: 0px; /* Alineación vertical */
+      position: relative;
+      z-index: 20;
+    }
+
+    /* Estilo del thumb para Firefox */
+    input[type="range"]::-moz-range-thumb {
+      height: 16px;
+      width: 16px;
+      border-radius: 9999px;
+      background: white;
+      border: 2px solid #56aa45;
+      cursor: pointer;
+      position: relative;
+      z-index: 20;
+    }
+  </style>
+</head>
 
 <body class="bg-gray-50">
-		<!-- NAVBAR: Barra de navegación fija en la parte superior -->
-		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between h-16 items-center">
-					<!-- Logotipo -->
-					<a href="index.html">
-						<img src="src/logo512.png"  alt="Logo"  class="h-12 w-auto"/>
-					</a>
-					
-					<!-- Menú de navegación en pantallas medianas y grandes -->
-					<div class="hidden md:flex space-x-8 items-center">
-						<a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
-						<a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
-						<a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
-						<a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
-					</div>
-					
-					<!-- Botón de menú en pantallas pequeñas (Mobile) -->
-					<div class="flex items-center md:hidden">
-						<div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
-							<i class="ri-menu-line text-2xl"></i>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</nav>
-		
-		<!-- Menú móvil (desplegable) -->
-		<div
-			class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
-			id="mobileMenu"
-		>
-			<div class="py-2">
-				<a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
-				<a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
-				<a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
-				<a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
-			</div>
-		</div>
+  <!-- NAVBAR: Barra de navegación fija en la parte superior -->
+  <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
 
-  <!-- Contenido principal con un margen superior para no tapar el nav -->
+        <!-- Logotipo -->
+        <a href="index.html">
+          <img src="src/logo512.png" alt="Logo" class="h-12 w-auto" />
+        </a>
+
+        <!-- Menú de navegación en pantallas medianas y grandes -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="index.html" class="text-gray-700 hover:text-primary">Inicio</a>
+          <a href="mapa.html" class="text-gray-700 hover:text-primary">Mapa</a>
+          <a href="proyecto.html" class="text-gray-700 hover:text-primary">Proyecto</a>
+          <a href="contacto.html" class="text-gray-700 hover:text-primary">Contacto</a>
+        </div>
+
+        <!-- Botón de menú en pantallas pequeñas (Mobile) -->
+        <div class="flex items-center md:hidden">
+          <div class="w-10 h-10 flex items-center justify-center cursor-pointer" id="menuButton">
+            <i class="ri-menu-line text-2xl"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+		
+
+    <!-- Menú móvil (desplegable) -->
+  <div
+    class="fixed top-16 right-0 bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-200 z-40"
+    id="mobileMenu"
+  >
+    <div class="py-2">
+      <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Inicio</a>
+      <a href="mapa.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mapa</a>
+      <a href="proyecto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Proyecto</a>
+      <a href="contacto.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contacto</a>
+    </div>
+  </div>
+
+  <!-- Contenido principal con margen superior para dejar espacio al navbar -->
   <main class="pt-8">
 
-    <!-- Sección "Visor" -->
+    <!-- Sección del visor -->
     <section class="py-16 bg-gray-50" id="proyecto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<div class="relative w-full max-w-3xl mx-auto">
-<!-- Contenedor SOLO de la imagen y los botones -->
-<div class="relative">
-  <!-- Imagen -->
-  <img id="visor-imagen" src="" alt="Visor" class="w-full object-contain rounded-xl shadow-lg">
+        <div class="relative w-full max-w-3xl mx-auto">
+          <!-- Contenedor de la imagen y botones -->
+          <div class="relative">
 
-  <!-- Botón anterior -->
-  <button onclick="cambiarImagen(-1)"
-    class="absolute top-1/2 -translate-y-1/2 -left-3 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
-    <i class="ri-arrow-left-s-line text-xl"></i>
-  </button>
+            <!-- Imagen del visor -->
+            <img id="visor-imagen" src="" alt="Visor" class="w-full object-contain rounded-xl shadow-lg">
 
-  <!-- Botón siguiente -->
-  <button onclick="cambiarImagen(1)"
-    class="absolute top-1/2 -translate-y-1/2 -right-3 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
-    <i class="ri-arrow-right-s-line text-xl"></i>
-  </button>
-</div>
+            <!-- Botón anterior -->
+            <button onclick="cambiarImagen(-1)"
+              class="absolute top-1/2 -translate-y-1/2 -left-3 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
+              <i class="ri-arrow-left-s-line text-xl"></i>
+            </button>
 
-<!-- Pie de imagen -->
-<div id="pie-imagen" class="text-center mt-1 text-sm text-gray-600 italic"></div>
+            <!-- Botón siguiente -->
+            <button onclick="cambiarImagen(1)"
+              class="absolute top-1/2 -translate-y-1/2 -right-3 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md hover:bg-primary/90 transition z-10">
+              <i class="ri-arrow-right-s-line text-xl"></i>
+            </button>
+          </div>
 
-<!-- Contenedor con botón y slider -->
-<div class="relative w-full max-w-3xl mx-auto mt-0 flex items-center gap-2">
-  <!-- Botón Play/Pause -->
-  <button id="playButton"
-    onclick="toggleReproduccion()"
-    class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 transition z-10">
-    <i id="playIcon" class="ri-play-fill text-xl"></i>
-  </button>
-  <!-- Velocidad de reproducción -->
-<button id="velocidadBtn"
-  onclick="cambiarVelocidad()"
-  class="text-xs text-gray-700 mt-1 ml-1 px-2 py-0.5 border border-gray-300 rounded-full hover:bg-gray-100">
-  x1
-</button>
+          <!-- Pie de imagen -->
+          <div id="pie-imagen" class="text-center mt-1 text-sm text-gray-600 italic"></div>
 
-  <!-- Contenedor del slider con ticks -->
-  <div class="relative w-full">
-    <input
-      id="slider"
-      type="range"
-      min="0"
-      max="0"
-      value="0"
-      oninput="sliderCambio(this.value)"
-      class="w-full h-2 rounded-full appearance-none bg-gray-300 focus:outline-none"
-      style="
-        background: linear-gradient(to right, #56aa45 0%, #56aa45 0%, #e5e7eb 0%, #e5e7eb 100%);
-      "
-    />
-    <div id="slider-ticks" class="absolute top-1 left-0 w-full h-full pointer-events-none z-0 overflow-hidden"></div>
-  </div>
-</div>
+          <!-- Contenedor del botón de reproducción y slider -->
+          <div class="relative w-full max-w-3xl mx-auto mt-0 flex items-center gap-2">
 
+            <!-- Botón Play/Pause -->
+            <button id="playButton"
+              onclick="toggleReproduccion()"
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 transition z-10">
+              <i id="playIcon" class="ri-play-fill text-xl"></i>
+            </button>
 
-  </div>
-</div>
-      </div>
+            <!-- Botón de cambio de velocidad -->
+            <button id="velocidadBtn"
+              onclick="cambiarVelocidad()"
+              class="text-xs text-gray-700 mt-1 ml-1 px-2 py-0.5 border border-gray-300 rounded-full hover:bg-gray-100">
+              x1
+            </button>
 
+            <!-- Slider con ticks -->
+            <div class="relative w-full">
+              <input
+                id="slider"
+                type="range"
+                min="0"
+                max="0"
+                value="0"
+                oninput="sliderCambio(this.value)"
+                class="w-full h-2 rounded-full appearance-none bg-gray-300 focus:outline-none"
+                style="
+                  background: linear-gradient(to right, #56aa45 0%, #56aa45 0%, #e5e7eb 0%, #e5e7eb 100%);
+                "
+              />
+              <div id="slider-ticks" class="absolute top-1 left-0 w-full h-full pointer-events-none z-0 overflow-hidden"></div>
+            </div>
 
-<!-- Información de la estación -->
-<div id="info-estacion" class="mt-10 px-6 py-8 bg-white rounded-xl shadow-md text-gray-700 max-w-3xl mx-auto">
-  <!-- Nombre en grande -->
-  <h2 id="nombre-estacion" class="text-2xl font-bold text-primary mb-4"></h2>
+          </div> <!-- Fin contenedor slider -->
 
-  <!-- Iconos e info -->
-  <div class="space-y-2 text-sm">
-    <div class="flex items-center gap-2">
-      <i class="ri-calendar-line text-lg text-gray-500"></i>
-      <span id="fecha-estacion"></span>
-    </div>
-    <div class="flex items-center gap-2">
-      <i class="ri-map-pin-line text-lg text-gray-500"></i>
-      <span id="lugar-estacion"></span>
-    </div>
-    <div class="flex items-center gap-2">
-      <i class="ri-hashtag text-lg text-gray-500"></i>
-      <span id="codigo-estacion"></span>
-    </div>
-  </div>
+        </div> <!-- Fin contenedor visor -->
 
-  <!-- Descripción -->
-  <div id="descripcion-estacion" class="mt-4 text-sm leading-relaxed text-gray-800 italic"></div>
+        <!-- Información de la estación -->
+        <div id="info-estacion" class="mt-10 px-6 py-8 bg-white rounded-xl shadow-md text-gray-700 max-w-3xl mx-auto">
 
-  <!-- Coordenadas -->
-  <div class="mt-4 text-xs text-gray-500">
-    <strong>Coordenadas:</strong> <span id="coordenadas-estacion"></span>
-  </div>
-</div>
+          <!-- Nombre de la estación -->
+          <h2 id="nombre-estacion" class="text-2xl font-bold text-primary mb-4"></h2>
 
+          <!-- Iconos e información -->
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2">
+              <i class="ri-calendar-line text-lg text-gray-500"></i>
+              <span id="fecha-estacion"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="ri-map-pin-line text-lg text-gray-500"></i>
+              <span id="lugar-estacion"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="ri-hashtag text-lg text-gray-500"></i>
+              <span id="codigo-estacion"></span>
+            </div>
+          </div>
 
+          <!-- Descripción de la estación -->
+          <div id="descripcion-estacion" class="mt-4 text-sm leading-relaxed text-gray-800 italic"></div>
 
+          <!-- Coordenadas -->
+          <div class="mt-4 text-xs text-gray-500">
+            <strong>Coordenadas:</strong> <span id="coordenadas-estacion"></span>
+          </div>
+
+        </div>
+
+      </div> <!-- Fin wrapper max-w -->
     </section>
   </main>
 
-		<!-- FOOTER: Sección de pie de página -->
-		<footer class="bg-white border-t">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<div class="grid md:grid-cols-4 gap-8">
-					<!-- Logo y breve descripción -->
-					<div>
-						<img src="src/logo512.png"  alt="Logo"  class="h-32 w-auto mb-4" />
-						<p class="text-gray-600 text-sm">
-							Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
-						</p>
-					</div>
-					<!-- Enlaces -->
-					<div>
-						<h4 class="font-semibold mb-4">Enlaces</h4>
-						<ul class="space-y-2 text-gray-600">
-							<li>
-								<a href="index.html" class="hover:text-primary">Inicio</a>
-							</li>
-							<li>
-								<a href="mapa.html" class="hover:text-primary">Mapa</a>
-							</li>
-							<li>
-								<a href="proyecto.html" class="hover:text-primary">Proyecto</a>
-							</li>
-							<li>
-								<a href="contacto.html" class="hover:text-primary">Contacto</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Redes sociales -->
-					<div>
-						<h4 class="font-semibold mb-4">Redes Sociales</h4>
-						<a
-							href="https://instagram.com/ventanasdeltiempo"
-							target="_blank"
-							class="flex items-center text-gray-600 hover:text-primary"
-						>
-							<i class="ri-instagram-line text-xl mr-2"></i>
-							<span>@ventanasdeltiempo</span>
-						</a>
-					</div>
-					<!-- Contacto -->
-					<div>
-						<h4 class="font-semibold mb-4">Correo Electrónico</h4>
-						<p class="text-gray-600">info@ventanasdeltiempo.es</p>
-					</div>
-				</div>
-				<div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
-					<p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
-				</div>
-			</div>
-		</footer>
 
+    <!-- FOOTER: Sección de pie de página -->
+  <footer class="bg-white border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        
+        <!-- Logo y breve descripción -->
+        <div>
+          <img src="src/logo512.png" alt="Logo" class="h-32 w-auto mb-4" />
+          <p class="text-gray-600 text-sm">
+            Asómate a las Ventanas del Tiempo y deja que la naturaleza te cuente su historia.
+          </p>
+        </div>
+
+        <!-- Enlaces de navegación -->
+        <div>
+          <h4 class="font-semibold mb-4">Enlaces</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li><a href="index.html" class="hover:text-primary">Inicio</a></li>
+            <li><a href="mapa.html" class="hover:text-primary">Mapa</a></li>
+            <li><a href="proyecto.html" class="hover:text-primary">Proyecto</a></li>
+            <li><a href="contacto.html" class="hover:text-primary">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Redes sociales -->
+        <div>
+          <h4 class="font-semibold mb-4">Redes Sociales</h4>
+          <a
+            href="https://instagram.com/ventanasdeltiempo"
+            target="_blank"
+            class="flex items-center text-gray-600 hover:text-primary"
+          >
+            <i class="ri-instagram-line text-xl mr-2"></i>
+            <span>@ventanasdeltiempo</span>
+          </a>
+        </div>
+
+        <!-- Información de contacto -->
+        <div>
+          <h4 class="font-semibold mb-4">Correo Electrónico</h4>
+          <p class="text-gray-600">info@ventanasdeltiempo.es</p>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t mt-12 pt-8 text-center text-gray-600 text-sm">
+        <p>&copy; 2025 Ventanas del Tiempo. Todos los derechos reservados.</p>
+      </div>
+      
+    </div>
+  </footer>
 
 
   <!-- Scripts de funcionalidad -->
@@ -293,216 +300,200 @@
     const requestWindowBtn = document.getElementById('requestWindowBtn');
     const requestForm = document.getElementById('requestForm');
 
-    // Mostrar/ocultar menú móvil al hacer clic en el botón
+    // Mostrar/ocultar menú móvil
     menuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('translate-x-full');
     });
 
+    // Variables del visor
+    let imagenes = [];
+    let fechasMs = [];
+    let timestampMin = 0;
+    let timestampMax = 0;
+    let indiceActual = 0;
 
+    // Cargar lista de imágenes
+    fetch("https://raw.githubusercontent.com/ventanasdeltiempo/ventanasdeltiempo-imagenes/main/img/MDLS-04/lista-imagenes.json")
+      .then(res => res.json())
+      .then(data => {
+        imagenes = data;
+        fechasMs = imagenes.map(img => new Date(img.fecha).getTime());
 
-  let imagenes = [];
-  let fechasMs = [];
-  let timestampMin = 0;
-  let timestampMax = 0;
-  let indiceActual = 0;
+        timestampMin = Math.min(...fechasMs);
+        timestampMax = Math.max(...fechasMs);
 
-  fetch("https://raw.githubusercontent.com/ventanasdeltiempo/ventanasdeltiempo-imagenes/main/img/MDLS-04/lista-imagenes.json")
-    .then(res => res.json())
-    .then(data => {
-      imagenes = data;
+        const slider = document.getElementById("slider");
+        slider.min = timestampMin;
+        slider.max = timestampMax;
+        slider.step = 1000 * 60 * 60 * 24; // pasos de un día
 
-      // Convertir fechas a timestamps
-      fechasMs = imagenes.map(img => new Date(img.fecha).getTime());
+        generarTicks();
+        mostrarImagen();
+      });
 
-      timestampMin = Math.min(...fechasMs);
-      timestampMax = Math.max(...fechasMs);
+    function mostrarImagen() {
+      if (imagenes.length === 0) return;
 
+      const img = document.getElementById("visor-imagen");
+      const pie = document.getElementById("pie-imagen");
       const slider = document.getElementById("slider");
-      slider.min = timestampMin;
-      slider.max = timestampMax;
-      slider.step = 1000 * 60 * 60 * 24; // pasos de un día
 
-	  generarTicks();
+      img.src = imagenes[indiceActual].src;
+      pie.innerText = `${imagenes[indiceActual].fecha} – ${imagenes[indiceActual].autor}`;
+      slider.value = fechasMs[indiceActual];
+      actualizarFondoSlider();
+    }
+
+    function cambiarImagen(direccion) {
+      if (imagenes.length === 0) return;
+
+      indiceActual = (indiceActual + direccion + imagenes.length) % imagenes.length;
       mostrarImagen();
-    });
+    }
 
-  function mostrarImagen() {
-    if (imagenes.length === 0) return;
+    function sliderCambio(valor) {
+      const ts = parseInt(valor);
+      let indiceMasCercano = 0;
+      let minDiferencia = Infinity;
 
-    const img = document.getElementById("visor-imagen");
-    const pie = document.getElementById("pie-imagen");
-    const slider = document.getElementById("slider");
+      for (let i = 0; i < fechasMs.length; i++) {
+        const diff = Math.abs(fechasMs[i] - ts);
+        if (diff < minDiferencia) {
+          minDiferencia = diff;
+          indiceMasCercano = i;
+        }
+      }
 
-    img.src = imagenes[indiceActual].src;
-    pie.innerText = `${imagenes[indiceActual].fecha} – ${imagenes[indiceActual].autor}`;
-    slider.value = fechasMs[indiceActual];
-	actualizarFondoSlider(); 
-  }
+      indiceActual = indiceMasCercano;
+      mostrarImagen();
+      actualizarFondoSlider();
+    }
 
-  function cambiarImagen(direccion) {
-    if (imagenes.length === 0) return;
+    function generarTicks() {
+      const contenedor = document.getElementById("slider-ticks");
+      const slider = document.getElementById("slider");
+      contenedor.innerHTML = "";
 
-    indiceActual = (indiceActual + direccion + imagenes.length) % imagenes.length;
-    mostrarImagen();
-  }
+      const rango = timestampMax - timestampMin;
+      const thumbWidth = 16;
+      const sliderWidth = slider.clientWidth;
+      const anchoUtil = sliderWidth - thumbWidth;
 
-  function sliderCambio(valor) {
-    const ts = parseInt(valor);
+      imagenes.forEach((img, i) => {
+        const ts = fechasMs[i];
+        const proporcion = (ts - timestampMin) / rango;
+        const px = proporcion * anchoUtil + thumbWidth / 2;
 
-    // Buscar la imagen más cercana en el tiempo
-    let indiceMasCercano = 0;
-    let minDiferencia = Infinity;
+        const linea = document.createElement("div");
+        linea.className = "absolute top-1.5 h-2 w-[3px] bg-gray-700 opacity-80";
+        linea.style.left = `${px}px`;
+        contenedor.appendChild(linea);
+      });
+    }
 
-    for (let i = 0; i < fechasMs.length; i++) {
-      const diff = Math.abs(fechasMs[i] - ts);
-      if (diff < minDiferencia) {
-        minDiferencia = diff;
-        indiceMasCercano = i;
+    window.addEventListener("resize", () => generarTicks());
+
+    function actualizarFondoSlider() {
+      const slider = document.getElementById("slider");
+      const min = parseInt(slider.min);
+      const max = parseInt(slider.max);
+      const val = parseInt(slider.value);
+
+      const porcentaje = ((val - min) / (max - min)) * 100;
+
+      slider.style.background = `linear-gradient(to right, #56aa45 0%, #56aa45 ${porcentaje}%, #e5e7eb ${porcentaje}%, #e5e7eb 100%)`;
+    }
+
+    // Reproducción automática
+    let reproduciendo = false;
+    let intervaloPlay = null;
+    let velocidad = 1;
+    let velocidades = [1, 2, 3];
+    let tiempos = { 1: 1000, 2: 500, 3: 300 };
+
+    function toggleReproduccion() {
+      const icono = document.getElementById("playIcon");
+      const boton = document.getElementById("playButton");
+
+      reproduciendo = !reproduciendo;
+
+      if (reproduciendo) {
+        icono.classList.remove("ri-play-fill");
+        icono.classList.add("ri-pause-fill");
+
+        boton.classList.remove("bg-primary", "hover:bg-primary/90");
+        boton.classList.add("bg-secondary", "hover:bg-secondary/90");
+
+        intervaloPlay = setInterval(() => {
+          indiceActual = (indiceActual + 1) % imagenes.length;
+          mostrarImagen();
+        }, tiempos[velocidad]);
+      } else {
+        clearInterval(intervaloPlay);
+        icono.classList.remove("ri-pause-fill");
+        icono.classList.add("ri-play-fill");
+
+        boton.classList.remove("bg-secondary", "hover:bg-secondary/90");
+        boton.classList.add("bg-primary", "hover:bg-primary/90");
       }
     }
 
-    indiceActual = indiceMasCercano;
-    mostrarImagen();
-	actualizarFondoSlider();
-  }
+    function cambiarVelocidad() {
+      velocidad = velocidad % 3 + 1;
+      document.getElementById("velocidadBtn").innerText = `x${velocidad}`;
 
-function generarTicks() {
-  const contenedor = document.getElementById("slider-ticks");
-  const slider = document.getElementById("slider");
-
-  contenedor.innerHTML = "";
-
-  const rango = timestampMax - timestampMin;
-  const thumbWidth = 16; // mismo tamaño que definiste para el thumb
-  const sliderWidth = slider.clientWidth;
-  const anchoUtil = sliderWidth - thumbWidth;
-
-  imagenes.forEach((img, i) => {
-    const ts = fechasMs[i];
-    const proporcion = (ts - timestampMin) / rango;
-
-    // Posición compensada por la mitad del thumb
-    const px = proporcion * anchoUtil + thumbWidth / 2;
-
-    const linea = document.createElement("div");
-    linea.className = "absolute top-1.5 h-2 w-[3px] bg-gray-700 opacity-80";
-    linea.style.left = `${px}px`;
-
-    contenedor.appendChild(linea);
-  });
-}
-window.addEventListener("resize", () => generarTicks());
-function actualizarFondoSlider() {
-  const slider = document.getElementById("slider");
-
-  const min = parseInt(slider.min);
-  const max = parseInt(slider.max);
-  const val = parseInt(slider.value);
-
-  const porcentaje = ((val - min) / (max - min)) * 100;
-
-  slider.style.background = `linear-gradient(to right, #56aa45 0%, #56aa45 ${porcentaje}%, #e5e7eb ${porcentaje}%, #e5e7eb 100%)`;
-}
-
-let reproduciendo = false;
-let intervaloPlay = null;
-
-function toggleReproduccion() {
-  const icono = document.getElementById("playIcon");
-  const boton = document.getElementById("playButton");
-
-  reproduciendo = !reproduciendo;
-
-  if (reproduciendo) {
-    icono.classList.remove("ri-play-fill");
-    icono.classList.add("ri-pause-fill");
-
-    boton.classList.remove("bg-primary", "hover:bg-primary/90");
-    boton.classList.add("bg-secondary", "hover:bg-secondary/90");
-
-    intervaloPlay = setInterval(() => {
-      indiceActual = (indiceActual + 1) % imagenes.length;
-      mostrarImagen();
-    }, tiempos[velocidad]);
-  } else {
-    clearInterval(intervaloPlay);
-    icono.classList.remove("ri-pause-fill");
-    icono.classList.add("ri-play-fill");
-
-    boton.classList.remove("bg-secondary", "hover:bg-secondary/90");
-    boton.classList.add("bg-primary", "hover:bg-primary/90");
-  }
-}
-
-let velocidad = 1;
-let velocidades = [1, 2, 3];
-let tiempos = { 1: 1000, 2: 500, 3: 300 };
-
-function cambiarVelocidad() {
-  velocidad = velocidad % 3 + 1; // Cicla 1 → 2 → 3 → 1
-  document.getElementById("velocidadBtn").innerText = `x${velocidad}`;
-
-  if (reproduciendo) {
-    clearInterval(intervaloPlay);
-    intervaloPlay = setInterval(() => {
-      indiceActual = (indiceActual + 1) % imagenes.length;
-      mostrarImagen();
-    }, tiempos[velocidad]);
-  }
-}
-
-
-// Función de redirección con mensaje
-function redirigirInicio() {
-  document.body.innerHTML = `
-    <div class="flex items-center justify-center h-screen text-center px-4">
-      <div>
-        <p class="text-lg text-gray-700">La Ventana del Tiempo selecionada no está disponible</p>
-        <p class="text-lg text-gray-700">Redirigiendo a la página principal...</p>
-      </div>
-    </div>`;
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 2500);
-}
-
-// Extraer código desde la URL
-const params = new URLSearchParams(window.location.search);
-const codigoEstacion = params.get("ventana");
-
-// Si no hay parámetro, redirigir
-if (!codigoEstacion) {
-  redirigirInicio();
-}
-
-// Cargar datos de estaciones
-fetch("estaciones.json")
-  .then(res => res.json())
-  .then(estaciones => {
-    const estacion = estaciones.find(e => e.codigo === codigoEstacion);
-
-    // Si no se encuentra la estación, redirigir
-    if (!estacion) {
-      redirigirInicio();
-      return;
+      if (reproduciendo) {
+        clearInterval(intervaloPlay);
+        intervaloPlay = setInterval(() => {
+          indiceActual = (indiceActual + 1) % imagenes.length;
+          mostrarImagen();
+        }, tiempos[velocidad]);
+      }
     }
 
-    // Si existe, mostrar la información
-    document.getElementById("nombre-estacion").innerText = estacion.nombre;
-    document.getElementById("codigo-estacion").innerText = estacion.codigo;
-    document.getElementById("lugar-estacion").innerText = estacion.lugar;
-    document.getElementById("coordenadas-estacion").innerText = estacion.coordenadas.join(", ");
-    document.getElementById("descripcion-estacion").innerText = estacion.descripcion || "—";
-    document.getElementById("fecha-estacion").innerText = estacion.fecha;
-  })
-  .catch(() => {
-    // Si ocurre un error al cargar el JSON, redirigir
-    redirigirInicio();
-  });
+    // Redirige al inicio con mensaje
+    function redirigirInicio() {
+      document.body.innerHTML = `
+        <div class="flex items-center justify-center h-screen text-center px-4">
+          <div>
+            <p class="text-lg text-gray-700">La Ventana del Tiempo seleccionada no está disponible</p>
+            <p class="text-lg text-gray-700">Redirigiendo a la página principal...</p>
+          </div>
+        </div>`;
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2500);
+    }
 
-</script>
+    // Comprobación de parámetro en URL
+    const params = new URLSearchParams(window.location.search);
+    const codigoEstacion = params.get("ventana");
 
+    if (!codigoEstacion) {
+      redirigirInicio();
+    }
 
+    // Carga de datos de estación
+    fetch("estaciones.json")
+      .then(res => res.json())
+      .then(estaciones => {
+        const estacion = estaciones.find(e => e.codigo === codigoEstacion);
+        if (!estacion) {
+          redirigirInicio();
+          return;
+        }
+
+        document.getElementById("nombre-estacion").innerText = estacion.nombre;
+        document.getElementById("codigo-estacion").innerText = estacion.codigo;
+        document.getElementById("lugar-estacion").innerText = estacion.lugar;
+        document.getElementById("coordenadas-estacion").innerText = estacion.coordenadas.join(", ");
+        document.getElementById("descripcion-estacion").innerText = estacion.descripcion || "—";
+        document.getElementById("fecha-estacion").innerText = estacion.fecha;
+      })
+      .catch(() => {
+        redirigirInicio();
+      });
+  </script>
 
 </body>
 </html>
